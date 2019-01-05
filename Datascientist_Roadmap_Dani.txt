@@ -1,0 +1,308 @@
+Development Area(s) of Interest*
+Accelerated Computing
+Autonomous Machines
+Deep Learning
+Design & Visualization
+Game Development
+Self Driving Cars
+Smart Cities
+Virtual Reality 
+
+
+Application Domain :
+- Image Classification
+- Facial Recognition
+- Action Recognition
+- Big Data
+- Natural Language Processing
+- Medical
+- Speech Recognition
+- Object Recognition
+- Machine Learning Algorithms/Research
+
+Deep Learning Framework * :
+- Caffe
+- Caffe2
+- Chainer
+- CNTK(Microsoft Cognitive Toolkit)
+- Deeplearning4j
+- Keras
+- MATLAB
+- MxNet
+- TensorFlow
+- Theano
+- Torch/PyTorch
+
+
+TRELLO : https://trello.com/b/wKBiqfM7/data-scientist
+
+### ROADMAP DATA SCIENTIST ###
+https://github.com/MrMimic/data-scientist-roadmap
+https://github.com/bulutyazilim/awesome-datascience
+
+REFF: 
+https://www.petanikode.com/python-virtualenv/
+
+TOOLS :
+MINICONDA
+ANACONDA # https://conda.io/docs/user-guide/install/linux.html, #https://github.com/danigunawan/Fullstack-Python-Django-Dev/blob/master/16_djangolevelone/dev%20tools/1.django%20level%20one.txt
+
+ENV : 
+- PIP
+- VIRTUALENV
+
+DEEP LEARN :
+- YOLO
+- TENSORFLOW
+- OPENCV
+
+INSTALL PYTHON UBUNTU 16.04
+============================
+sudo apt-get -y install python
+sudo apt-get -y install python3
+which python
+ls -l /usr/bin/python
+
+1. PIP
+REFF :
+https://www.rosehosting.com/blog/how-to-install-pip-on-ubuntu-16-04/
+https://www.abiraf.com/blog/modules-python-yang-wajib-dimiliki---virtualenv-dan-pip
+https://www.petanikode.com/python-virtualenv/
+
+sudo apt-get update && sudo apt-get -y upgrade
+sudo apt-get install python-pip
+pip -V # PY2
+pip3 -V # PY3
+pip search package_name
+pip install package_name
+pip uninstall package_name
+pip --help
+
+#ALTERNATE
+sudo easy_install pip # PY2
+sudo easy_install pip3 # PY3
+	
+
+2. VIRTUAL ENV
+apt install virtualenv
+apt install python-virtualenv # PY 2
+apt install python3-virtualenv # PY 3
+
+# Alternate
+sudo pip install virtualenv # install ENV LEWAT PIP
+
+# Latest Version Beta No Stable
+sudo pip install https://github.com/pypa/virtualenv/tarball/develop
+
+# With Curl
+curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-X.X.tar.gz
+tar xvfz virtualenv-X.X.tar.gz
+cd virtualenv-X.X
+sudo python setup.py install
+
+# CEK VIRTUAL ENV
+which virtualenv
+virtualenv --version
+
+# Membuat Virtual ENV
+mkdir my-project
+cd my-project
+virtualenv my-env
+
+Saat kita mengetik perintah virtualenv my-env, virtualenv akan otomatis membuat lingkungan virtual dan direktori baru bernama my-env.
+
+my-project/
+└── my-env/
+    ├── bin
+    ├── include
+    ├── lib
+    ├── local
+    └── pip-selfcheck.json
+
+# Aktifkan Virtual Env
+source my-env/bin/activate 
+
+atau
+
+. my-env/bin/activate
+
+# install Flask With PIP
+pip install Flask
+flask --version
+
+jika error : 
+. my-env/bin/activate # masuk dulu ke env agar flask bisa
+flask --version
+
+
+######## DEEP LEARNING AND COMPUTER VISION #########
+
+# Awesome Deep Learning (RECOGNITION)
+https://github.com/daicoolb/Awesome-Object-Detections
+https://github.com/amusi/awesome-object-detection
+https://github.com/kjw0612/awesome-deep-vision
+https://www.pyimagesearch.com
+
+# Video Analytics
+- Yolo # Realtime Object Detection Darknet
+- OpenFace # Face Recognition 
+
+# REQUIRMENT SPEC DEEP LEARNING :
+- NVDIA GPU, Drivers
+- CUDA
+- cuDDN Libraries
+- Tensorflow
+- Darknet YOLO
+- Theano
+- Linux Ubuntu 16.04, 17.10, 18.04
+- Keras
+- OpenCV
+- Raspberry + Camera
+
+## INSTALL ENVIRONMENT DEEP LEARNING & COMPUTER VISION
+
+# INSTALL NVDIA + CUDA 9 UBUNTU 16.04 ON LAPTOP 
+https://gist.github.com/zhanwenchen/e520767a409325d9961072f666815bb8#install-nvidia-graphics-driver-via-apt-get
+https://www.linuxsec.org/2018/05/cara-install-driver-nvidia-terbaru-di.html
+https://medium.com/@omar.merghany95/how-to-install-tensorflow-gpu-with-cuda-toolkit-9-0-and-cudnn-7-2-1-on-aws-ec2-ubuntu-16-04-c46b469a7358
+https://medium.com/@yifanguo1129/install-cuda-9-0-and-cudnn-7-2-on-ubuntu-18-04-d9a7aeb89105
+https://askubuntu.com/questions/967332/how-can-i-install-cuda-9-on-ubuntu-17-10
+https://askubuntu.com/questions/995542/installing-cuda-8-on-ubuntu-16-unable-to-locate-package-cuda
+https://www.pyimagesearch.com/2017/09/27/setting-up-ubuntu-16-04-cuda-gpu-for-deep-learning-with-python/
+https://www.pytorials.com/how-to-install-tensorflow-gpu-with-cuda-10-0-for-python-on-ubuntu/2/
+http://www.advancedclustering.com/act_kb/installing-nvidia-drivers-rhel-centos-7/ # INSTALL ON CENTOS
+https://davidwpearson.wordpress.com/2017/12/21/installing-nvidias-cuda-9-1-on-fedora-27/ # INSTALL ON FEDORA 
+https://ddkang.github.io/2018/11/05/installing-cuda.html
+http://security-plus-data-science.blogspot.com/2018/01/setting-up-cuda-9-on-fedora-27.html
+https://nicolas-bettenburg.com/2018-08-18-ubuntu-18-04-deep-learning-box/
+https://qiita.com/ishizakiyu/items/bcf1b76f1f4f02b0ac57
+
+Install CUDA 9.2, cuDNN 7.2.1, Anaconda and PyTorch on Ubuntu 16.04 :
+
+https://gist.github.com/kylemcdonald/3ae0b88a1bf91afc00ba441fe6823a17
+
+
+
+- INSTALL DRIVER NVDIA (AUTOMATIS RECOMMENDED)
+
+sudo ubuntu-drivers autoinstall # akan menginstall CUDA AUTOMATIS
+
+- INSTALL DRIVER NVDIA MANUAL (MANUAL)
+ubuntu-drivers devices # CEK 
+sudo apt install nvidia-driver-390 # 390 seri di ubuntu driver cek atau kadang 396 tergantung di pengeckan
+
+- INSTALL DRIVER NVDIA VERSI BETA (MANUAL)
+sudo add-apt-repository ppa:graphics-drivers/ppa
+ubuntu-drivers devices # CHECK KEMBALI
+
+# INSTALL ENV DEEP LEARNING
+
+https://github.com/heethesh/Computer-Vision-and-Deep-Learning-Setup
+
+- INSTALL CUDA TOOLKIT
+sudo apt install nvidia-cuda-toolkit
+nvcc --version
+
+- INSTALL TENSORFLOW
+
+######## END DEEP LEARNING AND COMPUTER VISION #########
+
+
+
+######## DEEP LEARNING (CHATBOT) #########
+
+######## END DEEP LEARNING (CHATBOT) #########
+
+
+
+##### BIG DATA #####
+- Hadoop
+
+
+###### IMPROVISATION AND EXPLORE ######
+
+## YOLO EXPLORE ##
+# SUPERVISELY CLUSTER
+https://www.youtube.com/watch?v=el07zd4Dzsg
+
+# MEDIA STREAMING SERVER
+
+@ REFF AWESOME : 
+https://github.com/topics/media-server
+https://github.com/Kickball/awesome-selfhosted
+https://github.com/ebu/awesome-broadcasting
+https://github.com/manuzhang/awesome-streaming
+
+@ List Media Server Streaming :
+~ Comparison : https://en.wikipedia.org/wiki/Comparison_of_streaming_media_systems
+- wowza
+- kurento
+- red5
+- nginxRTMP
+- Ant Media Server
+- OpenVidu
+- Jitsi
+- Flussonic
+- Kaltura
+- Node RTSP RTMP Server
+- https://github.com/R0GGER/mistserver
+- helixproduction
+- https://github.com/daniulive/SmarterStreaming
+- https://hackernoon.com/build-live-video-streaming-server-use-ffmpeg-nginx-rtmp-module-nodejs-82e1bb58949e
+
+@ Referensi Spec Server Streaming Yang Bagus
+- Low Latency WebRTC 
+- Adaptive Bitrate 
+- Hardware Encoding(GPU) 
+- Cluster 
+- Live Publishing to Periscope, Facebook & Youtube 
+- All Community Edition Features
+- RTMP, RTSP, MP4, HLS
+- WebRTC to RTMP Adapter
+- Live Publishing To Periscope
+- 360 Degree Live & VoD Streams
+- Management Dashboard
+
+@ Adaptive Streaming With Nginx
+https://licson.net/post/setting-up-adaptive-streaming-with-nginx/ 
+
+@ Tools :
+- Openbroadcaster
+- CasparCG # https://casparcgforum.org/t/simple-video-playout/61, #https://drive.google.com/drive/u/1/folders/12xcrh-LiAatzf6ppW4pyQthokhi55qSN
+- Wirecast
+- VLC
+- FFMPEG
+- handbrake # Transcoding
+
+@ Transcoding : 
+-
+
+# How Streaming RTSP / RTMP on client side ex: vlc client with rtmpt://ipdaddress:port 
+
+# POSTING IMAGE YOLO ON PHP INSERT DB
+https://stackoverflow.com/questions/45792720/cant-execute-yolo-darknet-from-php-exec-predictions-png-never-appears
+
+# MESSAGE QUEUE (ANTRIAN)
+- KAFKA
+- REDIS
+
+## END YOLO EXPLORE ##
+
+## ABSENCE FACE RECOGNITION ## 
+https://github.com/topics/attendance-system
+https://github.com/yodist/face-recognition-lbph
+## END ABSENCE FACE RECOGNITION ## 
+
+
+###### TROUBLE SHOOTING ######
+1. Pip is not working: ImportError: No module named 'pip._internal'
+REFF : https://askubuntu.com/questions/1025189/pip-is-not-working-importerror-no-module-named-pip-internal
+
+2. GPG error: https://dl.yarnpkg.com/debian stable InRelease NO_PUBKEY E074D16EB6FF4DE3 #4453 
+https://github.com/yarnpkg/yarn/issues/4453
+
+- Solution : 
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 
+
+###### BENCHMARK PLATFORM ######
+https://lewatmana.com/kota/jakarta-pusat/
