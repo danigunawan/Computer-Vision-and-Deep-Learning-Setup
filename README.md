@@ -62,7 +62,7 @@ After downloading the file, go to the folder where you have downloaded the file 
 	sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.148-1_amd64.deb
 	sudo apt-key add /var/cuda-repo-<version>/7fa2af80.pub
 	sudo apt-get update
-	sudo apt-get install -y cuda-9
+	sudo apt-get install -y cuda-9 atau sudo apt-get update -y cuda-9-2
 
 Now, you have to install the CUDA performance update patch available from the same webpage where you downloaded the CUDA Base Installer.
 	
