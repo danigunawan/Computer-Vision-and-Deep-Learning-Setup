@@ -160,6 +160,7 @@ https://www.pyimagesearch.com
 - Raspberry + Camera
 
 ## INSTALL ENVIRONMENT DEEP LEARNING & COMPUTER VISION
+https://github.com/heethesh/Computer-Vision-and-Deep-Learning-Setup
 
 # INSTALL NVDIA + CUDA 9 UBUNTU 16.04 ON LAPTOP 
 https://gist.github.com/zhanwenchen/e520767a409325d9961072f666815bb8#install-nvidia-graphics-driver-via-apt-get
