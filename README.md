@@ -165,9 +165,9 @@ Next we need to install Bazel
 	sudo apt-get update && sudo apt-get install bazel
 	sudo apt-get upgrade bazel
 	
-	wget https://github.com/bazelbuild/bazel/releases/download/0.11.0/bazel-0.11.0-installer-linux-x86_64.sh
-	chmod +x bazel-0.11.0-installer-linux-x86_64.sh
-	./bazel-0.11.0-installer-linux-x86_64.sh --user
+	wget https://github.com/bazelbuild/bazel/releases/download/0.21.0/bazel-0.21.0-installer-linux-x86_64.sh
+	chmod +x bazel-0.21.0-installer-linux-x86_64.sh 
+	./bazel-0.21.0-installer-linux-x86_64.sh --user
 	
 	export PATH="$PATH:$HOME/bin"
 	source ~/.bashrc
