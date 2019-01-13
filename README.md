@@ -207,6 +207,21 @@ Finally, build the pip package:
 	
 	bazel build --config=opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/tools/pip_package:build_pip_package 
 
+	Jika Error ERROR: Config value cuda is not defined in any .rc file
+	1. cek versi bazel
+	bazel version
+	2. downgrade dari versi sekarang 0.21.0 ke 0.18.0
+	
+	Solusi :
+	1. Remove Bazel 
+	https://github.com/bazelbuild/bazel/issues/962
+	rm $HOME/.cache/bazel -fr
+	sudo rm /usr/local/bin/bazel /etc/bazelrc /usr/local/lib/bazel -fr
+	2. install ulang bazel dengan versi 18
+	wget https://github.com/bazelbuild/bazel/releases/download/0.18.0/bazel-0.18.0-installer-linux-x86_64.sh
+	chmod +x bazel-0.18.0-installer-linux-x86_64.sh 
+	./bazel-0.18.0-installer-linux-x86_64.sh --user
+	
 The build might take upto an hour. If it fails to build, you must clean your build using the following command and configure the build once again.
 
 	bazel clean --expunge
