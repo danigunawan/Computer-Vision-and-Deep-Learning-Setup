@@ -319,6 +319,7 @@ Configure and generate the MakeFile in */opencv/build* folder (make sure to spec
 	      -D WITH_QT=ON \
 	      -D WITH_OPENGL=ON \
 	      -D WITH_CUDA=ON \
+	      -D BUILD_TIFF=ON \
 	      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
 	      -D BUILD_EXAMPLES=ON ..
 
