@@ -144,7 +144,7 @@ Now we will download the TensorFlow repository from GitHub in the */home* folder
 	cd ~
 	git clone https://github.com/tensorflow/tensorflow.git
 	cd tensorflow
-	git checkout r1.5
+	git checkout r1.5 # version stable r.1.12 https://www.tensorflow.org/versions/
 	
 You must also install libcupti which for Cuda Toolkit >= 8.0 you do via:
 	
