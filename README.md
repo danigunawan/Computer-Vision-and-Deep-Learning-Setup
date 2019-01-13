@@ -136,7 +136,7 @@ Upgrade numpy to the latest version:
 	sudo pip install --upgrade numpy
 	 
 ### Building TensorFlow from Source
-
+https://www.tensorflow.org/install/source
 **NOTE: If you already have a built &ast;.whl file, skip to next sub-section to install TensorFlow directly using PIP**
 
 Now we will download the TensorFlow repository from GitHub in the */home* folder. Checkout to the latest version of TensorFlow (`r1.5` is used here).
