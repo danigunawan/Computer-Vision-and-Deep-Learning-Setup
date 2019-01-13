@@ -187,6 +187,10 @@ The root of the *tensorflow* folder contains a bash script named configure. This
 	cd ~/tensorflow
 	./configure
 
+## INSTALL NCCL FOR TENSORFLOW (OPTIONAL)
+ 1. download nccl ubuntu 16.04 cuda 9.0 cudnn 7.0
+ 2. cara install nccl https://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html#debian
+ 
 #### NOTE: Enter the your correct CUDA and CuDNN version below. CUDA 9.2 and CuDNN 7.4 is used here
 
 >Select Python 2.7, no to all additional packages, gcc as compiler (GCC 5.4).
