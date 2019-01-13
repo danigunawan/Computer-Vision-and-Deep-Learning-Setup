@@ -1,0 +1,1224 @@
+WORKFLOW :
+
+	- TRELLO : https://trello.com/b/wKBiqfM7/data-scientist
+
+ROADMAP DATA SCIENTIST :
+
+	- https://github.com/MrMimic/data-scientist-roadmap
+	- https://github.com/bulutyazilim/awesome-datascience
+
+CONTENTS :
+
+	- Install Prerequisites
+	- Setup NVIDIA Driver for your GPU
+	- Install CUDA
+	- Install cuDNN
+	- Install NCCL
+	- Install TensorRT
+	- Python and Other Dependencies
+	- OpenCV and Contrib Modules
+	- Deep Learning Frameworks
+	- PyTorch
+	- TensorFlow
+	- Keras
+	- Theano
+	- Darknet for YOLO
+
+Infrastructure Media Server Streaming
+	- Server
+	- NVR
+	- Camera
+	- 
+Referensi Spec Server Streaming Yang Bagus
+	- Low Latency WebRTC 
+	- Adaptive Bitrate 
+	- Hardware Encoding(GPU) 
+	- Cluster 
+	- Live Publishing to Periscope, Facebook & Youtube 
+	- All Community Edition Features
+	- RTMP, RTSP, MP4, HLS
+	- WebRTC to RTMP Adapter
+	- Live Publishing To Periscope
+	- 360 Degree Live & VoD Streams
+	- Management Dashboard
+
+Development Area(s) of Interest*
+	- Accelerated Computing
+	- Autonomous Machines
+	- Deep Learning
+	- Design & Visualization
+	- Game Development
+	- Self Driving Cars
+	- Smart Cities
+	- Virtual Reality 
+
+
+Application Domain :
+	- Image Classification
+	- Facial Recognition
+	- Action Recognition
+	- Big Data
+	- Natural Language Processing
+	- Medical
+	- Speech Recognition
+	- Object Recognition
+	- Machine Learning Algorithms/Research
+
+Deep Learning Framework * :
+	- Caffe
+	- Caffe2
+	- Chainer
+	- CNTK(Microsoft Cognitive Toolkit)
+	- Deeplearning4j
+	- Keras
+	- MATLAB
+	- MxNet
+	- TensorFlow
+	- Theano
+	- Torch/PyTorch
+
+Device Learning Board :
+	- Raspberry Pi
+	- Arduino
+	- VPU (Vision Processing Unit)S
+
+TOOLS :
+	- MINICONDA
+	- ANACONDA
+
+
+# VIRTUAL ENVIRONMENT 
+============================== RANAH JARANG DIPAKE BUAT FOR ME ===============================
+@ Alternate 2 (Install Pip With easy_install) :
+	sudo easy_install pip # PY2
+	sudo easy_install pip3 # PY3
+
+@ VIRTUAL ENV
+apt install virtualenv
+apt install python-virtualenv # PY 2
+apt install python3-virtualenv # PY 3
+
+@ Alternate
+sudo pip install virtualenv # install ENV LEWAT PIP
+
+@ Latest Version Beta No Stable
+sudo pip install https://github.com/pypa/virtualenv/tarball/develop
+
+@ Install Virtual ENV With Curl
+curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-X.X.tar.gz
+tar xvfz virtualenv-X.X.tar.gz
+cd virtualenv-X.X
+sudo python setup.py install
+
+@ CEK VIRTUAL ENV
+which virtualenv
+virtualenv --version
+
+@ Membuat Virtual ENV
+mkdir my-project
+cd my-project
+virtualenv my-env
+
+Saat kita mengetik perintah virtualenv my-env, virtualenv akan otomatis membuat lingkungan virtual dan direktori baru bernama my-env.
+
+my-project/
+└── my-env/
+    ├── bin
+    ├── include
+    ├── lib
+    ├── local
+    └── pip-selfcheck.json
+
+@ Aktifkan Virtual Env
+source my-env/bin/activate 
+
+atau
+
+. my-env/bin/activate
+
+@ install Flask With PIP
+pip install Flask
+flask --version
+
+jika error : 
+. my-env/bin/activate # masuk dulu ke env agar flask bisa
+flask --version
+
+# INSTALL CONDA/ANACONDA
+
+	- SET ENV VARIABLES : 
+	sh Anaconda3-2018.12-Linux-x86_64.sh
+	export PATH=~/anaconda3/bin:$PATH
+
+
+============================== RANAH JARANG DIPAKE BUAT FOR ME ===============================
+
+========================================================================================================================================================
+Tutorial on how to setup your system with a NVIDIA GPU and to install Deep Learning Frameworks like TensorFlow, TensorRT, Darknet for YOLO, Theano, and Keras; OpenCV; and NVIDIA drivers, CUDA, and cuDNN libraries on Ubuntu 16.04, 17.10 and 18.04
+
+
+0 # CATATAN
+Tensorflow 1.8 with CUDA 9.2 and cuDNN 7.1.4 performs up to 37% faster when compared to earlier versions of Tensorflow. View full results here.
+Reference Benchmark : https://www.pytorials.com/benchmark-tensorflow-on-cifar10/
+
+1 # ADD USER 
+adduser dsc_dani
+sudo chown dsc_dani:dsc_dani /var/www/
+sudo visudo 
+- tambahkan : dsc_dani ALL=(ALL:ALL) ALL
+- masuk sebagai user dsc_dani : su dsc_dani
+
+2 # LIST USER
+cut -d: -f1 /etc/passwd
+
+2-1 # REMOVE USER
+deluser newuser # atau paksa delete pakai: deleteuser -f newuser
+sudo deluser newuser
+deluser --remove-home newuser
+sudo deluser --remove-home newuser
+
+LALU DELETE HOME NYA :
+sudo rm -r /home/username
+
+3 # INSTALL PYTHON + DEPENDENCY
+	sudo apt-get update
+	sudo apt-get install gfortran pkg-config 
+	sudo apt-get install build-essential 
+	sudo apt-get install cmake git unzip zip
+	sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo apt-get install python-dev python2.7-dev python3.5-dev python3.6-dev pylint 
+
+	sudo apt-get install libboost-all-dev
+	sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev curl wget
+	sudo apt-get install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+	sudo apt-get install graphicsmagick python-pip python-nose python-scipy python-pandas python-protobuf
+	sudo apt-get install libevent-dev
+	sudo apt-get install python-numpy python-wheel
+	sudo apt-get install python3-numpy python3-dev python3-pip python3-wheel
+
+@ Install dependencies of deep learning frameworks:
+
+	sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler libopencv-dev
+
+@ Install Python 2 and 3 along with other important packages like boost, lmdb, glog, blas etc.
+
+	sudo apt-get install -y --no-install-recommends libboost-all-dev doxygen
+	sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev libblas-dev 
+	sudo apt-get install -y libatlas-base-dev libopenblas-dev libgphoto2-dev libeigen3-dev libhdf5-dev 
+	 
+	sudo apt-get install -y python-dev python-pip python-nose python-numpy python-scipy python-wheel python-six
+	sudo apt-get install -y python3-dev python3-pip python3-nose python3-numpy python3-scipy python3-wheel python3-six
+
+@ Upgrade PIP Python 2.7
+	
+	sudo pip install --upgrade pip
+
+	Optional :
+
+	pip -V # Python2
+	pip3 -V # Python3
+	pip search package_name
+	pip install package_name
+	pip uninstall package_name
+	pip --help
+
+	
+@ Upgrade PIP Python 3
+	sudo pip3 install --upgrade numpy
+
+	sudo pip3 install numpy matplotlib ipython protobuf jupyter mock
+	sudo pip3 install scipy scikit-image scikit-learn
+	sudo pip3 install keras_applications==1.0.6 --no-deps
+	sudo pip3 install keras_preprocessing==1.0.5 --no-deps
+
+
+@ Check GCC Version
+gcc --version # gcc harus versi 5 support opencv pada cuda
+
+4 # INSTALL LINUX KERNEL HEADER
+uname -r
+sudo apt-get install linux-headers-$(uname -r)
+
+
+5 # INSTALL DRIVER NVIDIA
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt-get update 
+nvidia-smi
+#sudo apt-get upgrade # Jangan diupgrade takut ada paket yang conflict
+uname -m && cat /etc/*release
+lspci | grep -i nvidia
+ubuntu-drivers devices
+sudo apt install nvidia-driver-415 # 415 seri di ubuntu driver terbaru stable
+
+6 # INSTALL CUDA 9.2
+Bersihkan Versi Cuda Sebelumnya :
+sudo apt-get purge nvidia*
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo rm -rf /usr/local/cuda*
+
+@ CARA 1 (UDAH OK) :
+
+		1. Download Cuda : https://developer.nvidia.com/cuda-toolkit-archive
+		2. Pilih Cuda 9.2
+		3. Pilih Linux
+		4. Pilih Arsitektur X86_64
+		5. Pilih OS Ubuntu Versi 16.04
+		6. Pilih Deb Local
+		- Download Base Installer Cuda 9.2 atau https://developer.nvidia.com/compute/cuda/9.2/Prod2/local_installers/cuda-repo-ubuntu1604-9-2-local_9.2.148-1_amd64
+		- Download Patch 1 (Released Aug 6, 2018) atau https://developer.nvidia.com/compute/cuda/9.2/Prod2/patches/1/cuda-repo-ubuntu1604-9-2-148-local-patch-1_1.0-1_amd64
+
+		7. @ Base Installer 
+		   sudo dpkg -i cuda-repo-ubuntu1604-9-2-local_9.2.148-1_amd64.deb
+		   sudo apt-key add /var/cuda-repo-9-2/7fa2af80.pub
+		   sudo apt-get update
+		   sudo apt-get install cuda
+
+		   @ Patch Cuda
+		   sudo dpkg -i cuda-repo-ubuntu1604-9-2-148-local-patch-1_1.0-1_amd64
+		   sudo apt-get update
+
+		8. echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-9.2/lib64:/usr/local/cuda-9.2/extras/CUPTI/lib64"' >> ~/.bashrc
+		   echo 'export CUDA_HOME=/usr/local/cuda-9.2' >> ~/.bashrc
+		   echo 'export PATH="/usr/local/cuda-9.2/bin:$PATH"' >> ~/.bashrc
+		   source ~/.bashrc
+		   nvcc -V # pastikan cuda versi 9.2
+
+		9. INSTALL CUDA TOOLKIT
+		sudo apt install nvidia-cuda-toolkit
+		nvcc --version
+
+
+@ CARA 2 (BELUM DICOBA) : 
+		
+		1. sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+		   echo "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /" | sudo tee /etc/apt/sources.list.d/cuda.list
+		Optional : 
+		For Both Options (Optional Aja):
+		- sudo apt-get update 
+		- sudo apt-get -o Dpkg::Options::="--force-overwrite" install cuda-9-2 cuda-drivers
+		2. sudo reboot 
+		3. echo 'export PATH=/usr/local/cuda-9.2/bin${PATH:+:${PATH}}' >> ~/.bashrc
+		   echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}' >> ~/.bashrc
+		4. source ~/.bashrc
+		   sudo ldconfig
+		   nvidia-smi / watch nvidia-smi
+
+		NOTE : 
+		sudo ldconfig -v (CHECK PATH)
+		dpkg -l | grep opencv 
+		/usr/local/opencv/
+
+@ CARA 3 (BELUM DICOBA):
+
+		1. wget -c -v -nc https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.2.88-1_amd64.deb
+
+		2. sudo dpkg -i cuda-repo-ubuntu1604_9.2.88-1_amd64.deb
+
+		3. sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+
+		4. sudo apt-get update
+
+		5. sudo apt-get install cuda
+
+7 # Install cuDNN
+
+@ CARA 1 : 
+	- Download cuDNN versi 7.1.4
+	https://developer.nvidia.com/rdp/cudnn-download atau https://developer.nvidia.com/rdp/cudnn-archive
+	- Download cuDNN v7.1.4 (May 16, 2018), for CUDA 9.2
+	  @ Runtime : https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.1.4/prod/9.2_20180516/Ubuntu16_04-x64/libcudnn7_7.1.4.18-1_cuda9.2_amd64
+	  @ Developer Library : https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.1.4/prod/9.2_20180516/Ubuntu16_04-x64/libcudnn7-dev_7.1.4.18-1_cuda9.2_amd64 
+	  @ DOC & Code Examples : https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.1.4/prod/9.2_20180516/Ubuntu16_04-x64/libcudnn7-doc_7.1.4.18-1_cuda9.2_amd64
+	- Installing from Debian Package (Recommended Method)
+	  Install the downloaded packages (Runtime Library, Developer Library and Code Samples) as follows.
+		  sudo dpkg -i libcudnn7_7.1.4-1+cuda9.2_amd64.deb
+		  sudo dpkg -i libcudnn7-dev_7.1.4-1+cuda9.2_amd64.deb
+		  sudo dpkg -i libcudnn7-doc_7.1.4-1+cuda9.2_amd64.deb
+
+@ CARA 2 (Installing from TAR file TGZ)
+
+For cuDNN downloaded using cuDNN Library for Linux method, go to the folder where you have downloaded the “.tgz” file and from the command line execute the following (update the filename).
+	- Download https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.1.4/prod/9.2_20180516/cudnn-9.2-linux-x64-v7.1
+	- tar xvf cudnn-9.2-linux-x64-v7.1.4.tgz
+	- sudo cp -P cuda/lib64/* /usr/local/cuda-9.2/lib64/
+	- sudo cp cuda/include/* /usr/local/cuda-9.2/include/
+	- sudo chmod a+r /usr/local/cuda-9.2/include/cudnn.h
+	- To check installation of cuDNN, run this in your terminal :
+	  dpkg -l | grep cudnn
+
+8 # INSTALL NCCL 2.2.13
+	@ Reff : https://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html#debian
+	
+
+	- Download NCCL v2.2.13, for CUDA 9.2, June 1, 2018
+	https://developer.nvidia.com/nccl
+
+	@ CARA 1 : 
+	- Download : https://developer.nvidia.com/compute/machine-learning/nccl/secure/v2.2/prod/nccl-repo-ubuntu1604-2.2.13-ga-cuda9.2_1-1_amd64
+	
+	- sudo dpkg -i nccl-repo-<version>.deb
+	- sudo apt update
+	- sudo apt install libnccl2 libnccl-dev
+	- sudo apt-get install libcupti-dev
+
+	@ CARA 2 : 
+	- Download NCCL v2.2.13, for CUDA 9.2 -> NCCL 2.2.13 O/S agnostic and CUDA 9.2
+	- 0tar -xf nccl_2.2.13-1+cuda9.2_x86_64.txz
+	- cd nccl_2.2.13-1+cuda9.2_x86_64
+	- sudo cp -R * /usr/local/cuda-9.2/targets/x86_64-linux/
+	- sudo ldconfig
+	- Install Libcupti 
+	sudo apt-get install libcupti-dev
+	echo 'export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+
+9 # INSTALL TensorRT (OPTIONAL)
+	Cuda 9.2 Support TensorRT4.0 Latest But Not Suppoer TensorRT5.0
+	- Download TensorRT4.0
+	https://developer.nvidia.com/nvidia-tensorrt-download
+	https://developer.nvidia.com/compute/machine-learning/tensorrt/4.0/ga/nv-tensorrt-repo-ubuntu1604-cuda9.2-ga-trt4.0.1.6-20180612_1-1_amd64.deb
+	- sudo dpkg -i nv-tensorrt-repo-ubuntu1604-cuda9.2-ga-trt4.0.1.6-20180612_1-1_amd64.deb
+	  sudo apt-key add /var/nv-tensorrt-repo-ubuntu1604-cuda9.2-ga-trt4.0.1.6-20180612/7fa2af80.pub
+	  sudo apt-get update
+	  sudo apt-get install tensorrt
+	  sudo apt-get install libnvinfer5 python-libnvinfer-dev python3-libnvinfer-dev
+	  sudo apt-get install uff-converter-tf
+	  dpkg -l | grep TensorRT
+
+10 # Install OpenCV and Contrib Modules
+
+@ First we will install the dependencies:
+
+	sudo apt-get remove -y x264 libx264-dev
+	sudo apt-get install -y checkinstall yasm
+	sudo apt-get install -y libjpeg8-dev libjasper-dev libpng12-dev
+
+	sudo apt-get install -y libtiff5-dev
+	sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev
+	 
+	sudo apt-get install -y libxine2-dev libv4l-dev
+	sudo apt-get install -y libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
+	sudo apt-get install -y libqt4-dev libgtk2.0-dev libtbb-dev
+	sudo apt-get install -y libfaac-dev libmp3lame-dev libtheora-dev
+	sudo apt-get install -y libvorbis-dev libxvidcore-dev
+	sudo apt-get install -y libopencore-amrnb-dev libopencore-amrwb-dev
+	sudo apt-get install -y x264 v4l-utils
+
+The following command is needed to process images:
+
+	sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+
+To process videos:
+
+	sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+	sudo apt-get install libxvidcore-dev libx264-dev
+
+For GUI:
+
+	sudo apt-get install libgtk-3-dev
+
+For optimization:
+
+	sudo apt-get install libatlas-base-dev gfortran pylint
+
+To build OpenCV binding for both python 2 and 3.
+
+	sudo apt-get install python2.7-dev python3.5-dev
+
+
+@ CARA 1 To install from official pip package (TIDAK DIREKOMENDASIKAN):
+
+		1. To install Opencv Only:
+			
+			pip install opencv-python
+			
+			pip install opencv-python # jika specific version pip install opencv-python==3.4.0, Package: sudo apt install python3-opencv 
+
+
+		2, To add contrib package in opencv:
+			
+			pip install opencv-contrib-python
+			pip install opencv-contrib-python # jika specific version  pip install opencv-contrib==3.4.0 Ubuntu: sudo apt install python3-opencv-contrib
+
+@ CARA 2 Building From Source (DIREKOMENDASIKAN)
+
+		sudo apt-get update
+		# sudo apt-get upgrade # jangan diupgrade khawatir conflict nanti
+
+		NOTE: Checkout to the latest version of OpenCV. 3.4.5 is used here
+
+		1. Download OpenCV 3.4.5:
+			git clone https://github.com/opencv/opencv.git
+			cd opencv
+			git checkout 3.4.5
+			git pull
+			cd ..
+
+		2. Download OpenCV-contrib 3.4.5:
+			git clone https://github.com/opencv/opencv_contrib.git
+			cd opencv_contrib
+			git checkout 3.4.5
+			git pull
+			cd ..
+
+		3. cd opencv
+		4. mkdir build
+		5. cd build
+		6. cmake -D CMAKE_BUILD_TYPE=RELEASE \
+		      -D CMAKE_INSTALL_PREFIX=/usr/local \
+		      -D INSTALL_C_EXAMPLES=ON \
+		      -D INSTALL_PYTHON_EXAMPLES=ON \
+		      -D WITH_TBB=ON \
+		      -D WITH_V4L=ON \
+		      -D WITH_QT=ON \
+		      -D WITH_OPENGL=ON \
+		      -D WITH_CUDA=ON \
+		      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+		      -D BUILD_TIFF=ON \
+		      -D BUILD_EXAMPLES=ON ..
+
+
+		NOTE: If you are using Python3, you must add the following flag as well
+		      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+
+		NOTE: If you are using Ubuntu 17 or 18.04, you must add the following flags as well
+		      -D CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-5 \
+		      -D CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-5 \
+
+
+		7. Compile and install:
+
+			make -j$(nproc)
+			sudo make install
+			sudo ldconfig
+
+		8. Check installation of OpenCV:
+			python
+			>>> import cv2
+			>>> cv2.__version__
+
+Retain the build folder in the same location. This will be required if you want to uninstall OpenCV or upgrade in the future or else the uninstall process might become very tedious.
+
+NOTE: If you get any errors with import cv2, make sure the PYTHONPATH points to the location of cv2.so file correctly in your ~/.bashrc file as follows
+
+	export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+	export PYTHONPATH=/usr/local/lib/python3.5/site-packages:$PYTHONPATH
+
+TO UNINSTALL OpenCV:
+
+	cd /opencv/build
+	sudo make uninstall
+
+
+13. INSTALL DEEP LEARNING FRAMEWORKS
+
+@ PyTorch
+You can run the commands for installing pip packages torch and torchvision from the Quick Start section here : https://pytorch.org/get-started/locally/
+
+@ TensorFlow
+ 	1. CARA 1 Quick Install (Not Recommended) : 
+ 	  A quick way to install TensorFlow using pip without building is as follows. However this is not recomended as we have several specific versions of GPU libraries to improve performance, which may not be available with the pip builds.
+
+ 	sudo pip install tensorflow # python2
+	sudo pip3 install tensorflow # python3
+	sudo pip3 install tensorflow-gpu # GPU
+
+
+	 2. CARA 2 Building TensorFlow from Source
+	 Now we will download the TensorFlow repository from GitHub in the /home folder. Checkout to the latest version of TensorFlow (r1.13 is used here).
+
+	 	cd ~
+		git clone https://github.com/tensorflow/tensorflow.git
+		cd tensorflow
+		git checkout r1.13
+
+	3. Install Bazel
+
+		sudo apt-get install pkg-config zip zlib1g-dev unzip 
+		wget https://github.com/bazelbuild/bazel/releases/download/0.18.0/bazel-0.18.0-installer-linux-x86_64.sh
+		chmod +x bazel-0.18.0-installer-linux-x86_64.sh
+		./bazel-0.18.0-installer-linux-x86_64.sh --user
+		export PATH="$PATH:$HOME/bin"
+		source ~/.bashrc
+
+	4. bazel version
+
+		sudo apt-get install linuxbrew-wrapper
+		brew doctor
+		brew install coreutils
+	5. cd ~/tensorflow
+	6. ./configure
+	- Select Python 3, no to all additional packages, gcc as compiler (GCC 5.4).
+
+		For CUDA, enter 10.0
+
+		For cuDNN, enter 7.4
+
+		Select yes for TensorRT suuport
+
+		Enter your GPU Compute Capability (Eg: 3.0 or 6.1). Find yout GPU Compute Capability from here.
+
+		Use nvcc as the CUDA compiler.
+	7. bazel build --config=opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/tools/pip_package:build_pip_package 
+
+	NOTE : The build might take upto an hour. If it fails to build, you must clean your build using the following command and configure the build once again.
+
+		bazel clean --expunge
+		./configure
+
+	The bazel build command builds a script named build_pip_package. Running this script as follows will build a .whl file within the /tmp/tensorflow_pkg directory:
+
+		bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+
+
+	Once the build is complete, invoke pip install to install that pip package. The filename of the .whl file depends on your platform. Use tab completion to find your package. If you get an error saying package is not supported for the current platform, run pip explicity (as pip2 for Python 2.7).
+
+	sudo pip3 install /tmp/tensorflow_pkg/tensorflow <TAB> (*.whl)
+	You can make a backup of this built .whl file.
+
+	cp /tmp/tensorflow_pkg/tensorflow <TAB> (*.whl) <BACKUP_LOCATION>
+	Verify that TensorFlow is using the GPU for computation by running the following python script.
+
+	NOTE: Running a script from the /tensorflow root directory might show some errors. Change to any other directory and run the following python script.
+
+	import tensorflow as tf
+	with tf.device('/gpu:0'):
+	    a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
+	    b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
+	    c = tf.matmul(a, b)
+
+	with tf.Session() as sess:
+	    print (sess.run(c))
+	Here,
+
+	"/cpu:0": The CPU of your machine.
+	"/gpu:0": The GPU of your machine, if you have one.
+	If you have a gpu and can use it, you will see the result. Otherwise you will see an error with a long stacktrace.
+
+
+@ Install Keras
+	
+	sudo pip3 install keras
+
+@ Install Theano
+	
+	sudo pip3 install Theano
+
+@ Install Darknet for YOLO
+
+- First clone the Darknet git repository.
+- git clone https://github.com/pjreddie/darknet.git
+now, to compile Darknet with CUDA, CuDNN and OpenCV support, open the Makefile from the darknet folder and make the changes as following in the beginning of this file.
+- sudo nano MakeFile
+GPU=1
+CUDNN=1
+OPENCV=1
+
+- cd darknet
+- make
+
+
+############# YOLO DARKNET ##############
+# POSTING IMAGE YOLO ON PHP INSERT DB
+https://stackoverflow.com/questions/45792720/cant-execute-yolo-darknet-from-php-exec-predictions-png-never-appears
+
+############# YOLO DARKNET ##############
+
+#### INSTALL OPENCV + OPENCV_CONTRIB WITH CONDA ####
+
+Solusi : /usr/bin/ld: warning: libgstpbutils-0.10.so.0, needed by /usr/local/lib/libopencv_videoio.so, not found (try using -rpath or -rpath-link)
+conda install opencv or conda install opencv=3.4.0
+conda install -c conda-forge opencv or conda install -c conda-forge opencv=3.4.0 
+
+#### INSTALL OPENCV + OPENCV_CONTRIB WITH CONDA ####
+
+
+
+######################## Network Device Interface & Audio/Video Playout Graphics #########################
+1. INSTAL CASPARCG CLIENT + SERVER
+
+
+######################## NDI #########################
+
+######################## MEDIA STREAMING SYSTEM ####################
+# INSTALL WOWZA STREAMING ENGINE (MEDIA SERVER STREAMING)
+
+To install:
+	Download Wowza : https://www.wowza.com/pricing/installer
+    sudo chmod +x WowzaStreamingEngine-4.7.7-linux-x64-installer.run
+    sudo ./WowzaStreamingEngine-4.7.7-linux-x64-installer.run
+    Follow the onscreen instructions.
+
+Remove Wowza Streaming Engine : 
+
+ADMINISTRATOR : 
+User : admin
+Password : admin
+
+Source User Name and Password
+To publish a live stream to a Wowza Streaming Engine server, you must enter a source user name and password. You'll use this information with your encoder or camera to pass a live stream to the server.
+
+Username : admin
+Password : admin
+
+# SYNTAX WOWZA STREAMING
+https://www.wowza.com/community/questions/2157/frequently-requested-ffmpeg-command-examples-for-w.html
+https://www.wowza.com/docs/how-to-live-stream-using-ffmpeg-with-wowza-streaming-engine#transcoderRTSP
+https://www.google.com/search?safe=strict&client=ubuntu&hs=rWW&channel=fs&ei=hT4zXPaGFoGCyAOYkaKQAQ&q=ffmpeg+streaming+rtsp+device+webcam+laptop+wowza&oq=ffmpeg+streaming+rtsp+device+webcam+laptop+wowza&gs_l=psy-ab.3...641.1456..1809...0.0..0.459.1243.0j3j0j1j1......0....1..gws-wiz.......0i71.avfiyppQoDc
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&ved=2ahUKEwjHoe7oztvfAhXKeX0KHZvhDtsQFjADegQIChAB&url=https%3A%2F%2Fwww.wowza.com%2Fdocs%2Fhow-to-live-stream-using-ffmpeg-with-wowza-streaming-engine&usg=AOvVaw0YnRy-5ZbK4Dsw0KL0piEM
+
+License : ET1E4-HTBN4-exFUp-T3x3x-6WZ4Z-zNCAE-6DwD6FVdayAn 
+
+Wowza Streaming Engine uses the following default ports for streaming:
+TCP 1935 	RTMP/RTMPE/RTMPT/RTSP-interleaved streaming/WOWZ™
+TCP 8086-8088 	Administration
+UDP 6970-9999 	RTP UDP streaming
+
+http://localhost:8088/enginemanager/ftu/welcome.htm
+http://localhost:8086/enginemanager/ftu/welcome.htm
+http://localhost:8087/enginemanager/ftu/welcome.htm
+
+Start Service Wowza Streaming Engine and administration:
+https://www.wowza.com/docs/how-to-start-and-stop-wowza-streaming-engine-software#startServLin
+######################## MEDIA STREAMING SYSTEM ####################
+
+######################## VIDEO CONVERTER & TRANSCODER ##############
+2. INSTALL HANDBRAKE OPENSOURCE VIDEO TRANSCODER
+sudo add-apt-repository ppa:stebbins/handbrake-releases
+sudo apt-get update
+sudo apt-get install handbrake-cli handbrake-gtk
+######################## VIDEO CONVERTER & TRANSCODER ##############
+
+####################### QOS, PACKET ANALYZER, QUALITY MEASUREMENT #####################
+1. Install Wireshark
+
+2. REMOVE WIRESHARK
+sudo apt-get install ppa-purge && sudo ppa-purge ppa:wireshark-dev/stable
+
+####################### QOS, PACKET ANALYZER, QUALITY MEASUREMENT #####################
+
+####### WEB SERVER SOLUTION STACK #######
+# CARA 1
+# INSTAL AMPPS UBUNTU 16.04
+
+sudo apt-get install -qy tmux
+Download Ampps
+chmod 0755 Ampps-3.8-x86.run
+sudo ./Ampps-3.8-x86.run
+
+# CARA 2
+https://hostadvice.com/how-to/how-to-install-ampps-on-ubuntu-18-04/
+
+sudo apt-get update
+sudo apt-get install libfontconfig1 libxrender1
+wget http://s4.softaculous.com/a/ampps/files/Ampps-3.8-x86_64.run
+sudo apt-get install wget
+sudo chmod 0755 Ampps-3.8-x86_64.run
+sudo ./Ampps-3.8-x86_64.run
+cd /usr/local/ampps
+sudo ./Ampps
+
+####### WEB SERVER SOLUTION STACK #######
+
+####### DATABASE TOOLS ######
+# INSTALL DBEAVER
+https://dbeaver.io/download/
+
+####### DATABASE TOOLS ######
+
+####### BENCHMARK APP STREAMING ########
+# BENCHMARK APLIKASI STREAMING
+https://codecanyon.net/category/php-scripts?term=live%20streaming
+https://lewatmana.com/kota/jakarta-pusat/
+
+####### BENCHMARK APP STREAMING ########
+
+
+######################## SCREENCASTING SOFTWARE ######################
+# INSTALL OBS STUDIO UBUNTU 16.04
+http://ubuntuhandbook.org/index.php/2018/03/install-obs-studio-21-1-in-ubuntu-18-0416-04/
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt-get update
+sudo apt-get install obs-studio
+
+# REMOVE OBS STUDIO
+sudo apt-get remove --autoremove obs-studio
+
+# INSTAL VLC
+######################## SCREENCASTING SOFTWARE ######################
+
+####################### INSTALL FLASH PLAYER ########################
+# install flash player
+
+sudo apt update
+sudo apt install adobe-flashplugin  
+
+####################### INSTALL FLASH PLAYER ########################
+
+
+###################### TELEGRAM #####################
+# INSTALL TELEGRAM UBUNTU 16.0
+https://websiteforstudents.com/install-telegram-desktop-on-ubuntu-16-04-17-10-and-18-04/
+
+sudo apt install snapd
+sudo snap install telegram-desktop
+###################### TELEGRAM #####################
+
+##################### Operating-system-level virtualization ##########################
+# Install Docker Ubuntu 16.04
+https://medium.com/@Grigorkh/how-to-install-docker-on-ubuntu-16-04-3f509070d29c
+
+##################### Operating-system-level virtualization ##########################
+
+
+######################### TROUBLE SHOOTING ######################################
+
+1. ERROR UnboundLocalError: local variable 'nccl_lib_path' referenced before assignment
+ 	SOLUSI :
+ 	- download nccl ubuntu 16.04 cuda 9.0 cudnn 7.0
+ 	- cara install nccl https://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html#debian
+
+
+2. BAZEL ERROR
+ ERROR: Config value cuda is not defined in any .rc file
+	- cek versi bazel
+		bazel version
+	- downgrade dari versi sekarang 0.21.0 ke 0.18.0
+
+
+3. ERROR SSL /sbin/ldconfig.real: /lib/x86_64-linux-gnu/libssl.so.1.0.0 is not a symbolic link
+ https://linuxforums.org.uk/index.php?topic=13148.0
+
+4. ERROR ./src/cuda.c:36: check_error: Assertion `0' failed (yolo darknet)
+	https://www.youtube.com/watch?v=JYr9ar1CC8s
+
+	- cd cfg
+	- sudo nano yolov3.cfg
+	uncomment : 
+	[net]
+	# Testing
+	batch=1
+	subdivisions=1
+
+5. ERROR Error when running pip install: python setup.py egg_info" failed with error code 1 #370
+https://github.com/palantir/python-language-server/issues/370
+Please update setup tools pip install -U setuptools
+
+6. ERROR Error when running pip install: python setup.py egg_info" failed with error code 1 #370
+https://github.com/palantir/python-language-server/issues/370
+Please update setup tools pip install -U setuptools
+
+
+7. Pip is not working: ImportError: No module named 'pip._internal'
+REFF : https://askubuntu.com/questions/1025189/pip-is-not-working-importerror-no-module-named-pip-internal
+
+8. GPG error: https://dl.yarnpkg.com/debian stable InRelease NO_PUBKEY E074D16EB6FF4DE3 #4453 
+https://github.com/yarnpkg/yarn/issues/4453
+
+- Solution : 
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 
+
+9. networkx 2.1 has requirement decorator>=4.1.0, but you'll have decorator 4.0.11 which is incompatible
+pip install decorator --upgrade
+
+10. LinuxBrew Setting LD_* vars can break dynamic linking.
+Set variables:
+    LD_LIBRARY_PATH: :/usr/local/cuda-9.2/lib64:/usr/local/cuda-9.2/extras/CUPTI/lib64:/usr/local/cuda-9.2/lib64:/usr/local/cuda-9.2/extras/CUPTI/lib64:/usr/local/cuda-9.2/lib64:/usr/local/cuda-9.2/extras/CUPTI/lib64
+/home/danigunawan/.linuxbrew/Library/brew.rb (Formulary::FormulaLoader): loading /home/danigunawan/.linuxbrew/Library/Taps/homebrew/homebrew-core/Formula/coreutils.rb
+
+https://github.com/Linuxbrew/brew/blob/master/docs/Troubleshooting.md
+
+Solution : 
+Brew Update && Brew Doctor
+cd /usr/local && sudo chown -R $(whoami) bin etc include lib sbin share var opt Cellar Caskroom Frameworks
+
+
+11. Please upgrade your bazel installation to version 0.19.0 or higher to build TensorFlow!
+- sudo apt-get remove bazel 
+- download bazel latest version https://github.com/bazelbuild/bazel/releases : bazel-0.21.0-linux-x86_64.sh
+- install sesuai langkah disini https://docs.bazel.build/versions/master/install-ubuntu.html
+
+12. Error when running pip install: python setup.py egg_info" failed with error code 1 #370 
+https://github.com/palantir/python-language-server/issues/370
+
+13. ## ISSUE 
+sudo ldconfig
+/sbin/ldconfig.real: /lib/x86_64-linux-gnu/libssl.so.1.0.0 is not a symbolic link
+
+/sbin/ldconfig.real: /lib/x86_64-linux-gnu/libcrypto.so.1.0.0 is not a symbolic link
+
+(dhanexlab) danigunawan@danigunawan:~/DATASCIENTIST/darknet$ sudo ldconfig
+/sbin/ldconfig.real: /lib/x86_64-linux-gnu/libssl.so.1.0.0 is not a symbolic link
+
+/sbin/ldconfig.real: /lib/x86_64-linux-gnu/libcrypto.so.1.0.0 is not a symbolic link
+
+SOLUSI :
+https://linuxforums.org.uk/index.php?topic=13148.0
+
+Try this;
+Code: [Select]
+
+sudo mv -v /lib/x86_64-linux-gnu/libcrypto.so.1.0.0 /lib/x86_64-linux-gnu/libcrypto.so.1.0.0.bak
+
+then see if
+Code: [Select]
+
+sudo dpkg --configure -a
+
+finishes without error ?
+
+If it does, run:
+Code: [Select]
+
+sudo apt-get install --reinstall libssl1.0.0 openssl
+
+
+If it doesn't, move it back with
+Code: [Select]
+
+sudo mv -v /lib/x86_64-linux-gnu/libcrypto.so.1.0.0.bak /lib/x86_64-linux-gnu/libcrypto.so.1.0.0
+
+14. Turn OFF Camera
+lsof | grep video0
+	kill -9 PIDnya
+
+
+############# TROUBLE SHOOTING #################
+
+
+#### TUNING UBUNTU FIX & RECOVERY ####
+bersihkan dependency yang tidak penting : 
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo apt-get clean
+
+
+membentulkan ubuntu yang paketnya broken :
+sudo apt-get update --fix-missing
+sudo dpkg --configure -a
+sudo apt-get install -f
+
+#### TUNING UBUNTU FIX & RECOVERY ####
+
+
+####### PYTHON DJANGO ########
+TROUBLE Heroku, Django app crashing on startup, “not a valid port number” :
+
+python manage.py runserver 0.0.0.0:8080 --nothreading –noreload
+
+https://stackoverflow.com/questions/6468397/how-to-check-django-version
+
+python3 -m django --version
+
+python
+import django
+django.VERSION
+
+
+## INSTALL DJANGO LANGSUNG DARI PAKET
+
+Installing Django
+
+ 
+Installing from packages
+
+Update your local packages with the apt command:
+
+$ sudo apt-get update
+
+Select which version of python you would like to use in the installation, for Python 2;
+
+$ sudo apt-get install python-django
+
+For python 3;
+
+$ sudo apt-get install python3-django
+
+That is it; you can check if it installed successfully by typing the following command:
+
+$ django-admin --version
+
+If successful, the following result is displayed;
+
+
+## INSTAL DJANGO LANGSUNG DARI PIP
+Installing through pip
+
+The previous method does not install the latest version of Django, but by using pip, you get the newest version.
+
+First, refresh your apt package index.
+
+$ sudo apt-get update
+
+Then install pip. For the python 2 users;
+
+$ sudo apt-get install python-pip
+
+For python 3 users;
+
+$ sudo apt-get install python3-pip
+
+Next, install Django. For python 2 users;
+
+$ sudo pip install django
+
+For python 3 use the pip3 command;
+
+$ sudo pip3 install django
+
+Django is installed. To verify it type:
+
+$ django-admin --version
+
+The result will be:
+
+####### PYTHON DJANGO ########
+
+##### INSTALL DJANGO DARI VIRTUAL ENV #####
+cd ~
+mkdir testhostA
+sudo apt-get update
+sudo apt-get install python-pip # py2
+sudo apt-get install python3-pip # py3
+sudo pip install virtualenv # py2
+sudo pip3 install virtualenv # py3
+virtualenv testhostA 
+virtualenv -p python3.6.1 python361 # python361 nama folder yang sudah ada atau belum ada (case membuat folder baru)
+source testhostA/bin/activate
+pip install django
+django-admin --version
+
+deactivate
+
+cd ~/testhostA
+source testhostA/bin/activate
+
+##### INSTALL DJANGO DARI VIRTUAL ENV #####
+
+#### INSTALL DJANGO WITH SSL ###
+https://gist.github.com/claudiosanches/7012524
+
+#### INSTALL DJANGO WITH SSL ###
+
+##### INSTALL PYTHON DJANGO DARI GITHUB #####
+## GITHUB INSTALL
+
+sudo apt-get update
+sudo apt-get install git python-pip # py2
+sudo apt-get install git python3-pip # py3
+git clone git://github.com/django/django ~/django-dev
+sudo pip install -e ~/django-dev # py2
+sudo pip3 install -e ~/django-dev # py3
+django-admin --version
+##### INSTALL PYTHON DJANGO DARI GITHUB #####
+
+######################## REFERENCE ##############################
+REFERENSI :
+
+	@ Computer Vision and Deep Learning Setup
+	- https://github.com/heethesh/Computer-Vision-and-Deep-Learning-Setup
+	- https://nicolas-bettenburg.com/2018-08-18-ubuntu-18-04-deep-learning-box/
+	- https://qiita.com/ishizakiyu/items/bcf1b76f1f4f02b0ac57
+	- https://github.com/floydhub/dl-setup/tree/71b416eec7258d000a5c0b0df8f592b937373c03
+	@ BLOG LEARN
+	- https://www.pytorials.com/
+	- http://www.codebind.com/
+	@ CHEATSHEET DEEP LEARNING
+	- https://startupsventurecapital.com/essential-cheat-sheets-for-machine-learning-and-deep-learning-researchers-efb6a8ebd2e5
+	@ Building Tensorflow from source on Ubuntu 16.04LTS for maximum performance:
+	- https://gist.github.com/Brainiarc7/6d6c3f23ea057775b72c52817759b25c
+	@ Open DRUWA - Open Deep Realtime User Welcoming Assistant (Packages Install)
+	- https://github.com/SeonghoBaek/RealtimeCamera/blob/master/install_packages.sh
+	@ How to install Tensorflow GPU with CUDA 9.2 for python on Ubuntu
+	- https://www.pytorials.com/how-to-install-tensorflow-gpu-with-cuda-9-2-for-python-on-ubuntu/
+	@ Python VirtualEnv
+	- https://www.petanikode.com/python-virtualenv/
+	- Create a virtual environment inside that project by typing : # https://stackoverflow.com/questions/45293436/how-to-specify-python-version-used-to-create-virtual-environment?rq=1 
+	@ INSTALL OPENCV AND CONTRIB MODULES
+	- https://www.learnopencv.com/install-opencv-3-4-4-on-ubuntu-16-04/
+	- https://www.youtube.com/watch?v=l4VB4PcWpcc
+	- https://mandornya.blogspot.com/2018/08/cara-install-opencv-dan-python-di.html
+	- https://github.com/milq/milq/blob/master/scripts/bash/install-opencv.sh
+	@ Awesome Deep Learning (RECOGNITION)`
+	- https://github.com/daicoolb/Awesome-Object-Detections`
+	- https://github.com/amusi/awesome-object-detection`
+	- https://github.com/kjw0612/awesome-deep-vision`
+	- https://www.pyimagesearch.com
+	@ Video Analytics
+	- Yolo # Realtime Object Detection Darknet
+	- OpenFace # Face Recognition 
+	- https://github.com/tryolabs/luminoth
+	- FaceNet
+	@ AWESOME BROADCASTING :
+	- https://github.com/ebu/awesome-broadcasting
+	@ Comparison of screencasting software
+	- https://en.wikipedia.org/wiki/Comparison_of_screencasting_software
+	- https://en.wikipedia.org/wiki/Open_Broadcaster_Software
+	- http://ubuntuhandbook.org/index.php/2018/03/install-obs-studio-21-1-in-ubuntu-18-0416-04/
+	- VLC
+	- Wirecast
+	- OpenBroadcaster
+	@ AWESOME Streaming Explore
+	- https://helping-squad.com/
+	@ Install Nvidia Driver
+	- https://gist.github.com/zhanwenchen/e520767a409325d9961072f666815bb8#install-nvidia-graphics-driver-via-apt-get
+	- https://www.linuxsec.org/2018/05/cara-install-driver-nvidia-terbaru-di.html
+	- http://www.advancedclustering.com/act_kb/installing-nvidia-drivers-rhel-centos-7/ # INSTALL ON CENTOS
+	@ TENSORFLOW
+	- https://medium.com/@omar.merghany95/how-to-install-tensorflow-gpu-with-cuda-toolkit-9-0-and-cudnn-7-2-1-on-aws-ec2-ubuntu-16-04-c46b469a7358
+	- https://www.pytorials.com/how-to-install-tensorflow-gpu-with-cuda-10-0-for-python-on-ubuntu/2/
+	- https://www.pytorials.com/how-to-install-tensorflow-gpu-with-cuda-9-2-for-python-on-ubuntu/
+	- https://www.pytorials.com/install-tensorflow-using-official-pip-pacakage/
+	@ Install CUDA + CUDNN
+	- https://medium.com/@yifanguo1129/install-cuda-9-0-and-cudnn-7-2-on-ubuntu-18-04-d9a7aeb89105
+	- https://askubuntu.com/questions/967332/how-can-i-install-cuda-9-on-ubuntu-17-10
+	- https://askubuntu.com/questions/995542/installing-cuda-8-on-ubuntu-16-unable-to-locate-package-cuda
+	- https://www.pyimagesearch.com/2017/09/27/setting-up-ubuntu-16-04-cuda-gpu-for-deep-learning-with-python/
+	- https://davidwpearson.wordpress.com/2017/12/21/installing-nvidias-cuda-9-1-on-fedora-27/ # INSTALL ON FEDORA 
+	- https://ddkang.github.io/2018/11/05/installing-cuda.html
+	- http://security-plus-data-science.blogspot.com/2018/01/setting-up-cuda-9-on-fedora-27.html
+	@ OPENCV
+	- https://www.pyimagesearch.com/2018/05/28/ubuntu-18-04-how-to-install-opencv/
+	- http://www.codebind.com/cpp-tutorial/install-opencv-ubuntu-cpp/#comment-804
+	- https://www.pytorials.com/how-to-install-opencv340-on-ubuntu1604/
+	- https://medium.com/@debugvn/installing-opencv-3-3-0-on-ubuntu-16-04-lts-7db376f93961
+	- https://github.com/BVLC/caffe/wiki/OpenCV-3.3-Installation-Guide-on-Ubuntu-16.04
+
+	@ DARKNET YOLO
+	- https://github.com/pengdada/darknet-win-linux#how-to-compile-on-linux
+	- https://www.youtube.com/watch?v=-HtiYHpqnBs
+	- https://www.youtube.com/watch?v=KnRJU7y5cjQ
+	- https://blog.csdn.net/honk2012/article/details/80629402
+	- https://www.iotforall.com/objects-recognition-live-stream-yolo-model/
+	@ VEHICLE DETECTION
+	- https://github.com/JunshengFu/vehicle-detection
+	@ Install CUDA 9.2, cuDNN 7.2.1, Anaconda and PyTorch on Ubuntu 16.04 
+	- https://gist.github.com/kylemcdonald/3ae0b88a1bf91afc00ba441fe6823a17
+	@ DOCKER
+	- https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04l
+	@ PyENV
+	- https://www.tecmint.com/pyenv-install-and-manage-multiple-python-versions-in-linux/
+	@ Python Django
+	- https://www.digitalocean.com/community/tutorials/how-to-install-django-and-set-up-a-development-environment-on-ubuntu-16-04
+	- https://www.digitalocean.com/community/tutorials/how-to-install-the-django-web-framework-on-ubuntu-16-04
+
+	@ INSTALL OBS STUDIO
+	- http://ubuntuhandbook.org/index.php/2018/03/install-obs-studio-21-1-in-ubuntu-18-0416-04/
+	@ NGINX RTMP
+	- https://northwoodsdigital.com/how-to-install-nginx-rtmp-server-hls-on-ubuntu-16-04-easy/
+	- https://github.com/arut/nginx-rtmp-module/wiki/Getting-started-with-nginx-rtmp
+	@ Comparison Of Packet Analyzer
+	- https://en.wikipedia.org/wiki/Comparison_of_packet_analyzers
+	- WIRESHARK
+	@ Network Device Interface
+	- https://en.wikipedia.org/wiki/Network_Device_Interface
+	- CasparCG 
+	- PlayBox
+	@ Video Converter
+	- https://en.wikipedia.org/wiki/Comparison_of_video_converters
+	- Handbrake
+	- Any Video Converter
+	@ List of Apache–MySQL–PHP packages
+	- https://en.wikipedia.org/wiki/List_of_Apache%E2%80%93MySQL%E2%80%93PHP_packages
+	- AMPPS
+	@ Benchmark App Streaming
+	- https://codecanyon.net/category/php-scripts?term=live%20streaming
+	@ Database Tools
+	- Comparison : https://en.wikipedia.org/wiki/Comparison_of_database_tools
+	@ streaming media systems
+	- Comparison of streaming media systems : https://en.wikipedia.org/wiki/Comparison_of_streaming_media_systems
+	- WOWZA
+	- Helix Media Server
+	- Ant Media Server
+	- NginxRTMP
+	@ AWESOME MEDIA SERVER
+	- https://github.com/topics/media-server
+	@ AWESOME SELF HOSTER
+	- https://github.com/Kickball/awesome-selfhosted
+	@ AWESOME STREAMING
+	- https://github.com/manuzhang/awesome-streaming
+	@ Platform Virtualization Software
+	- https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software
+	- Vmware
+	- Virtualbox
+	- KVM
+	@ Operating-system-level virtualization
+	- https://en.wikipedia.org/wiki/Operating-system-level_virtualization
+	- Docker
+	@ BIG DATA
+	- Hadoop
+	@ Comparison Deep Learning Software
+	- https://en.wikipedia.org/wiki/Comparison_of_deep_learning_software
+	- Tensorflow
+	- Keras
+	@ List Media Server Streaming
+	- wowza
+	- kurento
+	- red5
+	- nginxRTMP
+	- Ant Media Server
+	- OpenVidu
+	- Jitsi
+	- Flussonic
+	- Kaltura
+	- Node RTSP RTMP Server
+	- https://github.com/R0GGER/mistserver
+	- helixproduction
+	- https://github.com/daniulive/SmarterStreaming
+	- https://hackernoon.com/build-live-video-streaming-server-use-ffmpeg-nginx-rtmp-module-nodejs-82e1bb58949e
+	@ Adaptive Streaming With Nginx
+	- https://licson.net/post/setting-up-adaptive-streaming-with-nginx/ 
+	@ VIDEO CONTAINER FORMAT
+	- Comparison of video container formats : https://en.wikipedia.org/wiki/Comparison_of_video_container_formats
+	- MP4, 3GP, MKV, MPEG
+	@ Comparison of structured storage software
+	- https://en.wikipedia.org/wiki/Comparison_of_structured_storage_software
+	- Redis
+	- Apache Cassandra
+	@ Stream Processing
+	- KAFKA
+	@ VIRTUAL ENV VS CONDA
+	- https://hostadvice.com/how-to/how-to-install-django-on-ubuntu-16/
+	@ PIP
+	- https://jinbaskom.wordpress.com/2015/05/12/menggunakan-pip/
+	@ ADD USER UBUNTU
+	- https://gist.github.com/artiwarahd/8f0e3c7cca8c32db5614b5107c85d82d
+	- https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-16-04
+	- https://askubuntu.com/questions/410244/a-command-to-list-all-users-and-how-to-add-delete-modify-users
+	@ FORUM CCTV
+	- https://www.dvs.co.uk/product_categories/ip-cameras/?features=509,510&sort=undefined&results=All&page=1&clearance=0
+	- https://www.cctvforum.com/search/?q=face%20recognition
+	- https://www.cnet.com/news/the-best-facial-recognition-cameras-you-can-buy-today/
+	@ INSPIRE DEEP LEARNING
+	- https://github.com/topics/attendance-system
+	- https://github.com/yodist/face-recognition-lbph
+	- https://github.com/manjillama/facial-recognition-python-django
+	- https://github.com/BiswajitMahato/Installing-Anaconda-Tensorflow-OpenCV-on-Windows
+	- https://www.scivision.co/install-opencv-python-windows/
+	- FACE RECOGNITION WITH VOICE COMMAND
+	  https://github.com/SaranshKejriwal/Harold_Finch
+	  https://github.com/agametov/OpenCV-Video-Stream-With-Face-Recognition
+	  https://github.com/ChanChiChoi/awesome-Face_Recognition
+	  https://github.com/MohamadMerchant/Voice-Authentication-and-Face-Recognition
+	  https://github.com/bakerandgrey/Face-recognition-and-greeting
+	  https://github.com/kukarzev/big_brother
+	- JARVIS FACE RECOGNITION
+	  https://github.com/QuentinCG/jarvis-face-recognition
+	  https://github.com/SeonghoBaek/RealtimeCamera
+	- SMART MIRROR
+	  https://github.com/ArIESIITRoorkee/Smart-Mirror
+	- TEXT TO SPEECH
+	  https://pythonprogramminglanguage.com/text-to-speech/
+	  https://elementztechblog.wordpress.com/2015/01/22/using-speech-to-text-in-ubuntu/
+	- DOCFACE
+	  https://github.com/seasonSH/DocFace
+	- TURN OF CAMERA
+	  https://askubuntu.com/questions/896752/how-to-turn-off-my-ubuntu-web-camera
+	- Realtime Camera (BAGUS)
+	  https://github.com/heethesh/Computer-Vision-and-Deep-Learning-Setup
+	  https://github.com/SeonghoBaek/RealtimeCamera
+	  https://github.com/topics/face-identification
+
+######################## REFERENCE ##############################
+
+
