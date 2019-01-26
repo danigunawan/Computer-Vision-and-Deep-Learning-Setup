@@ -29,6 +29,7 @@ Infrastructure Media Server Streaming
 	- NVR
 	- Camera
 	- 
+
 Referensi Spec Server Streaming Yang Bagus
 	- Low Latency WebRTC 
 	- Adaptive Bitrate 
@@ -80,7 +81,7 @@ Deep Learning Framework * :
 Device Learning Board :
 	- Raspberry Pi
 	- Arduino
-	- VPU (Vision Processing Unit)S
+	- VPU (Vision Processing Unit)
 
 TOOLS :
 	- MINICONDA
@@ -284,9 +285,12 @@ sudo rm -rf /usr/local/cuda*
 		   source ~/.bashrc
 		   nvcc -V # pastikan cuda versi 9.2
 
+		
+######################### INI GA PERLU ##################
 		9. INSTALL CUDA TOOLKIT
 		sudo apt install nvidia-cuda-toolkit
 		nvcc --version
+######################### INI GA PERLU ##################
 
 
 @ CARA 2 (BELUM DICOBA) : 
@@ -438,7 +442,7 @@ To build OpenCV binding for both python 2 and 3.
 		2, To add contrib package in opencv:
 			
 			pip install opencv-contrib-python
-			pip install opencv-contrib-python # jika specific version  pip install opencv-contrib==3.4.0 Ubuntu: sudo apt install python3-opencv-contrib
+			pip install opencv-contrib-python # jika specific version  pip install opencv-contrib-python==3.4.0 Ubuntu: sudo apt install python3-opencv-contrib
 
 @ CARA 2 Building From Source (DIREKOMENDASIKAN)
 
@@ -448,14 +452,14 @@ To build OpenCV binding for both python 2 and 3.
 		NOTE: Checkout to the latest version of OpenCV. 3.4.5 is used here
 
 		1. Download OpenCV 3.4.5:
-			git clone https://github.com/opencv/opencv.git
+			git clone https://github.com/opencv/opencv.git atau specific versi 3.4.0 : wget https://github.com/opencv/opencv/archive/3.4.0.zip -O opencv-3.4.0.zip
 			cd opencv
 			git checkout 3.4.5
 			git pull
 			cd ..
 
 		2. Download OpenCV-contrib 3.4.5:
-			git clone https://github.com/opencv/opencv_contrib.git
+			git clone https://github.com/opencv/opencv_contrib.git atau specific versi 3.4.0 : wget https://github.com/opencv/opencv_contrib/archive/3.4.0.zip -O opencv_contrib-3.4.0.zip
 			cd opencv_contrib
 			git checkout 3.4.5
 			git pull
@@ -595,6 +599,11 @@ You can run the commands for installing pip packages torch and torchvision from 
 	"/gpu:0": The GPU of your machine, if you have one.
 	If you have a gpu and can use it, you will see the result. Otherwise you will see an error with a long stacktrace.
 
+	Check Tensorflow Version :
+		
+		python -c 'import tensorflow as tf; print(tf.__version__)'  # for Python 2
+		python3 -c 'import tensorflow as tf; print(tf.__version__)'  # for Python 3
+
 
 @ Install Keras
 	
@@ -680,6 +689,9 @@ http://localhost:8087/enginemanager/ftu/welcome.htm
 
 Start Service Wowza Streaming Engine and administration:
 https://www.wowza.com/docs/how-to-start-and-stop-wowza-streaming-engine-software#startServLin
+
+sudo service WowzaStreamingEngine start
+sudo service WowzaStreamingEngineManager start
 ######################## MEDIA STREAMING SYSTEM ####################
 
 ######################## VIDEO CONVERTER & TRANSCODER ##############
@@ -799,6 +811,8 @@ https://medium.com/@Grigorkh/how-to-install-docker-on-ubuntu-16-04-3f509070d29c
 	# Testing
 	batch=1
 	subdivisions=1
+	width = 416
+	height = 416
 
 5. ERROR Error when running pip install: python setup.py egg_info" failed with error code 1 #370
 https://github.com/palantir/python-language-server/issues/370
@@ -882,6 +896,85 @@ sudo mv -v /lib/x86_64-linux-gnu/libcrypto.so.1.0.0.bak /lib/x86_64-linux-gnu/li
 lsof | grep video0
 	kill -9 PIDnya
 
+15. bin/darknet: error while loading shared libraries: libopencv_highgui.so.3.2: cannot open shared object file: No such file or directory
+- http://forrestbao.blogspot.com/2017/08/
+- https://forum.floydhub.com/t/error-while-loading-shared-libraries-solved/885
+Check Library libopencv_highgui.so.3.2 ada tidak : ldconfig -p | grep libopencv_high
+
+16. Delete OpenCV Complete
+https://askubuntu.com/questions/1014866/delete-opencv-3-1-completly
+- make uninstall # di folder build
+- sudo find / -name "*opencv*" -exec rm -i {} \; # ini menghapus / force delete seluruh file/folder opencv 
+
+17. Set Default Intrepreteur Python
+How to set python 3 as default interpreter in Ubuntu 14.04 [duplicate]
+https://askubuntu.com/questions/590027/how-to-set-python-3-as-default-interpreter-in-ubuntu-14-04
+
+18. pip3 install not working - No module named 'pip._vendor.pkg_resources'
+https://stackoverflow.com/questions/49478573/pip3-install-not-working-no-module-named-pip-vendor-pkg-resources
+
+Solution : curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3
+
+19. Error on make: 'cuda_runtime.h: No such file or directory' #553
+https://github.com/pjreddie/darknet/issues/553
+
+Solution : sudo ln -s /usr/local/cuda-9.0 /usr/local/cuda # sesuaikan cuda yang dipake sekarang misal 9.0
+
+20. W: Failed to fetch https://dl.yarnpkg.com/debian/dists/stable/InRelease The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 4F77679369475BAA
+
+https://github.com/yarnpkg/yarn/issues/4505
+
+Solution : 
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+sudo apt-get update
+
+21. ImportError: No module named redis
+https://stackoverflow.com/questions/19288900/importerror-no-module-named-redis
+
+sudo pip install redis
+
+22. Remove CUDA
+sudo lsof /dev/nvidia*
+sudo apt-get --purge -y remove 'cuda*'
+sudo rm -R /usr/local/cuda.*
+sudo rm -R /usr/local/cuda
+sudo rm -R /usr/local/cuda-9.0/
+sudo rm -R /usr/local/cuda-9.2/
+sudo rm -R /var/cuda/
+sudo rm -R /opt/cuda/
+sudo apt purge nvidia-cuda-toolkit
+
+
+23. YOLO install with pip
+https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/
+
+I use python 2.7 and opencv 2.4.11 on a windows10 System. I updated my opencv by using “pip install opencv-contrib-python” and opencv 3.4.5 was installed in a view minutes.
+
+The code is running well!
+
+
+24. Nvidia driver version mismatch
+https://jingluwang.blogspot.com/2017/10/nvidia-driver-version-mismatch-which.html
+
+25. Python import web not working
+sudo pip / pip3 install web.py
+http://webpy.org/install
+
+26. /lib/x86_64-linux-gnu/libz.so.1: version `ZLIB_1.2.9' not found
+
+Solusi : 
+https://stackoverflow.com/questions/48306849/lib-x86-64-linux-gnu-libz-so-1-version-zlib-1-2-9-not-found
+
+Download Zlib 1.2.9 Then run those commands
+
+tar -xvf ~/Downloads/zlib-1.2.9.tar.gz
+cd zlib-1.2.9
+sudo -s
+./configure; make; make install
+cd /lib/x86_64-linux-gnu
+ln -s -f /usr/local/lib/libz.so.1.2.9/lib libz.so.1
+cd ~
+rm -rf zlib-1.2.9
 
 ############# TROUBLE SHOOTING #################
 
@@ -1012,14 +1105,78 @@ sudo pip3 install -e ~/django-dev # py3
 django-admin --version
 ##### INSTALL PYTHON DJANGO DARI GITHUB #####
 
+
+###### OPENCV RTMP PUBLISH TO HTML ######
+https://stackoverflow.com/questions/5825173/pipe-raw-opencv-images-to-ffmpeg
+https://stackoverflow.com/questions/44507032/how-to-generate-an-rtmp-test-stream-using-ffmpeg-command
+https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+https://github.com/jkuri/opencv-ffmpeg-rtmp-stream
+https://obsproject.com/forum/threads/how-to-set-up-your-own-private-rtmp-server-using-nginx.12891/page-14
+https://github.com/jordonyang/WebDetector
+https://stackoverflow.com/questions/36579542/sending-opencv-output-to-vlc-stream
+
+- python PeopleCounterMain.py | ffmpeg -f rawvideo -pixel_format bgr24 -video_size 640x480 -framerate 30 -i - foo.avi
+
+- python PeopleCounterMain.py | ffmpeg -r 30 -f lavfi -i testsrc -vf scale=1280:960 -vcodec libx264 -profile:v baseline -pix_fmt yuv420p -f flv rtmp://localhost/live/myStream
+
+
+python PeopleCounterMain.py | ffmpeg -r 30 -f lavfi -i testsrc -vf scale=1280:960 -vcodec libx264 -profile:v baseline -pix_fmt yuv420p -f flv rtmp://admin:admin@localhost/live/myStream
+
+python PeopleCounterMain.py | ffmpeg -r 30 -f lavfi -i testsrc -vf scale=640:640 -vcodec libx264 -profile:v baseline -pix_fmt yuv420p -f flv rtmp://admin:admin@localhost/live/myStream
+
+### OPENCV STREAMING WITH FLASK ###
+https://github.com/agametov/OpenCV-Video-Stream-With-Face-Recognition
+https://github.com/miguelgrinberg/flask-video-streaming
+https://blog.miguelgrinberg.com/post/video-streaming-with-flask
+https://github.com/desertfury/flask-opencv-streaming.git
+http://www.chioka.in/python-live-video-streaming-example/
+
+#### FF SERVER ####
+https://stackoverflow.com/questions/26691189/how-to-capture-video-stream-with-opencv-python
+
+
+#### MEMBUAT WEB DENGAN FLASK #### 
+https://code.tutsplus.com/id/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972
+
+##### NGINX RTMP #####
+https://selimatmaca.com/index.php/live-streaming/139-installing-nginx-with-rtmp-module-and-hls-streaming
+https://github.com/tiangolo/nginx-rtmp-docker
+https://blog.100tb.com/how-to-set-up-an-rtmp-server-on-ubuntu-linux-using-nginx
+https://medium.com/@worawich.khum/%E0%B8%81%E0%B8%B2%E0%B8%A3-streaming-%E0%B9%82%E0%B8%94%E0%B8%A2%E0%B9%83%E0%B8%8A%E0%B9%89-nginx-rtmp-linux-ubuntu-bb91e76f2b8f
+http://mindwatering.com/SupportRef.nsf/webpg/4172DB1EF37041FE852580D50067E487
+https://www.dreamvps.com/tutorials/hls-and-nginx-on-ubuntu/
+https://www.digitalocean.com/community/questions/install-nginx-now-i-want-to-add-rtmp-in-config-file-for-live-streaming-but-it-gives-me-error-that-you-can-ass-rtmp-in-config-what-to-do
+https://stackoverflow.com/questions/36422211/processing-camera-stream-in-opencv-pushing-it-over-rtmp-nginx-rtmp-module-usi
+http://funvision.blogspot.com/2015/11/opencv-300-videocapture-file-web-camera.html
+https://blog.csdn.net/u014303844/article/details/80394101
+https://stackoverflow.com/questions/36422211/processing-camera-stream-in-opencv-pushing-it-over-rtmp-nginx-rtmp-module-usi?rq=1
+https://stackoverflow.com/questions/1735933/streaming-via-rtsp-or-rtp-in-html5
+https://stackoverflow.com/questions/5858936/html5-live-streaming
+https://stackoverflow.com/questions/20205358/how-do-i-stream-an-opencv-video-to-an-html-webpage
+https://stackoverflow.com/questions/43991594/piping-pis-opencv-video-to-ffmpeg-for-youtube-streaming
+http://www.chioka.in/python-live-video-streaming-example/
+https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/
+https://lists.ffmpeg.org/pipermail/ffmpeg-user/2014-January/019509.html
+https://ariandy1.wordpress.com/2013/04/07/streaming-opencv-output-through-httpnetwork-with-mjpeg/
+
+
+
 ######################## REFERENCE ##############################
-REFERENSI :
 
 	@ Computer Vision and Deep Learning Setup
 	- https://github.com/heethesh/Computer-Vision-and-Deep-Learning-Setup
+	- https://gist.github.com/morgangiraud/990cf65dcb27068a4ca6b9db4957acc7
+	- https://kezunlin.me/post/e8f8aadd/
+	- https://shiroku.net/robotics/record-the-screen-of-the-jetsontx2/
+	- http://pgmrlsh.tistory.com/3
+	- httpRP://leadtosilverlining.blogspot.com/2018/09/build-opencv-341-with-cuda-90-support.html
+	- http://demura.net/misc/14118.html
 	- https://nicolas-bettenburg.com/2018-08-18-ubuntu-18-04-deep-learning-box/
 	- https://qiita.com/ishizakiyu/items/bcf1b76f1f4f02b0ac57
 	- https://github.com/floydhub/dl-setup/tree/71b416eec7258d000a5c0b0df8f592b937373c03
+	- https://gist.github.com/mjdietzx/0ff77af5ae60622ce6ed8c4d9b419f45
+	- http://www.pradeepadiga.me/blog/2017/03/22/installing-cuda-toolkit-8-0-on-ubuntu-16-04/
+	- https://medium.com/@a.nikishaev/python-2-7-12-tensorflow-1-2-0-tensorflow-gpu-1-2-0-nvidia-drivers-384-111-cuda-8-0-cudnn-v6-0-b79fbaa4738d
 	@ BLOG LEARN
 	- https://www.pytorials.com/
 	- http://www.codebind.com/
@@ -1077,13 +1234,14 @@ REFERENSI :
 	- https://davidwpearson.wordpress.com/2017/12/21/installing-nvidias-cuda-9-1-on-fedora-27/ # INSTALL ON FEDORA 
 	- https://ddkang.github.io/2018/11/05/installing-cuda.html
 	- http://security-plus-data-science.blogspot.com/2018/01/setting-up-cuda-9-on-fedora-27.html
+	- https://medium.com/@zhanwenchen/install-cuda-and-cudnn-for-tensorflow-gpu-on-ubuntu-79306e4ac04e
 	@ OPENCV
 	- https://www.pyimagesearch.com/2018/05/28/ubuntu-18-04-how-to-install-opencv/
 	- http://www.codebind.com/cpp-tutorial/install-opencv-ubuntu-cpp/#comment-804
 	- https://www.pytorials.com/how-to-install-opencv340-on-ubuntu1604/
 	- https://medium.com/@debugvn/installing-opencv-3-3-0-on-ubuntu-16-04-lts-7db376f93961
 	- https://github.com/BVLC/caffe/wiki/OpenCV-3.3-Installation-Guide-on-Ubuntu-16.04
-
+	- Install OpenCV 3.4.0 Ubuntu 16.04 : https://www.pytorials.com/how-to-install-opencv340-on-ubuntu1604/
 	@ DARKNET YOLO
 	- https://github.com/pengdada/darknet-win-linux#how-to-compile-on-linux
 	- https://www.youtube.com/watch?v=-HtiYHpqnBs
@@ -1189,6 +1347,10 @@ REFERENSI :
 	- https://www.dvs.co.uk/product_categories/ip-cameras/?features=509,510&sort=undefined&results=All&page=1&clearance=0
 	- https://www.cctvforum.com/search/?q=face%20recognition
 	- https://www.cnet.com/news/the-best-facial-recognition-cameras-you-can-buy-today/
+	@ Whats The Recommended Server Specification Deep Learning
+	- https://devtalk.nvidia.com/default/topic/1030414/jetson-tx2/whats-the-recommended-server-specification-/
+	- https://www.allgovision.com/admin/uploads/datasheets/
+	- https://gpu.userbenchmark.com/Compare/Nvidia-GTX-1080-Ti-vs-Nvidia-GTX-1070-Ti/3918vs3943
 	@ INSPIRE DEEP LEARNING
 	- https://github.com/topics/attendance-system
 	- https://github.com/yodist/face-recognition-lbph
@@ -1202,6 +1364,10 @@ REFERENSI :
 	  https://github.com/MohamadMerchant/Voice-Authentication-and-Face-Recognition
 	  https://github.com/bakerandgrey/Face-recognition-and-greeting
 	  https://github.com/kukarzev/big_brother
+	  https://github.com/aishmittal/Real-time-Face-Recognition-based-Surveillance-System
+	  https://github.com/ashishpatel26/FaceFacialKeypointDetectionCapstoneProject-master
+	  https://github.com/POSTECH-IMLAB/PIMNet_FR-1
+	  https://github.com/Oliverq755/face-recognition-Facenet
 	- JARVIS FACE RECOGNITION
 	  https://github.com/QuentinCG/jarvis-face-recognition
 	  https://github.com/SeonghoBaek/RealtimeCamera
@@ -1218,7 +1384,97 @@ REFERENSI :
 	  https://github.com/heethesh/Computer-Vision-and-Deep-Learning-Setup
 	  https://github.com/SeonghoBaek/RealtimeCamera
 	  https://github.com/topics/face-identification
+	- FACE LOGIN
+	  https://github.com/xvshu/face_login
+	- FACE GUARD
+	  https://github.com/cleuton/FaceGuard	
+	- FACENET ANDROID
+	  https://github.com/ronny3050/FaceRecognitionAndroid.git
+	- IoT With Ruby On Rails
+	  https://github.com/jesserockz/pi-iot-home-rails.git
+	- CARND Vehicle Detection 
+	  https://github.com/SvenMuc/CarND-Vehicle-Detection-and_Tracking-P5
+	- Server Facenet (BELUM)
+	  https://github.com/sanstorik/server_face_recognition
+	- People Counting
+	  https://github.com/LukashenkoEvgeniy/People-Counter
 
+######################## BLOG ###################################
+https://www.youtube.com/watch?v=7eOLm_dsuz8
+https://supervise.ly/
+https://www.dlology.com/?page=10
 ######################## REFERENCE ##############################
 
 
+1. Realtimecamera # Belum
+2. Counting People Video # Jelek
+3. DigitalEye #Bisa Bagus tapi belum bisa cari password adminnya
+4. facedetect # belum
+5. face_detection # belum
+6. Face-Detection-Recognition-Based-Attendance-System$  # GA BISA
+7. facenet-face-recognition # bagus
+8. FaceNet-Real-Time-face-recognition # GA BISA
+9. Face_Recog_Attendance # GA BISA
+10. Face_Recognition # GA BISA
+11. FaceRecognition-Attendance-Marking # GABISA
+12. Face-Recognition-Based-Attendance-System # GABISA
+13. faceRegconition # GABISA
+14. Facial-Emotion-Detection-Django # BISA TAPI JELEK
+15. facial-recognition-python-django # BAGUS SEKALI
+16. Facial-Recognition-using-Facenet #Bagus
+17. facial-recognition-video-facenet # BELUM BISA
+18. OpenCV-Video-Streae-Recognition #BAGUS
+19. productRecognition-with-YoloV3 # BELUM BISA
+20. python-FaceRec - code # BAGUS TAPI BELUM BISA
+21. Voice-Authentication-and-Face-Recognition # BAGUS TAPI BLM BISA
+22. face_login # BAGUS
+23. FaceRec # BAGUS SEKALI bisa input 
+24. Who is there # Object detection using YOLO v3 and Face Recognition using Facenet for embedding
+25. libfaceid # BAGUS BANGET
+26. facenet-darknet-pytorch # BAGUS BANGET
+27. Attendance-using-Face # Bagus Tapi Belum Bisa
+28. bariqi -> Face-Recognition-Master # Belum Bisa
+29. big_brother # GABISA
+30. caae_face_aging_facenet # GABISA
+31. cnn-face-recognition # GABISA
+32. Counting-people-video # GABISA
+33. digitalEye # Bagus tapi belum bisa
+34. DF_for_FaceNet # Bagus tapu belum bisa
+35. face-detect-MTcnn-facenet # bagus tapi belum bisas
+36. Face-Detection-Recognition-Based-Attendance-System # Bagus Belum Bisa
+37. face-login # belum bisa 
+38. Face-Recognition # Belum Bisa tapi bagus
+39. Face-Recognition-Based-Attendance-System # BAGUS BISA
+40. face-recognition-Facenet # BELUM BISA
+41. face-recognition-server # Belum bisa
+42. face-recognition-system-based-on-facenet # HAMPIR BISA
+43. Face-Recognition-using-facenet # Belum Bisa
+44. Face-Recognition-using-VGG_FaceNet # Belum Bisa Bagus
+45. Face-Recognition_FaceNet_PyTorch # BAGUS BELUM BISA
+46. face-recognizer-android # Belum Dicoba
+47. face-verification-facenet-mtcnn # BELUM DICOBA
+48. People-Counter # BAGUS SEKALI Tinggal First Line Second Line Pointnya
+49. productRecognition-with-YoloV3 # BELUM BISA
+50. python-facenet # BELUM BISA
+51. python-FaceRec - code # BELUM BISA
+52. real-time-face-recognition # BELUM BISA
+53. TASS-Facenet # BELUM
+54. tensorflow-facenet #BELUM
+55. tensorflow-YOLO1 # BELUM
+56. tf-deep-facial-recognition-lite #BELUM
+57. tracker # BELUM BISA
+58. triplet-criterion # JELEK
+59. understand_facenet # GABISA
+60. who-is-there # BELU< BISA
+61. yolo-webcam # BELUM
+62. YOLO3-4-Py # BELUM
+ 
+# YANG OK
+- FACEREC
+- People-Counter
+- facial-recognition-python-django
+- People-tracking-with-Age-and-Gender-detection
+- facifier
+- https://github.com/shreyasparbat/OpenCV-Facial-Recognition.git # MYSQL
+- https://github.com/Romeliigalbia/Face-Detection-with-Datasets-and-Training-for-Face-Recognition-Using-OpenCV3-Python3.git
+- https://github.com/GameNewb/Face-Recognition-App.git # MYSQL
