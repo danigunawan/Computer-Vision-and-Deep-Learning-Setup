@@ -384,7 +384,11 @@ sudo rm -rf /usr/local/cuda*
 
 @ INSTALL CUDA MULTIPLE VERSION 9.2 dan 10.0 dan lainnya
 How-To-Install-CUDA-10-together-with-9-2-on-Ubuntu-18-04-with-support-for-NVIDIA-20XX-Turing-GPUs-1236/
-
+- install seluruh cuda 8.0,9.0,9.2,10
+- sudo apt-get install cuda-8-0
+sudo apt-get install cuda-9-0
+sudo apt-get install cuda-9-2
+sudo apt-get install cuda-10-0
 7 # Install cuDNN
 
 @ CARA 1 : 
@@ -428,7 +432,7 @@ For cuDNN downloaded using cuDNN Library for Linux method, go to the folder wher
 
 	@ CARA 2 : 
 	- Download NCCL v2.2.13, for CUDA 9.2 -> NCCL 2.2.13 O/S agnostic and CUDA 9.2
-	- 0tar -xf nccl_2.2.13-1+cuda9.2_x86_64.txz
+	- tar -xf nccl_2.2.13-1+cuda9.2_x86_64.txz
 	- cd nccl_2.2.13-1+cuda9.2_x86_64
 	- sudo cp -R * /usr/local/cuda-9.2/targets/x86_64-linux/
 	- sudo ldconfig
@@ -498,11 +502,28 @@ To build OpenCV binding for both python 2 and 3.
 			
 			pip install opencv-python # jika specific version pip install opencv-python==3.4.0, Package: sudo apt install python3-opencv 
 
+			atau 
+
+			python -m pip install opencv-python==3.4.5
+			Collecting opencv-python==3.4.5
+			  Could not find a version that satisfies the requirement opencv-python==3.4.5 (from versions: 3.4.2.17, 3.4.3.18, 3.4.4.19, 3.4.5.20, 4.0.0.21)
+			No matching distribution found for opencv-python==3.4.5
+
+			Solusi : 
+			python -m pip install opencv-python==3.4.5.20
+			python -m pip2 install opencv-python==3.4.5.20
+			python -m pip3 install opencv-python==3.4.5.20
 
 		2, To add contrib package in opencv:
 			
 			pip install opencv-contrib-python
 			pip install opencv-contrib-python # jika specific version  pip install opencv-contrib-python==3.4.0 Ubuntu: sudo apt install python3-opencv-contrib
+
+			atau 
+
+			python -m pip install opencv-contrib-python==3.4.5.20
+			python -m pip2 install opencv-contrib-python==3.4.5.20
+			python -m pip3 install opencv-contrib-python==3.4.5.20
 
 @ CARA 2 Building From Source (DIREKOMENDASIKAN)
 
@@ -610,9 +631,9 @@ pip3 install torchvision
  	  A quick way to install TensorFlow using pip without building is as follows. However this is not recomended as we have several specific versions of GPU libraries to improve performance, which may not be available with the pip builds.
 
  	sudo pip install tensorflow # python2
- 	sudo pip2 install tensorflow # python2
+ 	sudo pip2 install tensorflow # python2 # specific version sudo pip2 install tensorflow==1.4.0
  	sudo pip2 install tensorflow-gpu # python2 atau sudo pip2 install --no-cache-dir tensorflow-gpu 
-	sudo pip3 install tensorflow # python3
+	sudo pip3 install tensorflow # python3 # specific version sudo pip3 install tensorflow==1.4.0
 	sudo pip3 install tensorflow-gpu # GPU # ATAU sudo pip3 install --no-cache-dir tensorflow-gpu
 
 	- Check if tensorflow-gpu is installed correctly:
@@ -802,6 +823,13 @@ sudo apt-get install wireshark
 sudo apt-get install ppa-purge && sudo ppa-purge ppa:wireshark-dev/stable
 
 ####################### QOS, PACKET ANALYZER, QUALITY MEASUREMENT #####################
+## INSTALL BROWSER FOR DEVELOPERS ##
+https://blisk.io/download/?os=win
+## INSTALL BROWSER FOR DEVELOPERS ##
+
+## INSTALL JUPYTER NOTEBOOK ##
+https://www.rosehosting.com/blog/how-to-install-jupyter-on-an-ubuntu-16-04-vps/
+## END INSTALL JUPYTER NOTEBOOK ##
 
 ## INSTALL XTREME DOWNLOADER ##
 sudo add-apt-repository ppa:noobslab/apps
@@ -811,6 +839,10 @@ sudo apt-get install xdman
 ## INSTALL WINSCP VIA WINE ##
 https://winscp.net/eng/docs/requirements#client
 ## INSTALL WINSCP VIA WINE ##
+
+## INSTALL MOBA XTREM ##
+https://mobaxterm.mobatek.net/
+## INSTALL MOBA XTREM ##
 
 #### INSTALL UTTORRENT ####
 sudo snap install utorrent
@@ -825,7 +857,63 @@ sudo dpkg -i gitkraken-amd64.deb
 
 #### KUBERNETES ####
 https://medium.com/@hongcheng79/my-portable-ubuntu-18-deep-learning-setup-66151fe78da9
+
+# INSTALL KUBERNETES #
+https://kubeapps.com/
+https://bitnami.com/stack/kubeapps-dashboard
+https://github.com/kubeapps/kubeapps/blob/master/docs/user/getting-started.md
+https://dzone.com/articles/how-to-install-and-deploy-kubernetes-on-ubuntu-160-1
+https://www.howtoforge.com/tutorial/how-to-install-kubernetes-on-ubuntu/
+
+TERNYATA BISA DI INSTALL HANYA DI DOCKER :
+https://bitnami.com/stack/kubeapps-dashboard/containers
+https://medium.com/@Alibaba_Cloud/how-to-install-and-deploy-kubernetes-on-ubuntu-16-04-6769fd1646db
+https://hub.docker.com/r/bitnami/kubeapps-dashboard/
+
+docker run --name kubeapps-dashboard bitnami/kubeapps-dashboard:latest
+
 #### KUBERNETES ####
+
+
+#### INSTALL BITNAMI LAMPSTACK & MODULES APPS ####
+https://docs.bitnami.com/installer/infrastructure/lamp/get-started/add-applications-amp/
+https://bitnami.com/stack/lamp/modules
+
+# RUBY STACK MODULES
+https://bitnami.com/stack/ruby/modules
+
+#### INSTALL BITNAMI LAMPSTACK & MODULES APPS ####
+
+#### AUTOMATION TESTING ####
+1. Katalon Studio
+
+#### AUTOMATION TESTING ####
+
+#### INSTALL PHOTOSHOP UBUNTU ####
+https://askubuntu.com/questions/1075673/how-do-i-download-photoshop-illustrator-in-ubuntu-16-04
+https://www.playonlinux.com/en/download.html
+For the Xenial version
+
+Type the following commands:
+wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
+sudo wget http://deb.playonlinux.com/playonlinux_xenial.list -O /etc/apt/sources.list.d/playonlinux.list
+sudo apt-get update
+sudo apt-get install playonlinux
+launch playonlinux
+search photoshop
+browser setup.exe photoshopcs6
+next 
+#### INSTALL PHOTOSHOP UBUNTU ####
+
+#### BOOSTRAP.IO #####
+#### BOOSTRAP.IO #####
+
+#### INSTALL HEIDISQL ####
+https://www.heidisql.com/
+#### INSTALL HEIDISQL ####
+
+### INSTALL SQLYOG ###
+### INSTALL SQLYOG ###
 
 ####################### INSTALL ANDROID EMULATOR ANBOX #################
 https://docs.anbox.io/userguide/install.html
@@ -839,6 +927,10 @@ $ sudo modprobe binder_linux
 $ sudo snap install --devmode --beta anbox
 $ anbox.appmgr
 ####################### INSTALL ANDROID EMULATOR #################
+
+####################### INSTALL ANDROID STUDIO #################
+
+####################### INSTALL ANDROID STUDIO #################
 
 ## INSTALL UNRAR/RAR ##
 sudo apt-get install unrar
@@ -963,6 +1055,40 @@ sudo ./Ampps-3.8-x86_64.run
 cd /usr/local/ampps
 sudo ./Ampps
 
+Solusi dan Tambahan :
+
+
+1. phpMyAdmin is accessible by network without password. Set the configuration auth_type to "http" or "cookie" in the config.inc.php
+buka di folder /usr/local/ampps/phpMyAdmin
+
+sudo nano config.inc.php
+
+ubah :
+
+$cfg['Servers'][$i]['auth_type'] = 'config';
+
+menjadi 
+
+$cfg['Servers'][$i]['auth_type'] = 'http';
+
+atau 
+
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+
+2. Apache doesn't start in AMPPS on Ubuntu
+https://stackoverflow.com/questions/47013891/apache-doesnt-start-in-ampps-on-ubuntu
+
+netstat -nlt 
+kill -9 port 80
+
+cd /usr/local/ampps/apache/lib
+
+sudo mkdir backup
+
+sudo mv ./libapr* ./backup/
+
+sudo apt-get -y install libaprutil1 libaprutil1-dev libapr1 libapr1-dev 
+
 ####### WEB SERVER SOLUTION STACK #######
 
 ####### DATABASE TOOLS ######
@@ -1031,7 +1157,16 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update
 sudo apt-cache policy docker-ce
 sudo apt-get install -y docker-ce
-##################### Operating-system-level virtualization ##########################
+
+
+## REINSTALL & REPAIR DOCKER VERSI 1##
+sudo apt-get install --reinstall docker-ce
+
+## REINSTALL & REPAIR DOCKER VERSI 2##
+sudo apt-get remove docker-ce
+sudo apt-get install docker-ce
+
+################ Operating-system-level virtualization ##################
 
 ######### STRESS TOOL ##########
 https://www.linuxhelp.com/tutorials
@@ -1044,9 +1179,9 @@ https://www.linuxhelp.com/how-to-install-apache-jmeter-in-ubuntu-16-04
 ######### REMOTE DESKTOP ANYDESK UBUNTU 16.04 ###########
 
 INSTALL : https://anydesk.com/download?os=linux
+https://tecadmin.net/install-anydesk-ubuntu/
 
 CLI ACCESS ADRESS/ID VIA SSH : https://support.anydesk.com/Command_Line_Interface
-
 
 ######################### TROUBLE SHOOTING ######################################
 
@@ -1059,7 +1194,7 @@ CLI ACCESS ADRESS/ID VIA SSH : https://support.anydesk.com/Command_Line_Interfac
 2. BAZEL ERROR
  ERROR: Config value cuda is not defined in any .rc file
 	- cek versi bazel
-		bazel version
+	  bazel version
 	- downgrade dari versi sekarang 0.21.0 ke 0.18.0
 
 
@@ -1160,6 +1295,8 @@ sudo mv -v /lib/x86_64-linux-gnu/libcrypto.so.1.0.0.bak /lib/x86_64-linux-gnu/li
 14. Turn OFF Camera
 lsof | grep video0
 	kill -9 PIDnya
+
+atau bisa kill dengan system monitor
 
 15. bin/darknet: error while loading shared libraries: libopencv_highgui.so.3.2: cannot open shared object file: No such file or directory
 - http://forrestbao.blogspot.com/2017/08/
@@ -1267,10 +1404,18 @@ https://techoverflow.net/2018/01/06/fixing-tensorflow-libcublas-so-8-0-cannot-op
 https://discuss.pytorch.org/t/libcudart-so-9-0-cannot-open-shared-object-file-no-such-file-or-directory/23984
 https://blog.csdn.net/ksws0292756/article/details/80034086
 https://qiita.com/mitsuharu_e/items/fdb6764c13195e348eb1
+https://github.com/tensorflow/tensorflow/issues/17147
+https://stackoverflow.com/questions/47270885/tensorflow-importerror-libcublas-so-8-0-cannot-open-shared-object-file-no-su
+https://stackoverflow.com/questions/43558707/tensorflow-importerror-libcusolver-so-8-0-cannot-open-shared-object-file-no
+https://blog.csdn.net/u010454261/article/details/71268325
+https://stackoverflow.com/questions/43558707/tensorflow-importerror-libcusolver-so-8-0-cannot-open-shared-object-file-no
+https://stackoverflow.com/questions/47270885/tensorflow-importerror-libcublas-so-8-0-cannot-open-shared-object-file-no-su
+https://github.com/tensorflow/tensorflow/issues/17147
 
 - CARA JIKA MENGGUNAKAN ANACONDA
 conda install -c anaconda cudatoolkit==9.0 
 
+- CARA LAIN INSTALL CUDA 9.0 jika sudah ada cuda 10 bisa install multiple cuda version
 32. Import PGSQL python3, mysqldb, sqlite3, NoSQL(MongoDB)
 https://www.fullstackpython.com/blog/postgresql-python-3-psycopg2-ubuntu-1604.html
 https://stackoverflow.com/questions/25924931/mysqldb-with-python3-4
@@ -1339,8 +1484,167 @@ sudo apt install bmon
 
 bmon - shows multiple interfaces at once
 
+42. Change when python terminal to python3.5
+https://askubuntu.com/questions/320996/how-to-make-python-program-command-execute-python-3
 
+alias python=python3
+
+After adding the above in the file, run source ~/.bashrc or source ~/.bash_aliases.
+
+For example:
+
+$ python --version
+Python 2.7.6
+$ python3 --version
+Python 3.4.3
+$ alias python=python3
+$ python --version
+Python 3.4.3
+
+43. /home/john/.local/lib/python2.7/site-packages/pip/_vendor/requests /__init__.py:83: RequestsDependencyWarning: Old version of cryptography ([1, 2, 3]) may cause slowdown.
+warnings.warn(warning, RequestsDependencyWarning)
+https://www.linuxquestions.org/questions/linux-software-2/problems-after-a-pip-upgrade-python-package-installation-always-fails-now-4175640683/
+
+
+Solusi : 
+find the answer myself.
+
+(1) downgrade from 18.1 to 8.1.1
+sudo python -m pip install pip==8.1.1
+
+(2) fix broken links
+hash -r
+
+44. pyopenssl: object has no attribute 'SSL_ST_INIT' #13 
+https://github.com/brocaar/loraserver-setup/issues/13
+
+Solusi :
+
+rm -rf /usr/lib/python2.7/dist-packages/OpenSSL
+rm -rf /usr/lib/python2.7/dist-packages/pyOpenSSL-0.15.1.egg-info
+sudo pip install pyopenssl
+
+45. ImportError: No module named _tkinter, please install the python-tk package
+https://stackoverflow.com/questions/4783810/install-tkinter-for-python
+
+Solusi : 
+
+sudo apt-get install python-tk
+
+46. DEPRECATION: Uninstalling a distutils installed project (scipy) has been deprecated and will be removed in a future version. This is due to the fact that uninstalling a distutils project will only partially uninstall the project.
+
+Reff : sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open database file (Background on this error at: http://sqlalche.me/e/e3q8)
+
+Solusi : 
+
+* Reduced version:
+  `pip install --upgrade --force-reinstall pip==9.0.3`
+
+* Tried to re-install package:
+  `pip install xxx --disable-pip-version-check`
+
+* At last, recover the latest version for pip:
+  `pip install --upgrade pip`
+
+47. ssh -x dsc01@ipaddress # ini untuk interface ke windows jika tidak muncul
+
+  737  sudo nano ~/.bashrc
+  738  python3 -
+  739  python3 -V
+  740  python3.5 -V
+  741  python3.5 
+  742  sudo nano ~/.bashrc
+  743  python3
+  744  python --version
+  745  python3 --version
+  746  alias python=python3.5
+  747  python -V
+  748  python3 -V
+  749  alias python3=python3.5
+  750  python3 -V
+  751  cd DATASCIENTIST/
+  752  ls
+  753  cd FaceRec
+  754  ls
+  755  python main.py 
+  756  history
+
+43. Installation of .NET 4.6 (i.e. dotnet46) Fails on my Ubuntu Trusty 16.05 #720 
+https://github.com/Winetricks/winetricks/issues/720
+
+44. ImportError: No named '_tkinter', please install the python3-tk package
+https://askubuntu.com/questions/815874/importerror-no-named-tkinter-please-install-the-python3-tk-package
+
+Solution : 
+sudo apt-get install python3-tk Installs tkinter for Python3.x.x
+
+45. ModuleNotFoundError: No module named 'scipy._lib.decorator
+https://blog.csdn.net/snailNL/article/details/81298256
+
+sudo pip3 uninstall scipy
+
+sudo pip3 install scipy
+
+46. Membuat Executable ./navicat atau .run bisa di ekseskusi di desktop
+https://askubuntu.com/questions/250426/how-do-i-run-a-executable-application-x-executable-file
+chmod +x ./Navicat
+chmod +x ./app.run
+
+lalu tinggal di buat di desktop shortcutnya
+
+47. membuat shortcut desktop di ubuntu
+https://linuxconfig.org/how-to-create-desktop-shortcut-launcher-on-ubuntu-18-10-cosmic-cuttlefish-linux
+
+1. sudo apt  install --no-install-recommends gnome-panel
+2. gnome-desktop-item-edit ~/Desktop/ --create-new
+
+48. https://itsfoss.com/free-up-space-ubuntu-linux/
+free space ubuntu 
+sudo apt-get autoremove # menghapus package yang tidak perlu
+sudo du -sh /var/cache/apt  # check total# size dir
+sudo apt-get autoclean
+sudo apt-get clean
+du -sh ~/.cache/thumbnails
+rm -rf ~/.cache/thumbnails/*
+sudo dpkg --list 'linux-image*'
+sudo apt-get remove linux-image-VERSION
+sudo apt-get install gtkorphan
+sudo apt-get remove package-name1 package-name2
+
+atau install stacer
+https://ubuntoid.com/install-stacer-system-optimizer-ubuntu-16-04/
+
+49. CHECK OPENSSL/LIBSSL INSTALLED
+apt-cache policy openssl
+php -i | grep -i openssl
+
+50. nautilus
+
+51. Membuat Service Python Autorun Ubuntu
+Buka Webmin Boot & System
+- buat service terus isikan
+
+pada ExecStart = /usr/bin/python3 /home/dsc01/dsc_bariqi/FaceRec-master/oprecfacenet.py --mode "ambil_gambar"
 ############# YOLO DARKNET ##############
+
+52. zip unzip folder/file ubuntu
+https://docs.google.com/presentation/d/15LfPy9txhQkMwxKjCxEd7VFqx0IG17WxDwen5527Z68/edit#slide=id.p1
+https://www.cyberciti.biz/faq/how-to-zip-a-folder-in-ubuntu-linux/
+
+zip -r FaceRec-master-backup08032018.zip . /FaceRec-master
+
+53. Get ID Teamviewer
+teamviewer info
+
+reset pw tv: 
+
+teamviewer --passwd newPassword
+
+54. WEBSERVICES QUEUE APACHE KAFKA
+https://github.com/rapideinternet/laravel-queue-kafka
+
+55. JIKA BOOTLOADER INSTALL ULANG UBUNTU TIDAK BISA BOOTING
+https://askubuntu.com/questions/192639/need-to-manually-install-bootloader
 
 #### INSTALL OPENCV + OPENCV_CONTRIB WITH CONDA ####
 
@@ -1359,6 +1663,21 @@ conda install -c conda-forge opencv or conda install -c conda-forge opencv=3.4.0
 conda install opencv
 conda install tensorflow
 conda install tensorflow-gpu
+
+## UPGRADE TENSORFLOW ## 
+https://stackoverflow.com/questions/42574476/update-tensorflow
+
+(tensorflow)$ pip install --upgrade pip  # for Python 2.7
+(tensorflow)$ pip3 install --upgrade pip # for Python 3.n
+
+(tensorflow)$ pip install --upgrade tensorflow      # for Python 2.7
+(tensorflow)$ pip3 install --upgrade TensorFlow     # for Python 3.n
+(tensorflow)$ pip install --upgrade tensorflow-gpu  # for Python 2.7 and GPU
+(tensorflow)$ pip3 install --upgrade tensorflow-gpu # for Python 3.n and GPU
+
+(tensorflow)$ pip install --upgrade tensorflow-gpu==1.4.1 # for a specific version
+
+
 ### END CONDA INSTALL TENSORFLOW, TENSORFLOW GPU, OPENCV, OPENCV CONTRIB ###
 
 #### TUNING UBUNTU FIX & RECOVERY ####
@@ -1515,7 +1834,10 @@ Recording h264 RTSP stream from surveillance camera using ffmpeg
 ### RESTREAM IPCAMERA RTSP TO RTMP WITH NGINX MEDIA SERVER ###
 https://stackoverflow.com/questions/45816160/how-to-re-stream-h265-rtsp-stream-using-ffmpeg
 https://stackoverflow.com/questions/23011302/best-approach-to-get-rtsp-streaming-into-web-browser-from-ip-camera
-
+https://stackoverflow.com/questions/49439758/formula-for-calculating-ffmpeg-minrate-maxrate-and-bufsize
+https://superuser.com/questions/536001/variable-bit-rates-with-vb-and-minrate-maxrate-settings-in-ffmpeg
+https://superuser.com/questions/1179117/ffmpeg-change-bitrate-of-mp2-file
+https://stackoverflow.com/questions/50708344/ffmpeg-difference-between-ab-and-ba
 
 FFMPEG RESTREAM EXAMPLE
 ffmpeg -rtsp_transport tcp -i 'rtsp://212.78.10.88:554/stream' -f lavfi -i aevalsrc=0 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
@@ -1552,7 +1874,50 @@ Play Path/Stream Key: mystream
     VLC
     omxplayer (Raspberry Pi)
 2. FFMPEG RESTREAM
+
+# WORK 1
 ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+# WORK 1.1 TRANSCODE 320x240
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -s 320x240 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+# WORK 1.1 TRANSCODE 640x480
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -s 640x480 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+# WORK 1.1 TRANSCODE 640x480 (COUNTING MM LT 1)
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -s 640x480 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+
+# WORK 2 BITRATE
+ffmpeg -i video.mkv -s 1280x720 -codec:v mpeg4 -bf 1 -b:v 2567k -mbd 2 -g 300 -flags cgop -acodec copy video.avi
+
+# WORK 3
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -preset ultrafast -crf 0 libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+ffmpeg -i http://link.com:8001/1.ch -ar 44100 -vcodec libx264 -r 25 -b:v 500k -f flv rtmp://yourvpsDNS:1935/live/comedy;
+
+# WITH VARIATION BITRATE
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 500k -b:a 128k -minrate 500k -maxrate 500k -bufsize 500k -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+
+# WITH VARIATION BITRATE AND SCALING (COUNTING MM LT 1)
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.59' -f lavfi -i aevalsrc=0 -s 640x480 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 500k -b:a 128k -minrate 500k -maxrate 500k -bufsize 500k -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
+
+
+# STREAM NO AUDIO
+https://superuser.com/questions/268985/remove-audio-from-video-file-with-ffmpeg
+ffmpeg -i example.mkv -c copy -an example-nosound.mkv # WITH -an
+
+
+# Transcode Video Streaming Video Bitrate 800kbps, Audio Bitrate 128kbps 720p (1280x720)
+
+ADD 1 STREAM rtmp://localhost:1935/tvedutech/240p -vcodec libx264 -x264opts keyint=45 -ar 44100 -tune zerolatency -preset ultrafast -b:v 800k –b:a 128k -minrate 800k -maxrate 800k -bufsize 800k -vf "scale=480:240,format=pix_fmts=yuv420p" -format flv
+
+# Transcode Video Streaming Video Bitrate 800kbps, Audio Bitrate 128kbps 240p (480x240)
+ADD 1 STREAM rtmp://localhost:1935/tvedutech/240p -vcodec libx264 -x264opts keyint=45 -ar 44100 -tune zerolatency -preset ultrafast -b:v 800k –b:a 128k -minrate 800k -maxrate 800k -bufsize 800k -vf "scale=480:240,format=pix_fmts=yuv420p" -format flv
+
 3. jalankan di vlc open network stream
 rtmp://localhost:1935/live/stream
 4. live stat
@@ -1567,6 +1932,14 @@ atau
 - sudo docker container ls
 - terus ambil container id
 - ex : sudo docker container stop c72c68679339 (c72c68679339 ini idnya)
+
+
+### ADAPTIVE BITRATE STREAM WITH NGINX RTMP ###
+
+http://addies-nginx.blogspot.com/2017/04/create-adaptive-streaming-with-nginx.html
+
+### ADAPTIVE BITRATE STREAM WITH NGINX RTMP ###
+
 ### RESTREAM IPCAMERA RTSP TO RTMP WITH NGINX MEDIA SERVER ###
 
 
@@ -1579,9 +1952,16 @@ https://blog.miguelgrinberg.com/post/video-streaming-with-flask
 https://github.com/desertfury/flask-opencv-streaming.git
 http://www.chioka.in/python-live-video-streaming-example/
 
+#Simple Python Motion Jpeg (mjpeg server) from webcam. Using: OpenCV,BaseHTTPServer
+https://gist.github.com/n3wtron/4624820
+https://stackoverflow.com/questions/14088294/multithreaded-web-server-in-python
+
 #### FF SERVER ####
 https://stackoverflow.com/questions/26691189/how-to-capture-video-stream-with-opencv-python
 
+## INSTALL SLACK ##
+https://slack.com/downloads/instructions/ubuntu
+## INSTALL SLACK ##
 
 #### MEMBUAT WEB DENGAN FLASK #### 
 https://code.tutsplus.com/id/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972
@@ -1865,6 +2245,8 @@ https://hub.docker.com/r/jasonrivers/nginx-rtmp
 	- https://www.pytorials.com/how-to-install-tensorflow-gpu-with-cuda-9-2-for-python-on-ubuntu/
 	@ Datasheets Algovision
 	- https://www.allgovision.com/admin/uploads/datasheets/
+	@ CPU BENCHMARKS
+	- https://www.cpubenchmark.net/multi_cpu.html
 
 ######################## BLOG ###################################
 https://www.youtube.com/watch?v=7eOLm_dsuz8
@@ -1881,8 +2263,30 @@ https://www.iotforall.com/objects-recognition-live-stream-yolo-model/
 https://dev.to/pranay749254/simple-face-recognizing-system-using-python-and-opencv
 https://www.chowles.com/easy-facial-detection-in-your-laravel-php-application/
 https://pythondigest.ru/view/843/
+https://replaydeveloper.tistory.com/entry/NILMTKNonIntrusive-Load-Monitoring-Toolkit
 ######################## REFERENCE ##############################
 
+@FACENET
+@OPENFACE
+@DEEPFACE
+
+- Face Detection
+- Face Identification
+- Face Identity
+- Facial Recognition
+- Facial Analysis
+- Face Analysis
+- Emotion Analysis
+- Face Verification
+- Emotion Detection
+- Gender Detection
+- Expression Detection
+- Face Classification
+- Gender Analysis
+- Expression Analysis
+- Headpose Detection
+- Sleeping Detection
+- Fatigue Detection
 
 1. Realtimecamera # Belum
 2. Counting People Video # Jelek
@@ -1890,7 +2294,7 @@ https://pythondigest.ru/view/843/
 4. facedetect # belum
 5. face_detection # belum
 6. Face-Detection-Recognition-Based-Attendance-System$  # GA BISA
-7. facenet-face-recognition # bagus
+7. facenet-face-recognition # bagus # belum bisa env
 8. FaceNet-Real-Time-face-recognition # GA BISA
 9. Face_Recog_Attendance # GA BISA
 10. Face_Recognition # GA BISA
@@ -1899,7 +2303,7 @@ https://pythondigest.ru/view/843/
 13. faceRegconition # GABISA
 14. Facial-Emotion-Detection-Django # BISA TAPI JELEK
 15. facial-recognition-python-django # BAGUS SEKALI
-16. Facial-Recognition-using-Facenet #Bagus
+16. Facial-Recognition-using-Facenet #Bagus # OK
 17. facial-recognition-video-facenet # BELUM BISA
 18. OpenCV-Video-Streae-Recognition #BAGUS
 19. productRecognition-with-YoloV3 # BELUM BISA
@@ -1946,7 +2350,25 @@ https://pythondigest.ru/view/843/
 60. who-is-there # BELU< BISA
 61. yolo-webcam # BELUM
 62. YOLO3-4-Py # BELUM
- 
+63. https://github.com/Gouwenbo/FaceRecognition_GUI.git # MYSQL 
+64. https://github.com/sanstorik/server_face_recognition.git # MYSQL
+65. https://github.com/anuruddhaonline/gymapp.git # MYSQL
+66. https://github.com/rafaelszt/observer.git # MYSQL BAGUS
+66. https://github.com/rileykwok/Face-Recognition-Model-with-Gender-Age-and-Emotions-Estimations.git # BAGUS
+67. https://github.com/BoyuanJiang/Age-Gender-Estimate-TF.git # BAGUS
+68. https://github.com/oarriaga/face_classification.git # BAGUS
+69. https://github.com/jimeffry/Age-gender-and-emotion-recognition.git # BAGUS
+70. https://github.com/Jacen789/face_recognition.git # tidak bisa cloing detect lewat hp # BAGUS
+71. https://github.com/keyurr2/libfaceid.git # BAGUS
+72. https://github.com/vipstone/faceai.git # BAGUS
+73. https://github.com/alokwhitewolf/MultiObjectTracker.git # BAGUS
+74. https://github.com/matiji66/face-attendance-machine.git # BAGUS
+75. https://github.com/winterssy/face_recognition_py.git # BAGUS
+76. https://github.com/kraten/vehicle-speed-check.git # BAGUS
+77. face-name-age-gender # BELUM
+
+https://github.com/topics/dlib?l=python&o=asc&s=stars
+
 # YANG OK
 - FACEREC
 - People-Counter
@@ -1956,214 +2378,8 @@ https://pythondigest.ru/view/843/
 - https://github.com/shreyasparbat/OpenCV-Facial-Recognition.git # MYSQL
 - https://github.com/Romeliigalbia/Face-Detection-with-Datasets-and-Training-for-Face-Recognition-Using-OpenCV3-Python3.git
 - https://github.com/GameNewb/Face-Recognition-App.git # MYSQL
+- Age-Gender-Estimate-TF # BAGUS
 
 
-
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-The following packages were automatically installed and are no longer required:
-  apg app-install-data appmenu-qt appmenu-qt5 apport-symptoms aptdaemon-data
-  bamfdaemon command-not-found-data compiz-core compiz-plugins-default
-  cuda-command-line-tools-10-0 cuda-compiler-10-0 cuda-cublas-dev-10-0
-  cuda-cudart-10-0 cuda-cudart-dev-10-0 cuda-cufft-10-0 cuda-cufft-dev-10-0
-  cuda-cuobjdump-10-0 cuda-cupti-10-0 cuda-curand-10-0 cuda-curand-dev-10-0
-  cuda-cusolver-10-0 cuda-cusolver-dev-10-0 cuda-cusparse-10-0
-  cuda-cusparse-dev-10-0 cuda-documentation-10-0 cuda-driver-dev-10-0
-  cuda-gdb-10-0 cuda-gpu-library-advisor-10-0 cuda-libraries-10-0
-  cuda-libraries-dev-10-0 cuda-memcheck-10-0 cuda-misc-headers-10-0
-  cuda-npp-10-0 cuda-npp-dev-10-0 cuda-nsight-10-0 cuda-nsight-compute-10-0
-  cuda-nvcc-10-0 cuda-nvdisasm-10-0 cuda-nvgraph-10-0 cuda-nvgraph-dev-10-0
-  cuda-nvjpeg-10-0 cuda-nvjpeg-dev-10-0 cuda-nvml-dev-10-0 cuda-nvprof-10-0
-  cuda-nvprune-10-0 cuda-nvrtc-10-0 cuda-nvrtc-dev-10-0 cuda-nvtx-10-0
-  cuda-nvvp-10-0 cuda-samples-10-0 cuda-toolkit-10-0 cuda-tools-10-0
-  cuda-visual-tools-10-0 cups-pk-helper dc ethtool gedit-common
-  gir1.2-accounts-1.0 gir1.2-appindicator3-0.1 gir1.2-dbusmenu-glib-0.4
-  gir1.2-dee-1.0 gir1.2-gdata-0.0 gir1.2-gmenu-3.0 gir1.2-goa-1.0
-  gir1.2-gtksource-3.0 gir1.2-gudev-1.0 gir1.2-ibus-1.0 gir1.2-json-1.0
-  gir1.2-notify-0.7 gir1.2-packagekitglib-1.0 gir1.2-rb-3.0 gir1.2-secret-1
-  gir1.2-signon-1.0 gir1.2-totem-1.0 gir1.2-totem-plparser-1.0
-  gir1.2-udisks-2.0 gir1.2-unity-5.0 gir1.2-vte-2.91 gir1.2-webkit2-4.0
-  gir1.2-wnck-3.0 gkbd-capplet gnome-icon-theme gnome-terminal-data hplip-data
-  hud indicator-appmenu indicator-messages indicator-printers intel-gpu-tools
-  ippusbxd jayatana libart-2.0-2 libbamf3-2 libcolumbus1-common libcolumbus1v5
-  libcompizconfig0 libdbusmenu-qt5 libdecoration0 libdmapsharing-3.0-2
-  libframe6 libgeis1 libgeonames0 libglewmx1.13 libgnome-menu-3-0 libgnomekbd8
-  libgpod-common libgpod4 libgrail6 libgsettings-qt1 libhud2
-  libmetacity-private3a libnux-4.0-0 libnux-4.0-common
-  libpeas-1.0-0-python3loader libpython3-dev libpython3.5-dev libqt5organizer5
-  librhythmbox-core9 libsane-hpaio libsgutils2-2 libtimezonemap-data
-  libtimezonemap1 libubuntugestures5 libubuntutoolkit5 libunity-action-qt1
-  libunity-core-6.0-9 libunity-gtk2-parser0 libunity-gtk3-parser0
-  libunity-misc4 libunity-webapps0 libx86-1 libxapian-1.3-5 libxnvctrl0
-  libzeitgeist-1.0-1 media-player-info metacity-common mscompress nux-tools
-  nvidia-410-dev nvidia-modprobe oneconf-common plainbox-secure-policy
-  pm-utils python-aptdaemon python-aptdaemon.gtk3widgets python-attr
-  python-blinker python-cffi-backend python-cryptography python-cups
-  python-dbus python-debian python-debtagshw python-defer python-dirspec
-  python-enum34 python-gi python-gi-cairo python-httplib2 python-idna
-  python-ipaddress python-jwt python-oauthlib python-oneconf python-openssl
-  python-pam python-piston-mini-client python-pyasn1 python-pyasn1-modules
-  python-serial python-service-identity python-twisted-bin python-twisted-core
-  python-twisted-web python-ubuntu-sso-client python-xapian python-xdg
-  python-zope.interface python3-argcomplete python3-blinker python3-bs4
-  python3-cupshelpers python3-debian python3-decorator python3-defer
-  python3-feedparser python3-gnupg python3-guacamole python3-html5lib
-  python3-httplib2 python3-idna python3-padme python3-pexpect
-  python3-progressbar python3-ptyprocess python3-pyparsing python3-speechd
-  python3-xdg python3-xkit python3-xlsxwriter
-  qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings
-  qml-module-qtfeedback qml-module-qtgraphicaleffects qml-module-qttest
-  qml-module-ubuntu-components qml-module-ubuntu-layouts
-  qml-module-ubuntu-onlineaccounts qml-module-ubuntu-performancemetrics
-  qml-module-ubuntu-test qml-module-ubuntu-web qtdeclarative5-accounts-plugin
-  qtdeclarative5-qtquick2-plugin qtdeclarative5-test-plugin
-  qtdeclarative5-ubuntu-ui-toolkit-plugin qtdeclarative5-unity-action-plugin
-  rhythmbox-data session-shortcuts signon-keyring-extension suru-icon-theme
-  syslinux syslinux-common syslinux-legacy tcl tk ubuntu-mobile-icons
-  ubuntu-sso-client ubuntu-ui-toolkit-theme unity-control-center-faces
-  unity-gtk-module-common unity-gtk2-module unity-gtk3-module
-  unity-lens-applications unity-lens-files unity-lens-music unity-lens-video
-  unity-schemas unity-scope-home unity-scope-video-remote
-  unity-scopes-master-default unity-scopes-runner unity-services
-  unity-webapps-qml unity-webapps-service vbetool webapp-container
-  webbrowser-app xbrlapi
-Use 'sudo apt autoremove' to remove them.
-The following additional packages will be installed:
-  libbz2-1.0:i386 libmpdec2:i386 libncursesw5:i386 libpython3-stdlib:i386
-  libpython3.5-minimal:i386 libpython3.5-stdlib:i386 libreadline6:i386
-  python3:i386 python3-minimal:i386 python3.5:i386 python3.5-minimal:i386
-Suggested packages:
-  python3-doc:i386 python3-tk:i386 python3-venv:i386 python3.5-venv:i386
-  python3.5-doc:i386 binutils:i386
-The following packages will be REMOVED:
-  apport* apport-gtk* apt-xapian-index* aptdaemon* apturl* apturl-common*
-  checkbox-converged* checkbox-gui* command-not-found* compiz* compiz-gnome*
-  cuda* cuda-10-0* cuda-demo-suite-10-0* cuda-drivers* cuda-runtime-10-0*
-  flashplugin-installer* foomatic-db-compressed-ppds* gdebi* gdebi-core*
-  gedit* gnome-orca* gnome-terminal* hplip* ibus* ibus-table*
-  indicator-bluetooth* language-selector-common* language-selector-gnome*
-  nautilus-share* nvidia-settings* onboard* onboard-data* oneconf*
-  openprinting-ppds* plainbox-provider-checkbox*
-  plainbox-provider-resource-generic* printer-driver-foo2zjs*
-  printer-driver-foo2zjs-common* printer-driver-postscript-hp*
-  printer-driver-ptouch* printer-driver-pxljr* pyotherside* python3*
-  python3-apport* python3-apt* python3-aptdaemon*
-  python3-aptdaemon.gtk3widgets* python3-aptdaemon.pkcompat* python3-brlapi*
-  python3-cairo* python3-cffi-backend* python3-checkbox-support*
-  python3-commandnotfound* python3-cryptography* python3-cups* python3-dbus*
-  python3-dev* python3-distupgrade* python3-gdbm* python3-gi*
-  python3-gi-cairo* python3-jinja2* python3-libnvinfer*
-  python3-libnvinfer-dev* python3-lxml* python3-mako* python3-markupsafe*
-  python3-minimal* python3-numpy* python3-oauthlib* python3-oneconf*
-  python3-pil* python3-piston-mini-client* python3-plainbox* python3-pyatspi*
-  python3-pycurl* python3-renderpm* python3-reportlab*
-  python3-reportlab-accel* python3-scipy* python3-software-properties*
-  python3-systemd* python3-tk* python3-uno* python3-update-manager*
-  python3-xapian1.3* python3-yaml* python3.5* python3.5-dev*
-  python3.5-minimal* qml-module-io-thp-pyotherside* rhythmbox*
-  rhythmbox-plugin-zeitgeist* rhythmbox-plugins* screen-resolution-extra*
-  sessioninstaller* software-center* software-center-aptdaemon-plugins*
-  software-properties-common* software-properties-gtk*
-  system-config-printer-common* system-config-printer-gnome*
-  system-config-printer-udev* totem-plugins* ttf-mscorefonts-installer*
-  ubuntu-desktop* ubuntu-drivers-common* ubuntu-make* ubuntu-minimal*
-  ubuntu-release-upgrader-core* ubuntu-release-upgrader-gtk* ubuntu-standard*
-  ubuntu-system-service* unattended-upgrades* unity* unity-control-center*
-  unity-control-center-signon* unity-lens-photos* unity-scope-calculator*
-  unity-scope-chromiumbookmarks* unity-scope-colourlovers*
-  unity-scope-devhelp* unity-scope-firefoxbookmarks* unity-scope-gdrive*
-  unity-scope-manpages* unity-scope-openclipart* unity-scope-texdoc*
-  unity-scope-tomboy* unity-scope-virtualbox* unity-scope-yelp*
-  unity-scope-zotero* unity-webapps-common* update-manager*
-  update-manager-core* update-notifier* update-notifier-common*
-  usb-creator-common* usb-creator-gtk* xdiagnose*
-The following NEW packages will be installed:
-  libbz2-1.0:i386 libmpdec2:i386 libncursesw5:i386 libpython3-stdlib:i386
-  libpython3.5-minimal:i386 libpython3.5-stdlib:i386 libreadline6:i386
-  python3:i386 python3-minimal:i386 python3.5:i386 python3.5-minimal:i386
-0 upgraded, 11 newly installed, 140 to remove and 4 not upgraded.
-Need to get 4.900 kB of archives.
-After this operation, 162 MB disk space will be freed.
-Do you want to continue? [Y/n] y
-Get:1 http://id.archive.ubuntu.com/ubuntu xenial-updates/main i386 libpython3.5-minimal i386 3.5.2-2ubuntu0~16.04.5 [526 kB]
-Get:2 http://id.archive.ubuntu.com/ubuntu xenial-updates/main i386 python3.5-minimal i386 3.5.2-2ubuntu0~16.04.5 [1.677 kB]
-Get:3 http://id.archive.ubuntu.com/ubuntu xenial/main i386 python3-minimal i386 3.5.1-3 [23,3 kB]
-Get:4 http://id.archive.ubuntu.com/ubuntu xenial/main i386 libbz2-1.0 i386 1.0.6-8 [30,9 kB]
-Get:5 http://id.archive.ubuntu.com/ubuntu xenial/main i386 libmpdec2 i386 2.4.2-1 [80,7 kB]
-Get:6 http://id.archive.ubuntu.com/ubuntu xenial/main i386 libncursesw5 i386 6.0+20160213-1ubuntu1 [125 kB]
-Get:7 http://id.archive.ubuntu.com/ubuntu xenial/main i386 libreadline6 i386 6.3-8ubuntu2 [121 kB]
-Get:8 http://id.archive.ubuntu.com/ubuntu xenial-updates/main i386 libpython3.5-stdlib i386 3.5.2-2ubuntu0~16.04.5 [2.135 kB]
-Get:9 http://id.archive.ubuntu.com/ubuntu xenial-updates/main i386 python3.5 i386 3.5.2-2ubuntu0~16.04.5 [165 kB]
-Get:10 http://id.archive.ubuntu.com/ubuntu xenial/main i386 libpython3-stdlib i386 3.5.1-3 [6.852 B]
-Get:11 http://id.archive.ubuntu.com/ubuntu xenial/main i386 python3 i386 3.5.1-3 [8.712 B]
-Fetched 4.900 kB in 1min 22s (59,4 kB/s)                                       
-(Reading database ... 342325 files and directories currently installed.)
-Removing apport-gtk (2.20.1-0ubuntu2.18) ...
-Removing apport (2.20.1-0ubuntu2.18) ...
-Purging configuration files for apport (2.20.1-0ubuntu2.18) ...
-Removing apt-xapian-index (0.47ubuntu8.4) ...
-Removing index /var/lib/apt-xapian-index...
-Purging configuration files for apt-xapian-index (0.47ubuntu8.4) ...
-Removing index /var/lib/apt-xapian-index...
-Removing ubuntu-desktop (1.361.2) ...
-Removing language-selector-gnome (0.165.4) ...
-Removing sessioninstaller (0.20+bzr150-0ubuntu4.1) ...
-Removing nautilus-share (0.7.3-2ubuntu1) ...
-Removing apturl (0.5.2ubuntu11.2) ...
-Removing apturl-common (0.5.2ubuntu11.2) ...
-Purging configuration files for apturl-common (0.5.2ubuntu11.2) ...
-Removing checkbox-gui (1.2.4-0ubuntu1) ...
-Removing checkbox-converged (1.2.4-0ubuntu1) ...
-Removing command-not-found (0.3ubuntu16.04.2) ...
-Purging configuration files for command-not-found (0.3ubuntu16.04.2) ...
-Removing unity (7.4.5+16.04.20180221-0ubuntu1) ...
-Purging configuration files for unity (7.4.5+16.04.20180221-0ubuntu1) ...
-Removing compiz (1:0.9.12.3+16.04.20180221-0ubuntu1) ...
-Removing compiz-gnome (1:0.9.12.3+16.04.20180221-0ubuntu1) ...
-Purging configuration files for compiz-gnome (1:0.9.12.3+16.04.20180221-0ubuntu1) ...
-Removing cuda (10.0.130-1) ...
-Removing cuda-10-0 (10.0.130-1) ...
-Removing cuda-demo-suite-10-0 (10.0.130-1) ...
-Removing cuda-runtime-10-0 (10.0.130-1) ...
-Removing cuda-drivers (410.48-1) ...
-Removing flashplugin-installer (32.0.0.142ubuntu0.16.04.1) ...
-Purging configuration files for flashplugin-installer (32.0.0.142ubuntu0.16.04.1) ...
-Removing foomatic-db-compressed-ppds (20160212-0ubuntu1) ...
-Removing gdebi (0.9.5.7ubuntu1) ...
-Removing gdebi-core (0.9.5.7ubuntu1) ...
-Removing gedit (3.18.3-0ubuntu4) ...
-Removing gnome-orca (3.18.2-1ubuntu3) ...
-Purging configuration files for gnome-orca (3.18.2-1ubuntu3) ...
-Removing gnome-terminal (3.18.3-1ubuntu1) ...
-update-alternatives: using /usr/bin/lxterm to provide /usr/bin/x-terminal-emulator (x-terminal-emulator) in auto mode
-Removing printer-driver-postscript-hp (3.16.3+repack0-1) ...
-Removing hplip (3.16.3+repack0-1) ...
-Purging configuration files for hplip (3.16.3+repack0-1) ...
-Removing unity-control-center-signon (0.1.8+16.04.20160201-0ubuntu1) ...
-Removing ibus-table (1.9.1-3ubuntu2) ...
-Removing ubuntu-standard (1.361.2) ...
-Removing language-selector-common (0.165.4) ...
-Purging configuration files for language-selector-common (0.165.4) ...
-Removing nvidia-settings (415.27-0ubuntu0~gpu16.04.1) ...
-Purging configuration files for nvidia-settings (415.27-0ubuntu0~gpu16.04.1) ...
-Removing onboard-data (1.2.0-0ubuntu5) ...
-Removing onboard (1.2.0-0ubuntu5) ...
-Purging configuration files for onboard (1.2.0-0ubuntu5) ...
-Removing software-center (16.01+16.04.20160420) ...
-Purging configuration files for software-center (16.01+16.04.20160420) ...
-dpkg: warning: while removing software-center, directory '/usr/share/apt-xapian-index/plugins' not empty so not removed
-dpkg: warning: while removing software-center, directory '/usr/share/software-center/softwarecenter/backend/piston' not empty so not removed
-dpkg: warning: while removing software-center, directory '/usr/share/software-center/softwarecenter/distro' not empty so not removed
-dpkg: warning: while removing software-center, directory '/usr/share/software-center/softwarecenter/db' not empty so not removed
-Removing oneconf (0.3.9) ...
-Removing openprinting-ppds (20160212-0ubuntu1) ...
-Removing plainbox-provider-checkbox (0.25-1) ...
-Removing plainbox-provider-resource-generic (0.23-1) ...
-Removing printer-driver-foo2zjs (20151024dfsg0-1ubuntu1) ...
-Removing printer-driver-foo2zjs-common (20151024dfsg0-1ubuntu1) ...
-Removing printer-driver-ptouch (1.4-1) ...
-Removing printer-driver-pxljr (1.4+repack0-4) ...
-Removing pyotherside (1.4.0-2) ...
-Removing python3-libnvinfer-dev (5.0.2-1+cuda10.0) ...
-Removing python3-libnvinfer (5.0.2-1+cuda10.0) ...
+# EMOTION RECOGNITION
+- Emotion-Recognition
