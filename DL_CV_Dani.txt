@@ -1646,6 +1646,7 @@ https://github.com/rapideinternet/laravel-queue-kafka
 55. JIKA BOOTLOADER INSTALL ULANG UBUNTU TIDAK BISA BOOTING
 https://askubuntu.com/questions/192639/need-to-manually-install-bootloader
 
+56. 
 #### INSTALL OPENCV + OPENCV_CONTRIB WITH CONDA ####
 
 Solusi : /usr/bin/ld: warning: libgstpbutils-0.10.so.0, needed by /usr/local/lib/libopencv_videoio.so, not found (try using -rpath or -rpath-link)
@@ -1917,6 +1918,9 @@ ADD 1 STREAM rtmp://localhost:1935/tvedutech/240p -vcodec libx264 -x264opts keyi
 
 # Transcode Video Streaming Video Bitrate 800kbps, Audio Bitrate 128kbps 240p (480x240)
 ADD 1 STREAM rtmp://localhost:1935/tvedutech/240p -vcodec libx264 -x264opts keyint=45 -ar 44100 -tune zerolatency -preset ultrafast -b:v 800k –b:a 128k -minrate 800k -maxrate 800k -bufsize 800k -vf "scale=480:240,format=pix_fmts=yuv420p" -format flv
+
+# KAMERA FR LT 1
+ffmpeg -rtsp_transport tcp -i 'rtsp://admin:abcd12345@10.11.23.16' -f lavfi -i aevalsrc=0 -s 640x480 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 500k -b:a 128k -minrate 500k -maxrate 500k -bufsize 500k -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
 
 3. jalankan di vlc open network stream
 rtmp://localhost:1935/live/stream
