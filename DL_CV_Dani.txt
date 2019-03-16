@@ -456,8 +456,19 @@ For cuDNN downloaded using cuDNN Library for Linux method, go to the folder wher
 10 # Install OpenCV and Contrib Modules
 
 @ First we will install the dependencies:
+https://www.learnopencv.com/install-opencv-3-4-4-on-ubuntu-16-04/
+	
+	sudo apt -y update
+	sudo apt -y upgrade
+	sudo apt -y install build-essential checkinstall cmake pkg-config yasm
+	sudo apt -y install git gfortran
+	sudo apt -y install libjpeg8-dev libjasper-dev libpng12-dev
 
-	sudo apt-get remove -y x264 libx264-dev
+	sudo apt -y install libtiff5-dev
+	 
+	sudo apt -y install libtiff-dev
+
+	sudo apt-get remove -y x264 libx264-dev # JIKA DIREMOVE AKAN assertion 'GST_IS_ELEMENT (element)' TIDAK BS LOAD RTSP/RTMP
 	sudo apt-get install -y checkinstall yasm
 	sudo apt-get install -y libjpeg8-dev libjasper-dev libpng12-dev
 
@@ -471,6 +482,28 @@ For cuDNN downloaded using cuDNN Library for Linux method, go to the folder wher
 	sudo apt-get install -y libvorbis-dev libxvidcore-dev
 	sudo apt-get install -y libopencore-amrnb-dev libopencore-amrwb-dev
 	sudo apt-get install -y x264 v4l-utils
+
+	# COMPARE 
+	 
+	sudo apt -y install libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev
+	sudo apt -y install libxine2-dev libv4l-dev
+	
+	cd /usr/include/linux
+	sudo ln -s -f ../libv4l1-videodev.h videodev.h
+	 
+	sudo apt -y install libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
+	sudo apt -y install libgtk2.0-dev libtbb-dev qt5-default
+	sudo apt -y install libatlas-base-dev
+	sudo apt -y install libfaac-dev libmp3lame-dev libtheora-dev
+	sudo apt -y install libvorbis-dev libxvidcore-dev
+	sudo apt -y install libopencore-amrnb-dev libopencore-amrwb-dev
+	sudo apt -y install libavresample-dev
+	sudo apt -y install x264 v4l-utils
+	 
+	# Optional dependencies
+	sudo apt -y install libprotobuf-dev protobuf-compiler
+	sudo apt -y install libgoogle-glog-dev libgflags-dev
+	sudo apt -y install libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
 
 The following command is needed to process images:
 
@@ -1438,6 +1471,8 @@ https://stackoverflow.com/questions/50868893/process10728-gstreamer-critical-gst
 Tambahkan argument setelah device, cv2.CAP_V4L
 cap = cv2.VideoCapture(0, cv2.CAP_V4L)
 
+SOLUSI 3 (RECOMMENDED) : 
+sudo apt-get install -y x264 libx264-dev
 
 34. /usr/local/lib/python3.5/dist-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
   """)
@@ -1998,6 +2033,25 @@ http://nginx-rtmp.blogspot.com/
 ### BAGUS NGINX RTMP
 https://software.endy.muhardin.com/aplikasi/live-stream-nginx-rtmp/
 https://hub.docker.com/r/jasonrivers/nginx-rtmp
+
+
+### INSTALL OPENCONNECT FOR GLOBALPROTECT UBUNTU
+https://github.com/dlenski/openconnect
+1. sudo apt-get install \
+   build-essential gettext autoconf automake libproxy-dev \
+    libxml2-dev libtool vpnc-scripts pkg-config \
+    libgnutls-dev # may be named libgnutls28-dev on some recent Debian/Ubuntu-based distros
+2. git clone https://github.com/dlenski/openconnect.git
+cd openconnect
+./autogen.sh
+./configure
+make
+sudo make install 
+sudo ldconfig
+sudo ./openconnect --protocol=gp global.telkom.co.id --dump -vvv
+
+### INSTALL OPENCONNECT FOR GLOBALPROTECT UBUNTU
+
 
 ######################## REFERENCE ##############################
 
