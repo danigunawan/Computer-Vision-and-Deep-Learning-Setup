@@ -24,6 +24,26 @@ CONTENTS :
 	- Theano
 	- Darknet for YOLO
 
+LANGUAGE : python, ruby, C++, HTML, CSS3, Javascript
+
+DATABASES : MySQL, SQlite, PGSQL
+
+WEBSERVER : Nginx + Passenger, Apache2 
+
+TRANSCODING : NginxRTMP
+
+CONTAINER : Docker
+
+PROTOCOL Stream : RTSP, RTMP
+
+Deep Learning Framework : Tensorflow
+
+Image Processing : OpenCV
+
+Framework Python : Flask
+
+Operating System : Ubuntu Xenial 16.04 Stable Version
+
 Infrastructure Media Server Streaming
 	- Server 
 		1. Utk spek yang standar dan bagus utk server deep berdasarkan Nvidia Forum
@@ -391,7 +411,7 @@ sudo apt-get install cuda-9-2
 sudo apt-get install cuda-10-0
 7 # Install cuDNN
 
-@ CARA 1 : 
+@ CARA 1 FROM DEB (RECOMMENDED) : 
 	- Download cuDNN versi 7.1.4
 	https://developer.nvidia.com/rdp/cudnn-download atau https://developer.nvidia.com/rdp/cudnn-archive
 	- Download cuDNN v7.1.4 (May 16, 2018), for CUDA 9.2
@@ -404,16 +424,42 @@ sudo apt-get install cuda-10-0
 		  sudo dpkg -i libcudnn7-dev_7.1.4-1+cuda9.2_amd64.deb
 		  sudo dpkg -i libcudnn7-doc_7.1.4-1+cuda9.2_amd64.deb
 
-@ CARA 2 (Installing from TAR file TGZ)
+@ CARA 2 (Installing from TAR file TGZ - NOT RECOMMENDED)
 
 For cuDNN downloaded using cuDNN Library for Linux method, go to the folder where you have downloaded the “.tgz” file and from the command line execute the following (update the filename).
+	
+	# (CARA RECOMMENDED by https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installdriver)
+
 	- Download https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.1.4/prod/9.2_20180516/cudnn-9.2-linux-x64-v7.1
-	- tar xvf cudnn-9.2-linux-x64-v7.1.4.tgz
+	- tar -xzvf cudnn-10.0-linux-x64-v7.4.2.24.tgz
+	- sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+	- sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+	- sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+	- To check installation of cuDNN, run this in your terminal :
+	  dpkg -l | grep cudnn
+
+	# (CARA LAMA NOT RECOMMENDED)
+	
 	- sudo cp -P cuda/lib64/* /usr/local/cuda-9.2/lib64/
 	- sudo cp cuda/include/* /usr/local/cuda-9.2/include/
 	- sudo chmod a+r /usr/local/cuda-9.2/include/cudnn.h
-	- To check installation of cuDNN, run this in your terminal :
-	  dpkg -l | grep cudnn
+	- dpkg -l | grep cudnn
+
+Verifying CUDNN SAMPLE :
+
+	To verify that cuDNN is installed and is running properly, compile the mnistCUDNN sample located in the /usr/src/cudnn_samples_v7 directory in the debian file.
+
+	- Copy the cuDNN sample to a writable path.
+	cp -r /usr/src/cudnn_samples_v7/ $HOME
+	- Go to the writable path.
+	cd  $HOME/cudnn_samples_v7/mnistCUDNN
+	- Compile the mnistCUDNN sample.
+	make clean && make
+	- Run the mnistCUDNN sample.
+    ./mnistCUDNN
+
+	If cuDNN is properly installed and running on your Linux system, you will see a message similar to the following:
+	Test passed!
 
 8 # INSTALL NCCL 2.2.13 
 	@ Reff : https://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html#debian
@@ -439,6 +485,15 @@ For cuDNN downloaded using cuDNN Library for Linux method, go to the folder wher
 	- Install Libcupti 
 	sudo apt-get install libcupti-dev
 	echo 'export LD_LIBRARY_PATH=/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+
+	@ IF USE CUDA 10.1 Network installers (x86):
+	REFF : https://developer.nvidia.com/nccl/nccl-download
+	
+	For Ubuntu : sudo apt install libnccl2=2.4.2-1+cuda10.1 libnccl-dev=2.4.2-1+cuda10.1
+	
+	For RHEL/Centos: sudo yum install libnccl-2.4.2-1+cuda10.1 libnccl-devel-2.4.2-1+cuda10.1 libnccl-static-2.4.2-1+cuda10.1
+
+
 
 9 # INSTALL TensorRT (OPTIONAL)
 	Cuda 9.2 Support TensorRT4.0 Latest But Not Suppoer TensorRT5.0
@@ -660,6 +715,8 @@ pip3 install torchvision
 
 
 @ TensorFlow
+	Reff : https://www.tensorflow.org/install/gpu
+ 	
  	1. CARA 1 Quick Install (Not Recommended) : 
  	  A quick way to install TensorFlow using pip without building is as follows. However this is not recomended as we have several specific versions of GPU libraries to improve performance, which may not be available with the pip builds.
 
@@ -1681,7 +1738,74 @@ https://github.com/rapideinternet/laravel-queue-kafka
 55. JIKA BOOTLOADER INSTALL ULANG UBUNTU TIDAK BISA BOOTING
 https://askubuntu.com/questions/192639/need-to-manually-install-bootloader
 
-56. 
+56. nvidia-smi: command not found
+https://www.linuxsec.org/2018/05/menonaktifkan-driver-nouveau-nvidia.html?m=1
+https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#runfile-nouveau
+
+Menonaktifkan Driver Nouveau Nvidia di Ubuntu dan Linux Mint. DI beberapa kasus, driver opensource bawaan kernel Ubuntu alias Nouveau memiliki ketidakcocokan dengan hardware. Di kasus saya sendiri driver ini malah menyebabkan sistem gagal booting sehingga terpaksa saya disable dan install Driver dari vendor Nvidia di Ubuntu.
+
+Solusi : 
+sudo nano /etc/modprobe.d/blacklist-nouveau.conf
+
+isikan : 
+blacklist nouveau
+options nouveau modeset=0
+
+sudo update-initramfs -u
+
+sudo apt-get purge nvidia-*
+
+sudo apt-get install nvidia-418
+
+57. https://docs.nvidia.com/deploy/cuda-compatibility/index.html
+
+
+Table 1. CUDA Toolkit and Compatible Driver Versions
+CUDA Toolkit	Linux x86_64 Driver Version
+CUDA 10.0 (10.0.130)	>= 410.48
+CUDA 9.2 (9.2.88)	>= 396.26
+CUDA 9.1 (9.1.85)	>= 390.46
+CUDA 9.0 (9.0.76)	>= 384.81
+CUDA 8.0 (8.0.61 GA2)	>= 375.26
+CUDA 8.0 (8.0.44)	>= 367.48
+CUDA 7.5 (7.5.16)	>= 352.31
+CUDA 7.0 (7.0.28)	>= 346.46
+3. Support
+3.1. Hardware Support
+The current hardware support is shown in Table 2.
+
+Table 2. CUDA Toolkit and Compatible Driver Versions
+Hardware Generation	Compute Capability	Driver 384.111+	Driver 410.48+
+Turing	7.5	No	Yes
+Volta	7.x	Yes	Yes
+Pascal	6.x	Yes	Yes
+Maxwell	5.x	Yes	Yes
+Kepler	3.x	Yes	Yes
+Fermi	2.x	No	No
+3.2. Forward-Compatible Upgrade Path
+The new upgrade path for the CUDA driver is meant to ease the management of large production systems for enterprise customers. As such, the supported HW (hardware) for this new upgrade path is limited to Tesla GPU products. It’s important to note that HW support is defined by the kernel mode driver and as such, newer CUDA drivers on their own will not enable new HW support. Refer to Hardware Support for which hardware is supported by your system.
+
+3.3. CUDA Application Compatibility
+With the CUDA compatibility platform, applications built with newer CUDA toolkits can be supported on specific enterprise Tesla driver branches. The Table 3 below shows the support matrix when using the CUDA compatibility platform.
+
+Table 3. CUDA Application Compatibility Support Matrix
+Linux x86_64 Tesla driver	CUDA 10.0 Compatibility
+396.26+
+
+Not Compatible
+390.46+
+
+Not Compatible
+384.111+	Compatible
+3.4. Feature Support
+There are specific features in the CUDA driver that require kernel-mode support and will only work with a newer kernel mode driver. A few features depend on other user-mode components and are therefore also unsupported. See Table 4.
+
+Table 4. Forward-Compatible Feature-Driver Support Matrix
+System Base Installation: 384.111+ Driver
+CUDA Driver	CUDA – OpenGL Interop	CUDA – Vulkan Interop	POWER9 ATS
+384.111+	Yes	N/A	N/A
+410 (>=.48)	No	No	No
+
 #### INSTALL OPENCV + OPENCV_CONTRIB WITH CONDA ####
 
 Solusi : /usr/bin/ld: warning: libgstpbutils-0.10.so.0, needed by /usr/local/lib/libopencv_videoio.so, not found (try using -rpath or -rpath-link)
@@ -1878,8 +2002,16 @@ https://stackoverflow.com/questions/50708344/ffmpeg-difference-between-ab-and-ba
 FFMPEG RESTREAM EXAMPLE
 ffmpeg -rtsp_transport tcp -i 'rtsp://212.78.10.88:554/stream' -f lavfi -i aevalsrc=0 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
 
+# ANTMEDIA SERVER (https://antmedia.io/)
+https://github.com/ant-media/Ant-Media-Server/wiki/Getting-Started
 
-# INSTALL
+# INSTALL NGINX RTMP MODULES
+
+# BUILD NGINX RTMP
+https://software.endy.muhardin.com/aplikasi/live-stream-nginx-rtmp/
+https://github.com/arut/nginx-rtmp-module/wiki/Getting-started-with-nginx-rtmp
+
+# NGINX RTMP DOCKERS VERSION
 https://hub.docker.com/r/jasonrivers/nginx-rtmp
 # DOCKER STOP
 https://stackoverflow.com/questions/30209776/docker-container-will-automatically-stop-after-docker-run-d 
@@ -2322,11 +2454,16 @@ https://dev.to/pranay749254/simple-face-recognizing-system-using-python-and-open
 https://www.chowles.com/easy-facial-detection-in-your-laravel-php-application/
 https://pythondigest.ru/view/843/
 https://replaydeveloper.tistory.com/entry/NILMTKNonIntrusive-Load-Monitoring-Toolkit
+https://download.csdn.net
+https://supervise.ly/
+www.pyimagesearch.com
 ######################## REFERENCE ##############################
 
 @FACENET
 @OPENFACE
 @DEEPFACE
+@Insightface
+@Face-Recognition
 
 - Face Detection
 - Face Identification
@@ -2372,7 +2509,7 @@ https://replaydeveloper.tistory.com/entry/NILMTKNonIntrusive-Load-Monitoring-Too
 24. Who is there # Object detection using YOLO v3 and Face Recognition using Facenet for embedding
 25. libfaceid # BAGUS BANGET
 26. facenet-darknet-pytorch # BAGUS BANGET
-27. Attendance-using-Face # Bagus Tapi Belum Bisa
+
 28. bariqi -> Face-Recognition-Master # Belum Bisa
 29. big_brother # GABISA
 30. caae_face_aging_facenet # GABISA
@@ -2408,8 +2545,7 @@ https://replaydeveloper.tistory.com/entry/NILMTKNonIntrusive-Load-Monitoring-Too
 60. who-is-there # BELU< BISA
 61. yolo-webcam # BELUM
 62. YOLO3-4-Py # BELUM
-63. https://github.com/Gouwenbo/FaceRecognition_GUI.git # MYSQL 
-64. https://github.com/sanstorik/server_face_recognition.git # MYSQL
+
 65. https://github.com/anuruddhaonline/gymapp.git # MYSQL
 66. https://github.com/rafaelszt/observer.git # MYSQL BAGUS
 66. https://github.com/rileykwok/Face-Recognition-Model-with-Gender-Age-and-Emotions-Estimations.git # BAGUS
@@ -2425,7 +2561,9 @@ https://replaydeveloper.tistory.com/entry/NILMTKNonIntrusive-Load-Monitoring-Too
 76. https://github.com/kraten/vehicle-speed-check.git # BAGUS
 77. face-name-age-gender # BELUM
 
-https://github.com/topics/dlib?l=python&o=asc&s=stars
+
+
+
 
 # YANG OK
 - FACEREC
@@ -2439,5 +2577,20 @@ https://github.com/topics/dlib?l=python&o=asc&s=stars
 - Age-Gender-Estimate-TF # BAGUS
 
 
+### BAKAL DIEXPLORE DANI
+27. Attendance-using-Face # Bagus Tapi Belum Bisa # MONGODB FACENET
+78. excubia # MONGO DB FACE RECOGNITION
+63. https://github.com/Gouwenbo/FaceRecognition_GUI.git # MYSQL 
+64. https://github.com/sanstorik/server_face_recognition.git # MYSQL
+faceanalysis # Azure FaceAPI, face_recognition, FaceNet, InsightFace
+
+https://github.com/topics/dlib?l=python&o=asc&s=stars
+
+
 # EMOTION RECOGNITION
 - Emotion-Recognition
+
+
+cuda-visual-tools-9-0* cuda-visual-tools-9-2* libnvinfer-dev*
+  libnvinfer-samples* libnvinfer5* python-libnvinfer* python-libnvinfer-dev*
+  python3-libnvinfer* python3-libnvinfer-dev* tensorrt*
