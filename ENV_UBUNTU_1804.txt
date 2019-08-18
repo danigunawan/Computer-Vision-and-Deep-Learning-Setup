@@ -1,0 +1,8 @@
+https://vlearningit.wordpress.com/install-nvidia-cuda-and-build-opencv-3-in-ubuntu-18-04-lts/
+https://www.learnopencv.com/install-opencv3-on-ubuntu/
+https://linuxize.com/post/how-to-install-opencv-on-ubuntu-18-04/
+https://www.learnopencv.com/install-opencv-3-4-4-on-ubuntu-18-04/
+
+
+OK 
+https://averyuslaner.com/blog/configuring-ubuntu-1804-cuda-nvidia-gpu-deep-learning-opencv-python-bindings/

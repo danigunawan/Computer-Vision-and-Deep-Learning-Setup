@@ -1,5 +1,5 @@
 WORKFLOW :
-
+	
 	- TRELLO : https://trello.com/b/wKBiqfM7/data-scientist
 
 ROADMAP DATA SCIENTIST :
@@ -11,6 +11,7 @@ CONTENTS :
 
 	- Install Prerequisites
 	- Setup NVIDIA Driver for your GPU
+	- NVIDIA VIDEO CODEC (https://developer.nvidia.com/nvidia-video-codec-sdk)
 	- Install CUDA
 	- Install cuDNN
 	- Install NCCL
@@ -88,8 +89,21 @@ Application Domain :
 	- Natural Language Processing
 	- Medical
 	- Speech Recognition
+	- Voice Recognition
+	- Voice Command
+	- Text To Speech
 	- Object Recognition
 	- Machine Learning Algorithms/Research
+	- Reff : https://giscle.com/Body_Counting
+	- Body Detection
+	- Body Counting
+	- Body Gender Detection
+	- Image Recognition
+	- Face Comparison
+	- Face Searching
+	- Face Attributes
+	- Emotions Detections
+
 
 Deep Learning Framework * :
 	- Caffe
@@ -222,6 +236,9 @@ dengan info --envs kita bisa memilih environment yang kita install packagenya
 ## REMOVE USER CONDA
 conda env remove -n ENV_NAME
 
+### INSTALL ANACONDA FOR MULTIPLE USERS ON DIR /OPT/CONDA or /OPT/ANACONDA###
+https://medium.com/@pjptech/installing-anaconda-for-multiple-users-650b2a6666c6
+
 ============================== RANAH JARANG DIPAKE BUAT FOR ME ===============================
 
 ========================================================================================================================================================
@@ -256,17 +273,62 @@ sudo rm -r /home/username
 	sudo apt-get install python-software-properties
 	sudo apt-get install gfortran pkg-config 
 	sudo apt-get install build-essential 
+
 	sudo apt-get install cmake git unzip zip
 	sudo add-apt-repository ppa:deadsnakes/ppa
 	sudo apt-get install python-dev python-tk python2.7-dev python3.5-dev python3.6-dev pylint 
 
 	sudo apt-get install libboost-all-dev
 	sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev curl wget
+	sudo apt-get install libgtk-3-dev
 	sudo apt-get install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
 	sudo apt-get install graphicsmagick python-pip python-nose python-scipy python-pandas python-protobuf
 	sudo apt-get install libevent-dev
 	sudo apt-get install python-numpy python-wheel
 	sudo apt-get install python3-numpy python3-dev python3-pip python3-wheel python3-tk
+
+	sudo apt-get install build-essential cmake unzip pkg-config
+	sudo apt-get install libjpeg-dev libtiff-dev libpng-dev
+	sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+	sudo apt-get install libxvidcore-dev libx264-dev
+	sudo apt-get install libgtk-3-dev
+	sudo apt-get install libopenblas-dev libatlas-base-dev gfortran
+	sudo apt-get install linux-image-generic linux-image-extra-virtual
+	sudo apt-get install linux-source linux-headers-generic
+	sudo apt-get install libhdf5-serial-dev
+	sudo apt-get install git
+	sudo apt-get install python3-dev
+	sudo apt install python3-widgetsnbextension
+	sudo apt install python3-testresources
+	sudo apt-get install virtualenv
+	
+	sudo pip3 install virtualenv
+
+	sudo add-apt-repository ppa:linuxuprising/java
+
+	sudo apt update
+	sudo apt install oracle-java11-installer
+	sudo apt install oracle-java11-set-default sudo apt-get install ant
+
+
+	sudo apt-get install -y libjpeg-dev libpng-dev libtiff-dev ffmpeg
+	sudo apt-get install -y libjpeg8-dev libjasper-dev libpng12-dev libtiff5-dev
+	sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+	sudo apt-get install -y libxvidcore-dev libx264-dev libvorbis-dev
+	sudo apt-get install -y libgtk2.0-dev libgtk-3-dev ccache imagemagick
+	sudo apt-get install -y liblept5 leptonica-progs libleptonica-dev
+	sudo apt-get install -y qt5-default libgtk2.0-dev libtbb-dev
+	sudo apt-get install -y libatlas-base-dev gfortran libblas-dev liblapack-dev 
+	sudo apt-get install -y libdvd-pkg libgstreamer-plugins-base1.0-dev
+	sudo apt-get install -y libmp3lame-dev libtheora-dev
+	sudo apt-get install -y libxine2-dev libv4l-dev x264 v4l-utils
+	sudo apt-get install -y libopencore-amrnb-dev libopencore-amrwb-dev
+	sudo apt install python3-pyqt4
+
+	# Optional dependencies
+	sudo apt-get install -y libprotobuf-dev protobuf-compiler
+	sudo apt-get install -y libgoogle-glog-dev libgflags-dev
+	sudo apt-get install -y libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
 
 @ Install dependencies of deep learning frameworks:
 
@@ -303,7 +365,7 @@ sudo rm -r /home/username
 	sudo pip3 install scipy scikit-image scikit-learn
 	sudo pip3 install keras_applications==1.0.6 --no-deps
 	sudo pip3 install keras_preprocessing==1.0.5 --no-deps
-
+	sudo pip3 install pyqtgraph
 
 @ Check GCC Version
 gcc --version # gcc harus versi 5 support opencv pada cuda
@@ -317,6 +379,7 @@ sudo apt-get install linux-headers-$(uname -r)
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update 
 nvidia-smi
+nvidia-smi -a # This gives you – among other infos – the GPU utilization in %. 
 #sudo apt-get upgrade # Jangan diupgrade takut ada paket yang conflict
 uname -m && cat /etc/*release
 lspci | grep -i nvidia
@@ -508,6 +571,33 @@ Verifying CUDNN SAMPLE :
 	  sudo apt-get install uff-converter-tf
 	  dpkg -l | grep TensorRT
 
+### INSTALL NVENC CUDACODEC (NVIDIA VIDEO CODEC SDK)
+http://on-demand.gputechconf.com/gtc/2018/presentation/s8601-nvidia-gpu-video-technologies.pdf
+https://devtalk.nvidia.com/default/topic/1046272/video-codec-and-optical-flow-sdk/what-is-the-best-way-to-decode-a-mjpeg-stream-by-using-gpu-to-feed-an-opencv-application-/
+
+### Minimalist static FFmpeg build on Ubuntu 18.04 with Nvidia NVENC enabled.
+https://gist.github.com/Brainiarc7/988473b79fd5c8f0db54b92ebb47387a
+https://medium.com/@amirsina.torfi/this-tutorial-deals-with-video-resizing-using-gpu-accelerated-libraries-supported-by-ffmpeg-in-acc829dbe65d
+### A library that uses hardware acceleration to load sequences of video frames to facilitate machine learning training
+
+https://github.com/NVIDIA/nvvl
+
+# Streaming your Linux desktop to Youtube and Twitch via Nvidia's NVENC and VAAPI:
+https://gist.github.com/Brainiarc7/7b6049aac3145927ae1cfeafc8f682c1 	
+
+## Best settings for FFMpeg with NVENC
+https://developer.nvidia.com/ffmpeg
+https://superuser.com/questions/1296374/best-settings-for-ffmpeg-with-nvenc
+
+1. install FFmpeg- 4.1 For Ubuntu 18.04
+https://linuxize.com/post/how-to-install-ffmpeg-on-ubuntu-18-04/
+sudo add-apt-repository ppa:jonathonf/ffmpeg-4
+sudo apt install ffmpeg
+2. https://developer.nvidia.com/nvidia-video-codec-sdk
+
+###  FFMPEG with NVIDIA Acceleration on Ubuntu 16.04 (NVENC SDK)
+https://dwijaybane.wordpress.com/2017/07/19/ffmpeg-with-nvidia-acceleration-on-ubuntu-16-04-nvenc-sdk/
+
 10 # Install OpenCV and Contrib Modules
 
 @ First we will install the dependencies:
@@ -531,7 +621,8 @@ https://www.learnopencv.com/install-opencv-3-4-4-on-ubuntu-16-04/
 	sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev
 	 
 	sudo apt-get install -y libxine2-dev libv4l-dev
-	sudo apt-get install -y libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
+	sudo apt-get install -y libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev # jika tidak bisa sudo apt install ubuntu-restricted-extras
+	sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 	sudo apt-get install -y libqt4-dev libgtk2.0-dev libtbb-dev
 	sudo apt-get install -y libfaac-dev libmp3lame-dev libtheora-dev
 	sudo apt-get install -y libvorbis-dev libxvidcore-dev
@@ -547,7 +638,7 @@ https://www.learnopencv.com/install-opencv-3-4-4-on-ubuntu-16-04/
 	sudo ln -s -f ../libv4l1-videodev.h videodev.h
 	 
 	sudo apt -y install libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
-	sudo apt -y install libgtk2.0-dev libtbb-dev qt5-default
+	sudo apt install libgtk2.0-dev libtbb-dev qt5-default
 	sudo apt -y install libatlas-base-dev
 	sudo apt -y install libfaac-dev libmp3lame-dev libtheora-dev
 	sudo apt -y install libvorbis-dev libxvidcore-dev
@@ -667,6 +758,28 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D BUILD_EXAMPLES=ON ..
 
 
+### JIKA UBUNTU 18.04 + CUDA 10.1 + OPENCV 3.4.0 (berhasil cuman error numpy)
+### JIKA UBUNTU 18.04 + CUDA 10.1 + OPENCV 3.4.5 (berhasil cuman error numpy)
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D WITH_TIFF=ON \
+      -D BUILD_TIFF=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D WITH_OPENGL=ON \
+      -D WITH_CUDA=ON \
+      -D BUILD_opencv_cudacodec=OFF \
+      -D CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-5 \
+      -D CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-5 \
+      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_EXAMPLES=ON ..
+
+
 
 		NOTE: If you are using Python3, you must add the following flag as well
 		      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
@@ -678,8 +791,8 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 
 		7. Compile and install:
 
-			make -j$(nproc)
-			sudo make install
+			make -j$(nproc) atau $ make -j4 (4 Core)
+ 			sudo make install
 			sudo ldconfig
 
 		8. Check installation of OpenCV:
@@ -846,7 +959,6 @@ wget https://pjreddie.com/media/files/yolov3.weights
 ./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
 ######################## Network Device Interface & Audio/Video Playout Graphics #########################
 1. INSTAL CASPARCG CLIENT + SERVER
-
 
 ######################## NDI #########################
 
@@ -1554,6 +1666,7 @@ import sqlite3
 import psycopg2
 import MySQLdb as mysql
 import MongoDB
+https://github.com/satinder147/Attendance-using-Face
 
 39. Unable to install snap package
 https://askubuntu.com/questions/851810/unable-to-install-snap-package/1060830
@@ -1640,8 +1753,27 @@ Solusi :
 
 47. ssh -x dsc01@ipaddress # ini untuk interface ke windows jika tidak muncul
 
+48. The following packages have unmet dependencies:
+ tensorrt : Depends: libnvinfer5 (= 5.1.2-1+cuda10.0) but 5.1.2-1+cuda10.1 is to be installed
+            Depends: libnvinfer-dev (= 5.1.2-1+cuda10.0) but 5.1.2-1+cuda10.1 is to be installed
+
+Solusi : 
+sudo apt-get install libnvinfer5=5.1.2-1+cuda10.0
+sudo apt-get install libnvinfer-dev=5.1.2-1+cuda10.0
+
+49. Install Libgstreamer Ubuntu 18.04
+
+How to fix Missing plugin: gstreamer on Ubuntu 18.04 Bionic Beaver Linux
+
+https://linuxconfig.org/how-to-fix-missing-plugin-gstreamer-on-ubuntu-18-04-bionic-beaver-linux
+
+Solution : 
+
+sudo apt install ubuntu-restricted-extras
+
+
   737  sudo nano ~/.bashrc
-  738  python3 -
+  738  python3 -V
   739  python3 -V
   740  python3.5 -V
   741  python3.5 
@@ -1840,6 +1972,79 @@ https://stackoverflow.com/questions/42574476/update-tensorflow
 
 ### END CONDA INSTALL TENSORFLOW, TENSORFLOW GPU, OPENCV, OPENCV CONTRIB ###
 
+58. Change Version Python3.5 default to Python3.6
+Reff : http://ubuntuhandbook.org/index.php/2017/07/install-python-3-6-1-in-ubuntu-16-04-lts/
+sudo update-alternatives --config python3
+
+sudo update-alternatives --config python
+Will show you an error:
+
+update-alternatives: error: no alternatives for python3 
+You need to update your update-alternatives , then you will be able to set your default python version.
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.4 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+Then run :
+
+sudo update-alternatives --config python
+Set python3.6 as default.
+
+Or use the following command to set python3.6 as default:
+
+sudo update-alternatives  --set python /usr/bin/python3.6
+
+ATAU
+How to choose the default gcc and g++ version?
+REFF: https://askubuntu.com/questions/26498/how-to-choose-the-default-gcc-and-g-version
+
+First erased the current update-alternatives setup for gcc and g++:
+
+sudo update-alternatives --remove-all gcc 
+sudo update-alternatives --remove-all g++
+Install Packages
+
+It seems that both gcc-4.3 and gcc-4.4 are installed after install build-essential. However, we can explicitly install the following packages:
+
+sudo apt-get install gcc-4.3 gcc-4.4 g++-4.3 g++-4.4
+Install Alternatives
+
+Symbolic links cc and c++ are installed by default. We will install symbol links for gcc and g++, then link cc and c++ to gcc and g++ respectively.
+
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.3 10
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 20
+
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.3 10
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 20
+
+sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+sudo update-alternatives --set cc /usr/bin/gcc
+
+sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+sudo update-alternatives --set c++ /usr/bin/g++
+Configure Alternatives
+
+The last step is configuring the default commands for gcc, g++. It's easy to switch between 4.3 and 4.4 interactively:
+
+sudo update-alternatives --config gcc
+sudo update-alternatives --config g++
+
+
+59. Python 3.6 No module named pip
+Reff : https://stackoverflow.com/questions/44622182/python-3-6-no-module-named-pip
+
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3.6 get-pip.py
+
+After that you can use it as python3.6 -m pip or just pip3.6.
+
+60. psutil fails to install on python3.6 and Ubuntu16.04 #1143
+
+https://github.com/giampaolo/psutil/issues/1143
+
+sudo apt install python3.6-dev
+
+sudo pip3 install psutil==5.4.7
+
 #### TUNING UBUNTU FIX & RECOVERY ####
 bersihkan dependency yang tidak penting : 
 sudo apt-get autoremove
@@ -1854,6 +2059,130 @@ sudo apt-get install -f
 
 #### TUNING UBUNTU FIX & RECOVERY ####
 
+61. CHECK CXX AND CC (GCC FOR UBUNTU 18.04)
+https://stackoverflow.com/questions/11394659/where-does-the-value-of-cxx-in-a-makefile-come-from
+$ readlink -f `which cc`
+$ readlink -f `which c++`
+
+62. Why do I get “/sbin/ldconfig.real: /usr/local/cuda/lib64/libcudnn.so.7 is not a symbolic link”?
+
+https://askubuntu.com/questions/1025928/why-do-i-get-sbin-ldconfig-real-usr-local-cuda-lib64-libcudnn-so-7-is-not-a
+
+This may happen when you run sudo ldconfig after copying cuDNN files.
+
+After installing cuDNN, copying the extracted files to  /usr/lib/cuda/lib64 and creating the symlinks, things may go wrong with the symlinks.
+
+So go to /usr/local/cuda/lib64/ and run ls -lha libcudnn*.
+
+You should see two symlinks (bold teal) and one single file. Something like this:
+
+/usr/local/cuda/lib64$ ls -lha libcudnn*
+lrwxrwxrwx 1 root root  13 Dez 25 23:56 libcudnn.so -> libcudnn.so.5
+lrwxrwxrwx 1 root root  17 Dez 25 23:55 libcudnn.so.5 -> libcudnn.so.5.1.5
+-rwxr-xr-x 1 root root 76M Dez 25 23:27 libcudnn.so.5.1.5
+The exact version of libcudnn.so.5.1.5 maybe be a little different for you (maybe libcudnn.so.5.1.10). In that case, adapt the code accordingly
+
+If libcudnn.so and libcudnn.so.5 are not symlinks then this is the reason why you got this error. If so, this is what you need to do:
+
+/usr/local/cuda/lib64$ sudo rm libcudnn.so
+/usr/local/cuda/lib64$ sudo rm libcudnn.so.5
+/usr/local/cuda/lib64$ sudo ln libcudnn.so.5.1.5 libcudnn.so.5
+/usr/local/cuda/lib64$ sudo ln libcudnn.so.5 libcudnn.so
+Run sudo ldconfig again and there should be no errors
+After running the  ls -lha libcudnn* in /usr/local/cuda/lib64 and seeing :
+
+breeze@breeze:/usr/local/cuda/lib64$ ls -lha libcudnn*
+-rwxr-xr-x 1 root root 275M آوریل 15 12:03 libcudnn.so
+-rwxr-xr-x 1 root root 275M آوریل 15 12:03 libcudnn.so.7
+-rwxr-xr-x 1 root root 275M آوریل 15 12:03 libcudnn.so.7.0.5
+-rw-r--r-- 1 root root 268M آوریل 15 12:03 libcudnn_static.a
+I had to do :
+
+breeze@breeze:/usr/local/cuda/lib64$ sudo rm libcudnn.so
+[sudo] password for breeze: 
+breeze@breeze:/usr/local/cuda/lib64$ sudo rm libcudnn.so.7
+breeze@breeze:/usr/local/cuda/lib64$ sudo ln libcudnn.so.7.0.5 libcudnn.so.7
+breeze@breeze:/usr/local/cuda/lib64$ sudo ln libcudnn.so.7 libcudnn.so
+breeze@breeze:/usr/local/cuda/lib64$ sudo ldconfig
+
+63. Install libjasper in Ubuntu 18.04
+
+sudo add-apt-repository “deb http://security.ubuntu.com/ubuntu xenial-security main”
+sudo apt update
+sudo apt install libjasper1 libjasper-dev
+
+63. Unable to locate package libgstreamer0.10-dev on Ubuntu 18.04
+Reff : https://askubuntu.com/questions/1121122/unable-to-locate-package-libgstreamer0-10-dev-on-ubuntu-18-04/1121133
+
+sudo apt -y install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+
+64. Failed to build OpenCV 3.4.5 / 3.4.2 with CUDA 10 10.0 Ubuntu 18.04 / 16.04
+Reff : 
+https://github.com/opencv/opencv/issues/13897#
+https://devtalk.nvidia.com/default/topic/1044773/error-in-installing-opencv-3-4-0-on-cuda-10/
+
+Solution : 
+cmake ... -D BUILD_opencv_cudacodec=OFF \
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D WITH_OPENGL=ON \
+      -D BUILD_opencv_cudacodec=OFF \
+      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+      -D WITH_CUDA=ON \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_EXAMPLES=ON ..
+
+Ex: 
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D WITH_OPENGL=ON \
+      -D WITH_CUDA=ON \
+      -D BUILD_opencv_cudacodec=OFF \
+      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+      -D CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-5 \
+      -D CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-5 \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_EXAMPLES=ON ..
+
+Ex Versi 2 :
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D OPENCV_ENABLE_NONFREE=ON \
+      -D ENABLE_FAST_MATH=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D WITH_LIBV4L=ON \
+      -D WITH_OPENGL=ON \
+      -D WITH_CUDA=ON \
+      -D BUILD_TESTS=OFF \
+      -D BUILD_PERF_TESTS=OFF \
+      -D BUILD_PYTHON_SUPPORT=ON \
+      -D BUILD_opencv_python2=ON \
+      -D BUILD_opencv_python3=ON \
+      -D BUILD_opencv_cudacodec=OFF \
+      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+      -D CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-5 \
+      -D CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-5 \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_EXAMPLES=ON ..      
+      
+      # SKIPP ERROR BYPASS COMPLETE
+      -D ENABLE_PRECOMPILED_HEADERS=OFF \
 
 ####### PYTHON DJANGO ########
 TROUBLE Heroku, Django app crashing on startup, “not a valid port number” :
@@ -1868,6 +2197,185 @@ python
 import django
 django.VERSION
 
+64. What is the best way to decode a MJPEG stream by using GPU to feed an OpenCV application?
+https://devtalk.nvidia.com/default/topic/1046272/video-codec-and-optical-flow-sdk/what-is-the-best-way-to-decode-a-mjpeg-stream-by-using-gpu-to-feed-an-opencv-application-/
+
+Solution : 
+https://devtalk.nvidia.com/default/topic/1046272/video-codec-and-optical-flow-sdk/what-is-the-best-way-to-decode-a-mjpeg-stream-by-using-gpu-to-feed-an-opencv-application-/
+
+You can use NVIDIA Video Codec SDK. Please download the package from https://developer.nvidia.com/nvidia-video-codec-sdk. We have samples which illustrate JPEG decoding, which you can refer to. 
+
+
+65. Cuda 10.0 fatal error: dynlink_nvcuvid.h: No such file or directory解决
+https://blog.csdn.net/qq_31261509/article/details/88567504
+https://www.codetd.com/article/5735440
+
+Solution : 
+-DENABLE_PRECOMPILED_HEADERS=OFF
+
+
+66. OpenCV 4.0.1 + Cuda 10.1, failed to build? #13952
+https://github.com/opencv/opencv/issues/13952
+Summary of build failures on various settings(with CUDA enabled):
+
+CUDA	OpenCV(Branch)	Compiler	Build Failure
+10.1	master	GCC 7.3.0	YES (#13941, #13952) NO(Fixed)
+10.1	master	GCC 5.4.0	YES (#13941, #13952) NO(Fixed)
+10.1	master	VS2015	YES (#13491, #13952) NO(Fixed)
+10.1	3.4	GCC 7.3.0	YES (#13941) NO(Fixed)
+10.1	3.4	GCC 5.4.0	YES (#13941) NO(Fixed)
+10.1	3.4	VS2015	NO
+10.0	master	GCC 7.3.0	NO
+10.0	master	GCC 5.4.0	NO
+10.0	master	VS2015	YES (#13491) NO(Fixed)
+10.0	3.4	GCC 7.3.0	NO
+10.0	3.4	GCC 5.4.0	NO
+10.0	3.4	VS2015	YES (dynlink_nvcuvid.h not found)
+
+67. Can't compile with NVCUVID #8434
+https://github.com/opencv/opencv/issues/8434
+
+So, I created an soft link to /usr/lib/nvidia-current to my nvidia driver path, or /usr/lib path.
+
+sudo ln -s /usr/lib/nvidia-378/libnvcuvid.so /usr/lib/libnvcuvid.so
+sudo ln -s /usr/lib/nvidia-378/libnvcuvid.so.1 /usr/lib/libnvcuvid.so.1
+
+68. undefined reference to TIFFIsTiled@LIBTIFF_4.0' 1> 
+REFF: 
+https://answers.opencv.org/question/35642/libtiff_40-link-errors/
+add cmake opencv :
+-D WITH_TIFF=ON 
+-D BUILD_TIFF=ON
+
+
+68. MAKE AutoRun/SERVICE Python Boot System With Log Daemon
+
+Reff : 
+https://tecadmin.net/setup-autorun-python-script-using-systemd/
+
+https://stackoverflow.com/questions/49585479/systemd-service-not-executing-my-python-script
+
+Sample 1 :
+[Service]
+WorkingDirectory=/var/www/html/dev/
+User=frank
+# or www-data, or whatever user you want ...
+
+# Other settings, such as ...
+Type=simple
+ExecStart=/usr/bin/python3 /var/www/html/dev/schedulerun.py > /var/log/sanu_daemon.log 2>&1
+StandardInput=tty-force
+
+69. PYTHON OPENCV CUDA USING MULTI GPU
+https://sysops.tistory.com/tag/GPU
+https://www.jianshu.com/p/22c0f8ec9a3e
+https://www.zybuluo.com/irving512/note/1292382
+
+1. Terminal에서 python code를 실행하는 방법
+
+$ CUDA_VISIBLE_DEVICES=0 python test1.py  # Uses GPU 0.
+
+$ CUDA_VISIBLE_DEVICES=1 python test2.py  # Uses GPU 1.
+
+$ CUDA_VISIBLE_DEVICES=2,3 python test3.py  # Uses GPUs 2 and 3.
+
+# SERVER TESLA
+CUDA_VISIBLE_DEVICES=2 /opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_depan_in.py
+
+or 
+
+2. python code 추가하는 방법
+
+import os
+
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   
+
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
+
+참고:
+
+https://stackoverflow.com/questions/34775522/tensorflow-multiple-sessions-with-multiple-gpus
+
+https://stackoverflow.com/questions/37893755/tensorflow-set-cuda-visible-devices-within-jupyter
+
+EXAMPLE 2 : 
+
+TensorFlow will attempt to use (an equal fraction of the memory of) all GPU devices that are visible to it.
+If you want to run different sessions on different GPUs, you should do the following.
+
+Run each session in a different Python process.
+Start each process with a different value for the CUDA_VISIBLE_DEVICES environment variable.
+For example, if your script is called my_script.py
+and you have 4 GPUs, you could run the following:
+
+$ CUDA_VISIBLE_DEVICES=0 python my_script.py # Uses GPU 0
+$ CUDA_VISIBLE_DEVICES=1 python my_script.py # Uses GPU 1
+$ CUDA_VISIBLE_DEVICES=2,3 python my_script.py # Uses GPUs 2 and 3.
+
+Note the GPU devices in TensorFlow will still be numbered from zero (i.e. "/gpu:0" etc.), but they will correspond to the devices that you have made visible with CUDA_VISIBLE_DEVICES
+You can set environment variables in the notebook using os.environ.
+Do the following before initializing TensorFlow to limit TensorFlow to first GPU.
+import os
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID" # see issue #152
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
+作者：阿o醒
+链接：https://www.jianshu.com/p/22c0f8ec9a3e
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+70. W tensorflow/compiler/xla/service/platform_util.cc:240] unable to create StreamExecutor for CUDA:0: failed initializing StreamExecutor for CUDA device ordinal 0: Internal: failed call to cuDevicePrimaryCtxRetain: CUDA_ERROR_OUT_OF_MEMORY: out of memory; total memory reported: 8513978368
+2019-04-28 21:18:08.483972: F tensorflow/stream_executor/lib/statusor.cc:34] Attempting to fetch value instead of handling error Internal: no supported devices found for platform CUDA
+
+REFF : https://sysops.tistory.com/tag/GPU
+
+
+Solusi Gunakan Multi GPU :
+tambahkan di model algoritma 
+
+import os
+
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1" # USING GPU 1
+
+71. Service Cuda Visibility
+[Unit]
+Description=Service FR Bigdom Belakang Out
+After=multi-user.target
+Conflicts=getty@tty1.service
+[Service]
+WorkingDirectory=/home/dsc01/DEVELOPMENT/frnih/
+Type=simple
+User=dsc01
+Environment=CUDA_VISIBLE_DEVICES=1
+#ExecStart=/usr/bin/sh -c '/opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py >> /var/log/fr_bigdom_belakang_out.log'
+#ExecStart= /opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py > /var/log/fr_bigdom_belakang_out.log 2>&1
+##ExecStart= /opt/python/opencv-py36/bin/python -u /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py > /var/log/fr_bigdom_belakang_out.log 2>&1
+#ExecStart= /usr/bin/python3 /home/dsc01/dsc_bariqi/FaceRec-master/oprecfacenet.py --mode "ambil_gambar"
+ExecStart=/opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py
+ExecStop=/home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py
+#ExecStartPre= /bin/sh -c 'echo "[`date -u +%Y-%%m-%dT%T.%3NZ`] (sys) Starting" >> /var/log/fr_bigdom_belakang_out_1.log'
+
+##StandardOutput=/var/log/fr_bigdom_belakang_out_1.log
+#StandardError=/var/log/fr_bigdom_belakang_out_2.log
+[Install]
+WantedBy=multi-user.target
+
+72. CHECK SYSTEMINFO LINUX
+lscpu
+
+73. INSTALL DOCKER MONGODB UBUNTU 18.04 
+https://techsparx.com/software-development/docker/damp/mongodb.html
+https://www.youtube.com/watch?v=Cv292D_8NN0
+
+sudo docker pull mongo
+
+74. Install PYAUDIO Ubuntu 18.04
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+sudo apt-get install ffmpeg libav-tools
+sudo pip install pyaudio
 
 ## INSTALL DJANGO LANGSUNG DARI PAKET
 
@@ -2002,8 +2510,35 @@ https://stackoverflow.com/questions/50708344/ffmpeg-difference-between-ab-and-ba
 FFMPEG RESTREAM EXAMPLE
 ffmpeg -rtsp_transport tcp -i 'rtsp://212.78.10.88:554/stream' -f lavfi -i aevalsrc=0 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -shortest -strict experimental -f flv rtmp://localhost:1935/live/stream
 
+
+## FFMPEG AUTOCONNECTIONG IF LOSS SOLUTION RECONNECT PACKET :
+
+REFF : 
+- https://superuser.com/questions/1282794/ffmpeg-passthrough-of-mpeg-transport-stream-causes-errorsglitches-in-stream
+- https://trac.ffmpeg.org/ticket/4392
+- https://superuser.com/questions/1050481/ffmpeg-keep-connection-if-network-source-down
+- https://superuser.com/questions/1238408/prevent-ffmpeg-drop-when-dropped-input-icecast-stream
+
+ffmpeg -re -rtsp_transport tcp -i rtsp://admin:abcd12345@10.11.23.16 -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 600k -b:a 0k -minrate 1500k -maxrate 2000k -bufsize 3000k -shortest -r 15 -strict experimental -f flv rtmp://localhost:1935/LiveApp/636924928612548016186517
+
+## CHEATSHEET FFMPEG
+https://www.google.com/search?safe=strict&ei=k9-oXKqkF4K_8QP2joKgAg&q=cheatsheet+ffmpeg&oq=cheatsheet+ffmpeg&gs_l=psy-ab.3..0i22i30j0i22i10i30j0i22i30.21433.24011..24124...0.0..0.160.1344.15j2......0....1..gws-wiz.......0i71j35i39i19j35i39j0i19j0i203j0i10i203.OFSfhqf1438
+https://devhints.io/ffmpeg
+https://gist.github.com/Orangestar12/a6593a093d8728a268a799ff9003d815
+https://gist.github.com/nickkraakman/e351f3c917ab1991b7c9339e10578049
+
+# Streaming to multiple RTMP servers with ffmpeg with minimal resources
+https://superuser.com/questions/1224788/streaming-to-multiple-rtmp-servers-with-ffmpeg-with-minimal-resources
+
+## OPENCV FFMPEG RTMP STREAM
+https://github.com/jkuri/opencv-ffmpeg-rtmp-stream
+
 # ANTMEDIA SERVER (https://antmedia.io/)
 https://github.com/ant-media/Ant-Media-Server/wiki/Getting-Started
+https://www.youtube.com/watch?v=Hf8vzteVa04
+TROUBL
+# CHECK ARSITEKTUR CPU
+lscpu
 
 # INSTALL NGINX RTMP MODULES
 
@@ -2104,6 +2639,33 @@ atau
 - terus ambil container id
 - ex : sudo docker container stop c72c68679339 (c72c68679339 ini idnya)
 
+### FFMPEG RESTREAM WITH DEVICE WEBCAM LAPTOP / DEVICE0
+ffmpeg -f video4linux2 -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v rawvideo -pix_fmt yuv420p -b:v 600k -b:a 0k -minrate 700k -maxrate 800k -bufsize 800k -shortest -r 15 -strict experimental -f flv rtmp://10.36.14.39:1935/mmlt1_fr_in/stream
+
+ffmpeg -y -f video4linux2 -c:v rawvideo -s 640x480 -i /dev/video0 rtmp://10.36.14.39:1935/mmlt1_fr_in/stream
+
+# https://gist.github.com/peterhellberg/ebfc72147c2009ee720aafe57ce9c141
+
+ffmpeg -f video4linux2 -s 640x480 -r 15 -i /dev/video0 rtmp://localhost:1935/mmlt1_fr_in/stream
+
+
+ffmpeg -y -f video4linux2 -c:v rawvideo -s 640x480 -i /dev/video0 sample.avi
+
+#./ffmpeg -f video4linux2 -s 640x480 -r 15 -vcodec h264 -i /dev/video0 -an http://localhost:8099/feed1.ffm
+
+
+### MJPEG_TO_RTMPT ###
+http://nginx-rtmp.blogspot.com/2013/08/hls-full-urls-in-nginx-rtmp-module.html
+https://github.com/aws-samples/amazon-rekognition-video-analyzer
+https://github.com/search?o=desc&p=7&q=mjpeg&s=updated&type=Repositories
+https://github.com/Segware/react-native-mjpeg-player
+https://github.com/asura22nov/PIcam-mjpeg-streamer-tor-remoteaccess
+
+ffmpeg -re -i http://10.36.27.186:5010/cam.mjpg -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 400k -b:a 0k -minrate 400k -maxrate 400k -bufsize 400k -shortest -r 15 -strict experimental -f flv rtmp://10.36.27.186:1935/LiveApp/072182660479703514841200
+
+# DILAPTOP
+ffmpeg -re -i http://10.244.90.14:5080/10.244.90.14.mjpg -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 400k -b:a 0k -minrate 400k -maxrate 400k -bufsize 400k -shortest -r 15 -strict experimental -f flv rtmp://10.244.90.14:1935/LiveApp/223063865432364591653123
+
 
 ### ADAPTIVE BITRATE STREAM WITH NGINX RTMP ###
 
@@ -2126,6 +2688,7 @@ http://www.chioka.in/python-live-video-streaming-example/
 #Simple Python Motion Jpeg (mjpeg server) from webcam. Using: OpenCV,BaseHTTPServer
 https://gist.github.com/n3wtron/4624820
 https://stackoverflow.com/questions/14088294/multithreaded-web-server-in-python
+https://gist.github.com/n3wtron/4624820 # BAGUS
 
 #### FF SERVER ####
 https://stackoverflow.com/questions/26691189/how-to-capture-video-stream-with-opencv-python
@@ -2264,8 +2827,12 @@ sudo ./openconnect --protocol=gp global.telkom.co.id --dump -vvv
 	- http://security-plus-data-science.blogspot.com/2018/01/setting-up-cuda-9-on-fedora-27.html
 	- https://medium.com/@zhanwenchen/install-cuda-and-cudnn-for-tensorflow-gpu-on-ubuntu-79306e4ac04e
 	- https://www.pugetsystems.com/labs/hpc/
+	@ Accelerating OpenCV 4 – build with CUDA 10.0, Intel MKL + TBB and python bindings in Windows
+	- https://jamesbowley.co.uk/build-opencv-4-0-0-with-cuda-10-0-and-intel-mkl-tbb-in-windows/
 	@ INSTALL CUDA 9.2 dan CUDA 10.0
 	- How-To-Install-CUDA-10-together-with-9-2-on-Ubuntu-18-04-with-support-for-NVIDIA-20XX-Turing-GPUs-1236/
+	@ COMPILE OPENCV 3.4 For Anaconda Python 3.7 3.6 3.5 3.4 and 2.7
+	- https://scivision.co/anaconda-python-opencv3/
 	@ OPENCV
 	- https://www.pyimagesearch.com/2018/05/28/ubuntu-18-04-how-to-install-opencv/
 	- http://www.codebind.com/cpp-tutorial/install-opencv-ubuntu-cpp/#comment-804
@@ -2393,6 +2960,7 @@ sudo ./openconnect --protocol=gp global.telkom.co.id --dump -vvv
 	  https://github.com/agametov/OpenCV-Video-Stream-With-Face-Recognition
 	  https://github.com/ChanChiChoi/awesome-Face_Recognition
 	  https://github.com/MohamadMerchant/Voice-Authentication-and-Face-Recognition
+	  https://github.com/SaranshKejriwal/Harold_Finch
 	  https://github.com/bakerandgrey/Face-recognition-and-greeting
 	  https://github.com/kukarzev/big_brother
 	  https://github.com/aishmittal/Real-time-Face-Recognition-based-Surveillance-System
@@ -2437,6 +3005,8 @@ sudo ./openconnect --protocol=gp global.telkom.co.id --dump -vvv
 	- https://www.allgovision.com/admin/uploads/datasheets/
 	@ CPU BENCHMARKS
 	- https://www.cpubenchmark.net/multi_cpu.html
+	@ Awesome Face Recognition
+	- https://github.com/ChanChiChoi/awesome-Face_Recognition
 
 ######################## BLOG ###################################
 https://www.youtube.com/watch?v=7eOLm_dsuz8
@@ -2482,6 +3052,19 @@ www.pyimagesearch.com
 - Headpose Detection
 - Sleeping Detection
 - Fatigue Detection
+- Body Detection
+- Body Counting
+- Body Gender Detection
+- Image Recognition
+- Face Comparison
+- Face Searching
+- Face Attributes
+- Emotions Detections
+- Face Alignment; 
+- Face Recognition 
+- Face Identification 
+Face Verification && Face Representation; Face Reconstruction; Face Tracking; Face Super-Resolution && Face Deblurring; Face Generation && Face Synthesis; Face Transfer; Face Anti-Spoofing; Face Retrieval;
+
 
 1. Realtimecamera # Belum
 2. Counting People Video # Jelek
@@ -2561,10 +3144,6 @@ www.pyimagesearch.com
 76. https://github.com/kraten/vehicle-speed-check.git # BAGUS
 77. face-name-age-gender # BELUM
 
-
-
-
-
 # YANG OK
 - FACEREC
 - People-Counter
@@ -2583,14 +3162,398 @@ www.pyimagesearch.com
 63. https://github.com/Gouwenbo/FaceRecognition_GUI.git # MYSQL 
 64. https://github.com/sanstorik/server_face_recognition.git # MYSQL
 faceanalysis # Azure FaceAPI, face_recognition, FaceNet, InsightFace
-
+https://github.com/MeAnupSarkar/ExoVisix # AUTO ATTENDANCE MYSQL
 https://github.com/topics/dlib?l=python&o=asc&s=stars
+79. https://github.com/mahehu/TUT-live-age-estimator.git # BAGUS
+80. https://github.com/wondonghyeon/face-classification.git # ADA WARNA KULIT
+81. https://github.com/wondonghyeon/face-classification.git # BAGUS
+82. https://github.com/HandsomeHans/Face-Attributes-MultiTask-Classification.git # GLASES RECOGNITION
 
+# FACE ATTIRBUTES MULTITASK
 
 # EMOTION RECOGNITION
 - Emotion-Recognition
 
 
-cuda-visual-tools-9-0* cuda-visual-tools-9-2* libnvinfer-dev*
-  libnvinfer-samples* libnvinfer5* python-libnvinfer* python-libnvinfer-dev*
-  python3-libnvinfer* python3-libnvinfer-dev* tensorrt*
+## ATTENDANCE SYSTEM SQL ## 
+https://github.com/Wormhole307/my_facenet_project.git
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D WITH_TIFF=ON \
+      -D BUILD_TIFF=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D WITH_OPENGL=ON \
+      -D WITH_CUDA=ON \
+      -D BUILD_opencv_cudacodec=OFF \
+      -D CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-5 \
+      -D CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-5 \
+      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_EXAMPLES=ON ..
+
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D WITH_OPENGL=ON \
+      -D OPENCV_ENABLE_NONFREE=ON \
+      -D BUILD_opencv_cudacodec=OFF \
+      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+      -D CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-5 \
+      -D CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-5 \
+      -D WITH_CUDA=ON \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_EXAMPLES=ON ..
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D WITH_CUDA=ON \
+-D INSTALL_C_EXAMPLES=ON \
+-D CMAKE_C_COMPILER=gcc-4.8 -DCMAKE_CXX_COMPILER=g++-4.8 \
+-D ENABLE_FAST_MATH=1 \
+-D WITH_TBB=ON \
+-D WITH_V4L=ON \
+-D WITH_QT=ON \
+-D WITH_OPENGL=ON \
+-D CUDA_FAST_MATH=1 \
+-D WITH_CUBLAS=1 \
+      -D ENABLE_PRECOMPILED_HEADERS=OFF \
+-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.4.1/modules \
+-D BUILD_EXAMPLES=ON ..
+
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D WITH_CUDA=ON \
+-D CMAKE_C_COMPILER=gcc-4.8 -DCMAKE_CXX_COMPILER=g++-4.8 \
+-D ENABLE_FAST_MATH=1 \
+-D CUDA_FAST_MATH=1 \
+-D WITH_CUBLAS=1 \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.4.1/modules \
+-D BUILD_EXAMPLES=ON ..
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+      -D WITH_OPENGL=ON \
+      -D WITH_CUDA=ON \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-5 \
+      -D CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-5 \
+      -D BUILD_EXAMPLES=ON ..
+
+
+
+dsc01@dsc2 ~ $ sudo /opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py 
+
+
+#### SERVICE 186 ####
+
+[Unit]
+Description=FR BIGDOM BELAKANG OUT
+After=multi-user.target
+Conflicts=getty@tty1.service
+
+[Service]
+WorkingDirectory=/home/dsc01/DEVELOPMENT/frnih/
+User=dsc01
+Type=simple
+
+ExecStart=/opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py > /var/log/fr_bigdom_belakang_out.log 2>&1
+ExecStop=""
+
+[Install]
+WantedBy=multi-user.target
+
+
+### MM LT 1 SERVICE ##
+fr_mm_lt1.service
+
+sudo service fr_mm_lt1 start
+sudo service fr_mm_lt1 stop
+
+
+[Unit]
+Description=FR MM LANTAI ONE IN
+After=multi-user.target
+Conflicts=getty@tty1.service
+[Service]
+WorkingDirectory=/home/dsc01/DEVELOPMENT/frnih/
+Type=simple
+User=dsc01
+ExecStart= /opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py > /var/log/fr_bigdom_belakang_out.log 2>&1
+#ExecStart= /usr/bin/python3 /home/dsc01/dsc_bariqi/FaceRec-master/oprecfacenet.py --mode "ambil_gambar"
+ExecStop=/home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py
+[Install]
+WantedBy=multi-user.target
+
+
+## COUNTING MM LT 1 SERVICE ##
+sudo service c_mm_lt1 start
+sudo service c_mm_lt1 stop
+
+[Unit]
+Description=COUNTING MM LANTAI ONE IN/OUT
+After=multi-user.target
+Conflicts=getty@tty1.service
+[Service]
+WorkingDirectory=/home/dsc01/DEVELOPMENT/frnih/
+Type=simple
+User=dsc01
+ExecStart= /opt/python/opencv-py36/bin/python /home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py > /var/log/fr_bigdom_belakang_out.log 2>&1
+#ExecStart= /usr/bin/python3 /home/dsc01/dsc_bariqi/FaceRec-master/oprecfacenet.py --mode "ambil_gambar"
+ExecStop=/home/dsc01/DEVELOPMENT/frnih/bigdome_belakang_out.py
+[Install]
+WantedBy=multi-user.target
+
+
+ExecStart=/usr/bin/sh -c 'exec /usr/bin/my_binary [arguments] >>/var/log/log1.log 2>>/var/log/log2.log'
+
+
+
+### DIPAKE UNTUK TRANSCODE NANTI folder transcode_antmedia###
+mm_lt_1
+file : sudo nano transcode_mm_lt_1_fr.sh
+
+ffmpeg -re -rtsp_transport tcp -i rtsp://admin:abcd12345@10.11.23.16 -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 600k -b:a 0k -minrate 1000k -maxrate 1000k -bufsize 1500k -shortest -r 15 -strict experimental -f flv rtmp://10.36.27.219:1935/LiveApp/636924928612548016186517
+
+fr_bd_d_in
+file :  sudo nano transcode_bd_d_fr_in.sh 
+
+ffmpeg -re -rtsp_transport tcp -i rtsp://admin:abcd12345@10.36.27.14 -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 600k -b:a 0k -minrate 1000k -maxrate 1000k -bufsize 1500k -shortest -r 15 -strict experimental -f flv rtmp://10.36.27.219:1935/LiveApp/549696114129432454140654
+
+fr_bd_b_out
+file : sudo nano transcode_bd_b_fr_out.sh
+
+ffmpeg -re -rtsp_transport tcp -i rtsp://admin:abcd12345@10.36.27.57 -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 600k -b:a 0k -minrate 1000k -maxrate 1000k -bufsize 1500k -shortest -r 15 -strict experimental -f flv rtmp://10.36.27.219:1935/LiveApp/653325122420384502420266
+
+bd_c_b
+file : sudo nano transcode_bd_c_b.sh
+
+ffmpeg -re -rtsp_transport tcp -i rtsp://admin:abcd12345@10.36.27.54 -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 600k -b:a 0k -minrate 1000k -maxrate 1000k -bufsize 1500k -shortest -r 15 -strict experimental -f flv rtmp://10.36.27.219:1935/LiveApp/653325122420384502420266
+
+### SERVICE MM LT 1 FR ###
+
+[Unit]
+Description=Service FFMPEG Transcode MM Lantai Satu
+After=multi-user.target
+Conflicts=getty@tty1.service
+[Service]
+WorkingDirectory=/home/dsc01/service/transcode_antmedia/
+Type=simple
+#Type=forking
+User=dsc01
+ExecStart=/home/dsc01/service/transcode_antmedia/transcode_mm_lt_1_fr.sh
+ExecStop=pkill -f /home/dsc01/service/transcode_antmedia/transcode_mm_lt_1_fr.sh
+KillMode=process
+
+##StandardOutput=/var/log/fr_bigdom_belakang_out_1.log
+#StandardError=/var/log/fr_bigdom_belakang_out_2.log
+[Install]
+WantedBy=multi-user.target
+
+### SERVICE BIG DOM DEPAN FR IN ###
+[Unit]
+Description=Service FFMPEG Transcode Big Dom Depan FR In
+After=multi-user.target
+Conflicts=getty@tty1.service
+[Service]
+WorkingDirectory=/home/dsc01/service/transcode_antmedia/
+Type=simple
+#Type=forking
+User=dsc01
+ExecStart=/home/dsc01/service/transcode_antmedia/transcode_bd_d_fr_in.sh
+ExecStop=pkill -f /home/dsc01/service/transcode_antmedia/transcode_bd_d_fr_in.sh
+KillMode=process
+
+##StandardOutput=/var/log/fr_bigdom_belakang_out_1.log
+#StandardError=/var/log/fr_bigdom_belakang_out_2.log
+[Install]
+WantedBy=multi-user.target
+
+### CREATE GENERATE SERVICE WITH PYTHON ###
+https://github.com/minhng92/optimized-mjpeg-server/blob/master/generate_service.py
+
+
+generate_service.py : 
+
+import os
+import getpass
+
+SERVICE_CONTENT_TEMPLATE = """
+[Unit]
+Description=MJPEG Server
+[Service]
+User=%(user)s
+# The configuration file application.properties should be here:
+#change this to your workspace
+WorkingDirectory=%(src_dir)s
+Environment=PATH=%(env)s
+#path to executable. 
+#executable is a bash script which calls jar file
+ExecStart=%(src_dir)s/main.py
+SuccessExitStatus=0
+TimeoutStopSec=10
+Restart=always
+RestartSec=5
+[Install]
+WantedBy=multi-user.target
+"""
+
+SOURCE_ABS_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'src')
+assert os.path.isdir(SOURCE_ABS_DIR)
+
+USER = getpass.getuser()
+
+with open('mjpeg_optimized.service', 'w') as f:
+    f.write(SERVICE_CONTENT_TEMPLATE % {
+        'user': USER,
+        'src_dir': SOURCE_ABS_DIR,
+        'env': os.environ['PATH']
+    })
+
+print('Done generating "mjpeg_optimized.service"! To install mjpeg service, run $ sh install.sh')
+
+### SERVICE BIGDOME FR BELAKANG IN ###
+
+ffmpeg -re -rtsp_transport tcp -i rtsp://admin:abcd12345@10.36.27.58 -f lavfi -i aevalsrc=0 -s 1280x720 -vcodec copy -acodec aac -map 0:0 -map 1:0 -c:v libx264 -pix_fmt yuv420p -b:v 400k -b:a 0k -minrate 400k -maxrate 400k -bufsize 400k -shortest -r 15 -strict experimental -f flv rtmp://localhost:1935/LiveApp/059426341202526220421753
+
+
+## SERVICE START TRANSCODE ##
+
+sudo service ffmpeg_transcode_mm_lt1 start
+sudo service ffmpeg_transcode_bd_d_fr_in start
+sudo service ffmpeg_transcode_bd_c_b start
+sudo service ffmpeg_transcode_bd_b_fr_out start
+sudo service ffmpeg_transcode_bd_b_fr_in start
+
+
+
+#### RASPBERRY GPIO ####
+keyword : raspberry api web gpio github rails
+https://github.com/mldoscar/raspberry-gpio-server-rails # RUBY ON RAILS
+
+
+### RAILS RUN SYSTEMD ###
+https://gist.github.com/arslan-online/48fd1df0f6a8a7a8e554632c9066178b
+https://www.raspberrypi.org/forums/viewtopic.php?t=202216
+https://medium.com/@ssscripting/basic-setup-of-rails-with-systemd-46ee067ec8d7
+
+
+Start rails server automatically when ever I start my ubuntu machine
+https://stackoverflow.com/questions/5563714/start-rails-server-automatically-when-ever-i-start-my-ubuntu-machine
+
+You can use a cron job for this. To add the cron job use the command crontab -e. Than you can define a cron job that runs at boot and reboot with @reboot command.
+
+So you'd have something like:
+@reboot cd /home/[path to project] && rails server
+
+
+SAMPLE 1 :
+
+DI CRONJOB :
+cd /home/danigunawan/app/ && ~/.rbenv/bin/rbenv exec rails s
+
+SAMPLE 2 : 
+DI BOOT
+# [Unit]
+Description=FR TLT REGIST
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/danigunawan/app
+ExecStart=/bin/bash -lc 'bundle exec puma -C /home/danigunawan/app/config/puma.rb'
+User=danigunawan
+
+[Install]
+WantedBy=multi-user.target
+
+
+SAMPLE 3 : 
+# [Unit]
+Description=FR TLT REGIST
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -lc 'cd /home/danigunawan/app/ && ~/.rbenv/bin/rbenv exec rails s'
+User=danigunawan
+
+[Install]
+WantedBy=multi-user.target
+
+SAMPLE 3-1 : 
+# [Unit]
+Description=FR TLT REGIST
+After=network.target
+
+[Service]
+WorkingDirectory=/home/danigunawan/app
+Type=simple
+ExecStart=/bin/bash -lc 'cd /home/danigunawan/app/ && ~/.rbenv/bin/rbenv exec rails s'
+User=danigunawan
+
+[Install]
+WantedBy=multi-user.target
+
+SAMPLE 4 :
+# [Unit]
+Description=FR TLT REGIST
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/danigunawan/app
+ExecStart=/bin/bash -lc '~/.rbenv/bin/rbenv exec rails s'
+User=danigunawan
+
+[Install]
+WantedBy=multi-user.target
+
+
+## PKILL ##
+/home/danigunawan/app/tmp/pids/server.pid
+
+
+
+
+
+
+
+### SERVICE LSYNCD RELOAD ###
+
+[Unit]
+Description=Live Syncing (Mirror) Daemon
+After=multi-user.target
+
+[Service]
+Restart=always
+Type=simple
+Nice=19
+#EnvironmentFile=-/etc/default/lsyncd
+#ExecStart=/usr/bin/sh -c 'eval `/usr/bin/lsyncd -nodaemon $LSYNCD_OPTIONS /etc/lsyncd/lsyncd.conf.lua`'
+ExecStart=/usr/bin/lsyncd -nodaemon -pidfile /run/lsyncd.pid /etc/lsyncd/lsyncd.conf.lua
+ExecReload=/bin/kill -HUP $MAINPID
+PIDFile=/run/lsyncd.pid
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+Getting started with GitLab CI/CD
+https://www.youtube.com/watch?v=Jav4vbUrqII
+
+1. buat project di gitlab
+2. buat file di folder project .gitlab-ci.yml
+3. terus isi 
+
+stages: 
+	- build
+	- test
+
+build:
+	stage: build
+	script: 
+		- echo "Building"
+		- mkdir build
+		- touch build/info.txt
+		- 
